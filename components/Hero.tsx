@@ -4,7 +4,17 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useLanguage } from '@/lib/LanguageContext';
 
+/**
+ * Компонент главного экрана (Hero-секция).
+ * Занимает всю высоту вьюпорта и отображает:
+ * - аватар с анимацией появления,
+ * - имя и должность,
+ * - краткий тэглайн,
+ * - кнопки CTA (скачать резюме / написать),
+ * - анимированную подсказку прокрутки вниз.
+ */
 export default function Hero() {
+  // Получаем функцию перевода из языкового контекста
   const { t } = useLanguage();
 
   return (
@@ -13,7 +23,7 @@ export default function Hero() {
       className="min-h-screen flex items-center justify-center px-4 pt-20"
     >
       <div className="max-w-3xl w-full text-center">
-        {/* Avatar */}
+        {/* Avatar — появляется с масштабированием */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -31,7 +41,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Name */}
+        {/* Name — появляется с задержкой 0.1с */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -41,7 +51,7 @@ export default function Hero() {
           Boris Varshaver
         </motion.h1>
 
-        {/* Role */}
+        {/* Role — должность, выводится через i18n */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,7 +61,7 @@ export default function Hero() {
           {t('hero_role')}
         </motion.p>
 
-        {/* Tagline */}
+        {/* Tagline — краткое описание, выводится через i18n */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -61,13 +71,14 @@ export default function Hero() {
           {t('hero_tagline')}
         </motion.p>
 
-        {/* CTA buttons */}
+        {/* CTA buttons — кнопки скачать резюме и перейти к контактам */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex flex-wrap justify-center gap-4"
         >
+          {/* Ссылка на скачивание резюме */}
           <a
             href="/resume.pdf"
             download
@@ -75,6 +86,7 @@ export default function Hero() {
           >
             {t('hero_download')}
           </a>
+          {/* Якорная ссылка на секцию контактов */}
           <a
             href="#contact"
             className="px-6 py-3 rounded-lg border border-[#00d084]/40 text-[#00d084] font-semibold text-sm hover:border-[#00d084] hover:bg-[#00d084]/5 transition-all duration-200"
@@ -83,7 +95,7 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Scroll hint */}
+        {/* Scroll hint — подсказка прокрутки, появляется с задержкой 1.2с */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -91,6 +103,7 @@ export default function Hero() {
           className="mt-20 flex justify-center"
         >
           <a href="#about" aria-label="Scroll down">
+            {/* Индикатор прокрутки — бесконечно движется вверх-вниз */}
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}

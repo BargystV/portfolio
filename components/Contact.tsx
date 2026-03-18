@@ -3,6 +3,11 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 
+/**
+ * Список контактных ссылок.
+ * Каждый объект содержит метку, отображаемое значение,
+ * URL для перехода и иконку SVG-компонент.
+ */
 const contactLinks = [
   {
     label: 'Email',
@@ -30,12 +35,20 @@ const contactLinks = [
   },
 ];
 
+/**
+ * Компонент секции "Контакты".
+ * Отображает заголовок, подзаголовок, сетку ссылок-карточек
+ * и местоположение. Каждая карточка является интерактивной ссылкой.
+ * Внешние ссылки (http/https) открываются в новой вкладке.
+ */
 export default function Contact() {
+  // Получаем функцию перевода из языкового контекста
   const { t } = useLanguage();
 
   return (
     <section id="contact" className="py-24 px-4 bg-white/[0.02]">
       <div className="max-w-3xl mx-auto">
+        {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,6 +60,7 @@ export default function Contact() {
           {t('contact_title')}
         </motion.h2>
 
+        {/* Подзаголовок — призыв к контакту через i18n */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,11 +71,14 @@ export default function Contact() {
           {t('contact_subtitle')}
         </motion.p>
 
+        {/* Сетка карточек с контактами */}
         <div className="grid sm:grid-cols-2 gap-4">
           {contactLinks.map((link, i) => (
+            // Карточка-ссылка появляется снизу с задержкой i * 0.08с
             <motion.a
               key={link.label}
               href={link.href}
+              // Внешние ссылки открываем в новой вкладке
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               initial={{ opacity: 0, y: 16 }}
@@ -70,18 +87,21 @@ export default function Contact() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="flex items-center gap-4 rounded-xl border border-white/8 bg-white/[0.02] px-5 py-4 hover:border-[#00d084]/30 hover:bg-[#00d084]/5 transition-all duration-200 group"
             >
+              {/* Иконка контакта — меняет цвет при наведении */}
               <span className="text-white/30 group-hover:text-[#00d084] transition-colors duration-200">
                 {link.icon}
               </span>
               <div>
+                {/* Метка типа контакта (Email, Telegram и т.д.) */}
                 <p className="text-xs text-white/30 font-mono mb-0.5">{link.label}</p>
+                {/* Отображаемое значение (адрес, ник, номер) */}
                 <p className="text-white/80 text-sm">{link.value}</p>
               </div>
             </motion.a>
           ))}
         </div>
 
-        {/* Location */}
+        {/* Location — местоположение, появляется с задержкой 0.4с */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -96,6 +116,9 @@ export default function Contact() {
   );
 }
 
+/**
+ * SVG-иконка Email (конверт).
+ */
 function EmailIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -105,6 +128,9 @@ function EmailIcon() {
   );
 }
 
+/**
+ * SVG-иконка Telegram.
+ */
 function TelegramIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -113,6 +139,9 @@ function TelegramIcon() {
   );
 }
 
+/**
+ * SVG-иконка GitHub (логотип осьминога).
+ */
 function GitHubIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -121,6 +150,9 @@ function GitHubIcon() {
   );
 }
 
+/**
+ * SVG-иконка телефона.
+ */
 function PhoneIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

@@ -4,6 +4,11 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { TranslationKey } from '@/lib/i18n';
 
+/**
+ * Список пунктов навигационного меню.
+ * Каждый элемент содержит ключ i18n для получения локализованного
+ * названия и якорный href для перехода к соответствующей секции.
+ */
 const navItems: { key: TranslationKey; href: string }[] = [
   { key: 'nav_about', href: '#about' },
   { key: 'nav_skills', href: '#skills' },
@@ -13,17 +18,29 @@ const navItems: { key: TranslationKey; href: string }[] = [
   { key: 'nav_contact', href: '#contact' },
 ];
 
+/**
+ * Компонент навигационной панели (хедер).
+ * Фиксирован в верхней части страницы.
+ * При скролле вниз получает полупрозрачный тёмный фон с размытием.
+ * На мобильных устройствах показывает бургер-меню.
+ */
 export default function Navbar() {
+  // Получаем текущий язык, функцию переключения и функцию перевода
   const { lang, toggle, t } = useLanguage();
+  // Состояние открытия/закрытия мобильного меню
   const [isOpen, setIsOpen] = useState(false);
+  // Флаг: страница прокручена вниз (активирует стиль хедера)
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    // Обработчик события прокрутки: обновляет флаг scrolled
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
+    // Снимаем слушатель при размонтировании компонента
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Закрыть мобильное меню при клике на пункт навигации
   const handleNavClick = () => setIsOpen(false);
 
   return (
@@ -57,6 +74,7 @@ export default function Navbar() {
 
         {/* Lang toggle + burger */}
         <div className="flex items-center gap-3">
+          {/* Кнопка переключения языка: показывает язык, на который переключится */}
           <button
             onClick={toggle}
             className="font-mono text-xs px-3 py-1.5 rounded border border-white/10 text-white/60 hover:border-[#00d084] hover:text-[#00d084] transition-all duration-200"
@@ -71,16 +89,19 @@ export default function Navbar() {
             className="md:hidden flex flex-col gap-1.5 p-1"
             aria-label="Toggle menu"
           >
+            {/* Верхняя линия — при открытии вращается на 45° */}
             <span
               className={`block h-0.5 w-5 bg-white/60 transition-transform duration-200 ${
                 isOpen ? 'rotate-45 translate-y-2' : ''
               }`}
             />
+            {/* Средняя линия — при открытии скрывается */}
             <span
               className={`block h-0.5 w-5 bg-white/60 transition-opacity duration-200 ${
                 isOpen ? 'opacity-0' : ''
               }`}
             />
+            {/* Нижняя линия — при открытии вращается на -45° */}
             <span
               className={`block h-0.5 w-5 bg-white/60 transition-transform duration-200 ${
                 isOpen ? '-rotate-45 -translate-y-2' : ''
@@ -90,7 +111,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — отображается только при isOpen === true */}
       {isOpen && (
         <div className="md:hidden bg-[#0d1117]/95 backdrop-blur-md border-t border-white/5 px-4 py-4">
           <ul className="flex flex-col gap-4 text-sm text-white/60">

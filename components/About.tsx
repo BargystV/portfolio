@@ -3,12 +3,19 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 
+/**
+ * Компонент секции "Обо мне".
+ * Отображает заголовок и три абзаца текста, получаемых через i18n.
+ * Каждый элемент появляется при скролле с небольшой задержкой между абзацами.
+ */
 export default function About() {
+  // Получаем функцию перевода из языкового контекста
   const { t } = useLanguage();
 
   return (
     <section id="about" className="py-24 px-4">
       <div className="max-w-3xl mx-auto">
+        {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -21,6 +28,7 @@ export default function About() {
         </motion.h2>
 
         <div className="space-y-5 text-white/60 leading-relaxed text-base sm:text-lg">
+          {/* Перебираем три ключа абзацев, каждый появляется с задержкой i * 0.1с */}
           {(['about_p1', 'about_p2', 'about_p3'] as const).map((key, i) => (
             <motion.p
               key={key}

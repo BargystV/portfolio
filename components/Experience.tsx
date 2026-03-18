@@ -4,12 +4,20 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 import { experiences } from '@/content/experience';
 
+/**
+ * Компонент секции "Опыт работы".
+ * Отображает хронологический список мест работы в виде вертикального таймлайна.
+ * Каждая запись включает компанию, должность, период и список достижений/задач.
+ * Период отображается на текущем языке (en/ru).
+ */
 export default function Experience() {
+  // Получаем текущий язык и функцию перевода из языкового контекста
   const { lang, t } = useLanguage();
 
   return (
     <section id="experience" className="py-24 px-4 bg-white/[0.02]">
       <div className="max-w-3xl mx-auto">
+        {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,11 +30,12 @@ export default function Experience() {
         </motion.h2>
 
         <div className="relative">
-          {/* Vertical line */}
+          {/* Вертикальная линия таймлайна */}
           <div className="absolute left-0 top-2 bottom-2 w-px bg-white/8" />
 
           <div className="space-y-12">
             {experiences.map((exp, i) => (
+              // Запись опыта — появляется слева с задержкой i * 0.1с
               <motion.div
                 key={exp.company}
                 initial={{ opacity: 0, x: -16 }}
@@ -35,32 +44,33 @@ export default function Experience() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="relative pl-8"
               >
-                {/* Dot */}
+                {/* Dot — точка на таймлайне */}
                 <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-[#00d084]" />
 
-                {/* Period */}
+                {/* Period — период работы: на русском или английском в зависимости от lang */}
                 <p className="font-mono text-xs text-white/30 mb-1">
                   {lang === 'en' ? exp.period : exp.periodRu}
                 </p>
 
-                {/* Company */}
+                {/* Company — название компании */}
                 <h3 className="text-lg font-bold text-white">
                   {exp.company}
                 </h3>
 
-                {/* Role + type */}
+                {/* Role + type — должность и формат работы через i18n */}
                 <p className="text-[#00d084] text-sm mb-4">
                   {t(exp.roleKey)}{' '}
                   <span className="text-white/30">· {t(exp.typeKey)}</span>
                 </p>
 
-                {/* Bullets */}
+                {/* Bullets — список достижений и задач */}
                 <ul className="space-y-2">
                   {exp.bullets.map((bulletKey) => (
                     <li
                       key={bulletKey}
                       className="flex gap-3 text-white/55 text-sm leading-relaxed"
                     >
+                      {/* Декоративный дефис перед каждым пунктом */}
                       <span className="text-[#00d084]/50 mt-1 shrink-0">–</span>
                       {t(bulletKey)}
                     </li>

@@ -1,16 +1,32 @@
 import { TranslationKey } from '@/lib/i18n';
 
+/**
+ * Интерфейс одной записи об опыте работы.
+ * Текстовые поля (должность, формат работы, пункты) хранятся
+ * как ключи i18n для поддержки локализации.
+ */
 export interface ExperienceItem {
+  /** Название компании (не локализуется — одинаково на всех языках) */
   company: string;
+  /** Ключ i18n для названия должности */
   roleKey: TranslationKey;
+  /** Ключ i18n для формата работы (удалённо / офис) */
   typeKey: TranslationKey;
+  /** Период работы на английском (отображается как есть) */
   period: string; // displayed as-is
+  /** Период работы на русском (используется при lang === 'ru') */
   periodRu: string;
+  /** Массив ключей i18n для пунктов достижений/обязанностей */
   bullets: TranslationKey[];
 }
 
+/**
+ * Список мест работы для секции Experience.
+ * Отсортирован от последнего к первому (хронология убывает сверху вниз).
+ */
 export const experiences: ExperienceItem[] = [
   {
+    // Текущее место работы — Nadeks
     company: 'Nadeks',
     roleKey: 'exp_nadeks_role',
     typeKey: 'exp_nadeks_type',
@@ -24,6 +40,7 @@ export const experiences: ExperienceItem[] = [
     ],
   },
   {
+    // Предыдущее место работы — Mahuru (5+ лет)
     company: 'Mahuru',
     roleKey: 'exp_mahuru_role',
     typeKey: 'exp_mahuru_type',
@@ -38,6 +55,7 @@ export const experiences: ExperienceItem[] = [
     ],
   },
   {
+    // Ранний фриланс-опыт
     company: 'Freelance',
     roleKey: 'exp_freelance_role',
     typeKey: 'exp_freelance_type',

@@ -4,12 +4,20 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 import { projects } from '@/content/projects';
 
+/**
+ * Компонент секции "Проекты".
+ * Отображает карточки проектов из массива projects (content/projects.ts).
+ * Каждая карточка содержит название, период, описание, стек технологий
+ * и ссылки (GitHub / Google Play / приватный).
+ */
 export default function Projects() {
+  // Получаем функцию перевода из языкового контекста
   const { t } = useLanguage();
 
   return (
     <section id="projects" className="py-24 px-4">
       <div className="max-w-5xl mx-auto">
+        {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -21,8 +29,10 @@ export default function Projects() {
           {t('projects_title')}
         </motion.h2>
 
+        {/* Сетка карточек проектов */}
         <div className="grid sm:grid-cols-2 gap-6">
           {projects.map((project, i) => (
+            // Карточка проекта — появляется снизу с задержкой i * 0.08с, при наведении поднимается
             <motion.div
               key={project.nameKey}
               initial={{ opacity: 0, y: 24 }}
@@ -33,15 +43,19 @@ export default function Projects() {
               className="flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-all duration-300"
             >
               <div className="flex-1">
+                {/* Локализованное название проекта */}
                 <h3 className="font-bold text-white text-lg mb-2">
                   {t(project.nameKey)}
                 </h3>
+                {/* Период разработки — отображается только если задан */}
                 {project.period && (
                   <p className="font-mono text-xs text-white/30 mb-3">{project.period}</p>
                 )}
+                {/* Локализованное описание проекта */}
                 <p className="text-white/55 text-sm leading-relaxed mb-4">
                   {t(project.descKey)}
                 </p>
+                {/* Теги стека технологий */}
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.stack.map((tech) => (
                     <span
@@ -54,8 +68,9 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Link buttons */}
+              {/* Link buttons — кнопки ссылок на GitHub / Google Play / приватный */}
               <div className="flex gap-3 mt-auto">
+                {/* Ссылка на GitHub — отображается если задан githubUrl */}
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}
@@ -67,11 +82,13 @@ export default function Projects() {
                     {t('proj_github')}
                   </a>
                 )}
+                {/* Метка Google Play — отображается если googlePlayUrl === true */}
                 {project.googlePlayUrl && (
                   <span className="flex items-center gap-1.5 text-xs text-white/40 border border-white/8 px-3 py-1.5 rounded">
                     {t('proj_gplay')}
                   </span>
                 )}
+                {/* Метка приватного проекта — отображается если isPrivate === true */}
                 {project.isPrivate && (
                   <span className="flex items-center gap-1.5 text-xs text-white/30 border border-white/8 px-3 py-1.5 rounded font-mono">
                     🔒 {t('proj_private')}
@@ -86,6 +103,10 @@ export default function Projects() {
   );
 }
 
+/**
+ * Иконка GitHub в виде SVG.
+ * Используется внутри кнопки ссылки на репозиторий.
+ */
 function GitHubIcon() {
   return (
     <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
