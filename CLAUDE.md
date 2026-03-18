@@ -1,44 +1,44 @@
-# CLAUDE.md — Portfolio Project
+# CLAUDE.md — Портфолио
 
-## Stack
+## Стек
 
 Next.js 14 (App Router) · TypeScript strict · Tailwind CSS · Framer Motion
 
-## Key conventions
+## Основные соглашения
 
-- **Data lives in `/content/`** — never hardcode strings in components. Projects → `content/projects.ts`, Experience → `content/experience.ts`, Skills → `content/skills.ts`
-- **All UI text goes through i18n** — add keys to both `en` and `ru` objects in `lib/i18n.ts`, then use `t('key')` via `useLanguage()` hook
-- **Client components** — any component using hooks or Framer Motion needs `'use client'` at the top
-- **Animations** — use Framer Motion `whileInView` with `viewport={{ once: true }}` for scroll-triggered animations
-- **Accent color** — `#00d084` (terminal green); background — `#0d1117`
+- **Данные — в `/content/`**: никогда не хардкодить строки в компонентах. Проекты → `content/projects.ts`, Опыт → `content/experience.ts`, Навыки → `content/skills.ts`
+- **Весь UI-текст — через i18n**: добавлять ключи в оба объекта `en` и `ru` в `lib/i18n.ts`, затем использовать `t('key')` через хук `useLanguage()`
+- **Клиентские компоненты**: любой компонент с хуками или Framer Motion требует `'use client'` в начале файла
+- **Анимации**: использовать Framer Motion `whileInView` с `viewport={{ once: true }}` для анимаций при скролле
+- **Акцентный цвет**: `#00d084` (терминальный зелёный); фон — `#0d1117`
 
-## Project structure
+## Структура проекта
 
 ```
-app/            # layout.tsx (metadata, LanguageProvider), page.tsx (sections assembly)
-components/     # One component per section — Navbar, Hero, About, Skills, Projects, Experience, Blog, Contact
-content/        # Data files (TS, no JSX)
-lib/            # i18n.ts (translations), LanguageContext.tsx (useLanguage hook)
+app/            # layout.tsx (метатеги, LanguageProvider), page.tsx (сборка секций)
+components/     # По одному компоненту на секцию — Navbar, Hero, About, Skills, Projects, Experience, Blog, Contact
+content/        # Файлы с данными (TS, без JSX)
+lib/            # i18n.ts (переводы), LanguageContext.tsx (хук useLanguage)
 public/         # photo.jpg, resume.pdf
 ```
 
-## Adding a new section
+## Добавление новой секции
 
-1. Create `components/NewSection.tsx` with `'use client'`
-2. Add translation keys to both `en` and `ru` in `lib/i18n.ts`
-3. Add data to `content/` if needed
-4. Import and render in `app/page.tsx`
-5. Add nav link in `components/Navbar.tsx`
+1. Создать `components/NewSection.tsx` с `'use client'`
+2. Добавить ключи перевода в `en` и `ru` в `lib/i18n.ts`
+3. Добавить данные в `content/`, если нужно
+4. Импортировать и отрендерить в `app/page.tsx`
+5. Добавить ссылку в навигацию в `components/Navbar.tsx`
 
-## Commands
+## Команды
 
 ```bash
-npm run dev      # dev server at localhost:3000
-npm run build    # production build (run before committing)
-npm run lint     # ESLint check
+npm run dev      # дев-сервер на localhost:3000
+npm run build    # продакшн-билд (запускать перед коммитом)
+npm run lint     # проверка ESLint
 ```
 
-## Rules
+## Правила
 
-- Always run `npm run build` before committing — no broken builds
-- Update this CLAUDE.md when adding new files, scripts, or changing conventions
+- Всегда запускать `npm run build` перед коммитом — сломанных билдов быть не должно
+- Обновлять этот CLAUDE.md при добавлении новых файлов, скриптов или изменении соглашений
