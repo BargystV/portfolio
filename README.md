@@ -1,45 +1,45 @@
-# Boris Varshaver — Portfolio
+# Борис Варшавер — Портфолио
 
-Personal portfolio website for **Boris Varshaver**, Senior Android Developer (8+ years).
+Сайт-визитка **Бориса Варшавера**, Senior Android Developer (8+ лет опыта).
 
-## Stack
+## Стек
 
 - **Next.js 14** (App Router) + TypeScript
 - **Tailwind CSS**
-- **Framer Motion** — scroll animations
-- Deployed on **Vercel**
+- **Framer Motion** — анимации при скролле
+- Хостинг: **Vercel**
 
-## Features
+## Возможности
 
-- Bilingual (EN / RU) with one-click toggle
-- Dark theme by default
-- Mobile-first, responsive layout
-- Sections: Hero · About · Skills · Projects · Experience · Blog · Contact
-- SEO meta tags + Open Graph
+- Двуязычный (EN / RU) с переключением в один клик
+- Тёмная тема по умолчанию
+- Mobile-first, адаптивная вёрстка
+- Секции: Hero · Обо мне · Навыки · Проекты · Опыт · Блог · Контакты
+- SEO мета-теги + Open Graph
 
-## Project structure
+## Структура проекта
 
 ```
 app/            # Next.js App Router (layout, page, globals.css)
-components/     # UI components (Navbar, Hero, About, Skills, ...)
-content/        # Data layer — projects, experience, skills (TS)
-lib/            # i18n translations + LanguageContext
-public/         # Static assets (photo.jpg, resume.pdf)
+components/     # UI-компоненты (Navbar, Hero, About, Skills, ...)
+content/        # Слой данных — проекты, опыт, навыки (TS)
+lib/            # Переводы i18n + LanguageContext
+public/         # Статические файлы (photo.jpg, resume.pdf)
 ```
 
-## Getting started
+## Запуск
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # production build
+npm run build    # продакшн-билд
 ```
 
-## Adding content
+## Добавление контента
 
-All data is separated from UI:
+Все данные отделены от UI:
 
-- **Projects** → `content/projects.ts`
-- **Experience** → `content/experience.ts`
-- **Skills** → `content/skills.ts`
-- **Translations** → `lib/i18n.ts` (add keys to both `en` and `ru`)
+- **Проекты** → `content/projects.ts`
+- **Опыт работы** → `content/experience.ts`
+- **Навыки** → `content/skills.ts`
+- **Переводы** → `lib/i18n.ts` (добавлять ключи в оба объекта: `en` и `ru`)
