@@ -16,6 +16,7 @@ const groupTitleKey: Record<string, TranslationKey> = {
   tools: 'skills_tools',
   backend: 'skills_backend',
   ai: 'skills_ai',
+  other: 'skills_other',
 };
 
 /**

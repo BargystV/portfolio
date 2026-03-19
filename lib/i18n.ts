@@ -49,7 +49,8 @@ export const translations = {
     skills_architecture: 'Architecture',
     skills_tools: 'Tools',
     skills_backend: 'Backend / Infra',
-    skills_ai: 'AI & Other',
+    skills_ai: 'AI',
+    skills_other: 'Other',
 
     // Projects
     projects_title: 'Projects',
@@ -145,7 +146,8 @@ export const translations = {
     skills_architecture: 'Архитектура',
     skills_tools: 'Инструменты',
     skills_backend: 'Backend / Инфра',
-    skills_ai: 'AI & Прочее',
+    skills_ai: 'AI',
+    skills_other: 'Прочее',
 
     // Projects
     projects_title: 'Проекты',

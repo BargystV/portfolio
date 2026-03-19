@@ -5,7 +5,7 @@
  */
 export interface SkillGroup {
   /** Ключ группы — используется для получения локализованного заголовка */
-  key: 'languages' | 'mobile' | 'architecture' | 'tools' | 'backend' | 'ai';
+  key: 'languages' | 'mobile' | 'architecture' | 'tools' | 'backend' | 'ai' | 'other';
   /** Список технологий или инструментов в данной группе */
   items: string[];
 }
@@ -56,13 +56,13 @@ export const skillGroups: SkillGroup[] = [
     items: ['Spring Boot', 'Kafka', 'PostgreSQL'],
   },
   {
-    // AI-инструменты и прочее
+    // AI-инструменты
     key: 'ai',
-    items: [
-      'Claude Code',
-      'n8n',
-      'LLM API',
-      'LibGDX',
-    ],
+    items: ['Claude Code', 'n8n', 'LLM API'],
+  },
+  {
+    // Прочие технологии
+    key: 'other',
+    items: ['LibGDX'],
   },
 ];
