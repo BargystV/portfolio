@@ -16,10 +16,22 @@ const contactLinks = [
     icon: <EmailIcon />,
   },
   {
+    label: 'Phone',
+    value: '+7 906 462 2854',
+    href: 'tel:+79064622854',
+    icon: <PhoneIcon />,
+  },
+  {
     label: 'Telegram',
     value: '@bargystvelp',
     href: 'https://t.me/bargystvelp',
     icon: <TelegramIcon />,
+  },
+  {
+    label: 'Instagram',
+    value: '@bargystvelp',
+    href: 'https://www.instagram.com/bargystvelp/',
+    icon: <InstagramIcon />,
   },
   {
     label: 'GitHub',
@@ -28,22 +40,10 @@ const contactLinks = [
     icon: <GitHubIcon />,
   },
   {
-    label: 'Phone',
-    value: '+7 906 462 2854',
-    href: 'tel:+79064622854',
-    icon: <PhoneIcon />,
-  },
-  {
     label: 'LinkedIn',
     value: 'boris-varshaver',
     href: 'https://www.linkedin.com/in/boris-varshaver-392111288/',
     icon: <LinkedInIcon />,
-  },
-  {
-    label: 'Instagram',
-    value: '@bargystvelp',
-    href: 'https://www.instagram.com/bargystvelp/',
-    icon: <InstagramIcon />,
   },
 ];
 
