@@ -21,6 +21,7 @@ export const translations = {
     nav_contact: 'Contact',
 
     // Hero
+    hero_name: 'Boris Varshaver',
     hero_role: 'Senior Android Developer',
     hero_tagline: '8+ years building Android apps. Passionate about mobile × AI.',
     hero_download: 'Download Resume',
@@ -113,6 +114,7 @@ export const translations = {
     nav_contact: 'Контакты',
 
     // Hero
+    hero_name: 'Борис Варшавер',
     hero_role: 'Senior Android Developer',
     hero_tagline: '8+ лет разработки Android-приложений. Увлечён пересечением мобайла и AI.',
     hero_download: 'Скачать резюме',

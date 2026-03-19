@@ -48,7 +48,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-3"
         >
-          Boris Varshaver
+          {t('hero_name')}
         </motion.h1>
 
         {/* Role — должность, выводится через i18n */}
