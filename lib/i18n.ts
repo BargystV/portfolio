@@ -46,7 +46,9 @@ export const translations = {
     skills_title: 'Skills',
     skills_languages: 'Languages',
     skills_mobile: 'Mobile & Android',
-    skills_arch: 'Architecture & Infra',
+    skills_architecture: 'Architecture',
+    skills_tools: 'Tools',
+    skills_backend: 'Backend / Infra',
     skills_ai: 'AI & Other',
 
     // Projects
@@ -140,7 +142,9 @@ export const translations = {
     skills_title: 'Навыки',
     skills_languages: 'Языки',
     skills_mobile: 'Mobile & Android',
-    skills_arch: 'Архитектура & Инфра',
+    skills_architecture: 'Архитектура',
+    skills_tools: 'Инструменты',
+    skills_backend: 'Backend / Инфра',
     skills_ai: 'AI & Прочее',
 
     // Projects

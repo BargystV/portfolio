@@ -5,7 +5,7 @@
  */
 export interface SkillGroup {
   /** Ключ группы — используется для получения локализованного заголовка */
-  key: 'languages' | 'mobile' | 'arch' | 'ai';
+  key: 'languages' | 'mobile' | 'architecture' | 'tools' | 'backend' | 'ai';
   /** Список технологий или инструментов в данной группе */
   items: string[];
 }
@@ -41,20 +41,19 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    // Архитектурные паттерны, инструменты сборки и инфраструктура
-    key: 'arch',
-    items: [
-      'MVVM',
-      'Clean Architecture',
-      'SOLID',
-      'Git',
-      'Gradle',
-      'JUnit',
-      'SQLite',
-      'Spring Boot',
-      'Kafka',
-      'PostgreSQL',
-    ],
+    // Архитектурные паттерны
+    key: 'architecture',
+    items: ['MVVM', 'Clean Architecture', 'SOLID'],
+  },
+  {
+    // Инструменты разработки и тестирования
+    key: 'tools',
+    items: ['Git', 'Gradle', 'JUnit', 'SQLite'],
+  },
+  {
+    // Backend-технологии и инфраструктура
+    key: 'backend',
+    items: ['Spring Boot', 'Kafka', 'PostgreSQL'],
   },
   {
     // AI-инструменты и прочее
