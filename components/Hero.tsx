@@ -69,10 +69,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-white/50 text-base sm:text-lg max-w-xl mx-auto mb-10"
+          className="text-white/50 text-base sm:text-lg w-fit mx-auto mb-10 text-left"
         >
           <p>{t('hero_tagline')}</p>
           <p>{t('hero_tagline2')}</p>
+          <p>{t('hero_tagline3')}</p>
+          <p>{t('hero_tagline4')}</p>
         </motion.div>
 
         {/* CTA buttons — кнопки скачать резюме и перейти к контактам */}
