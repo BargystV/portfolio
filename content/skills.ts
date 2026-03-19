@@ -25,8 +25,11 @@ export const skillGroups: SkillGroup[] = [
     key: 'mobile',
     items: [
       'Jetpack Compose',
+      'Compose Multiplatform',
+      'Coroutines',
       'Room',
       'Retrofit',
+      'Ktor',
       'OkHttp',
       'Koin',
       'Moxy',
@@ -47,7 +50,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Инструменты разработки и тестирования
     key: 'tools',
-    items: ['Git', 'Gradle', 'JUnit'],
+    items: ['Git', 'Gradle', 'JUnit', 'Sentry', 'Jenkins'],
   },
   {
     // Backend-технологии и инфраструктура
