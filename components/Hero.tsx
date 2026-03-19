@@ -18,7 +18,7 @@ export default function Hero() {
   const { t, lang } = useLanguage();
   // Путь к PDF и имя скачиваемого файла зависят от текущего языка
   const resumeHref = lang === 'ru' ? '/resume.pdf' : '/resume-en.pdf';
-  const resumeFilename = lang === 'ru' ? 'Варшавер Борис Романович.pdf' : 'Varshaver Boris Romanovich.pdf';
+  const resumeFilename = lang === 'ru' ? 'Варшавер Борис Романович.pdf' : 'Boris Varshaver.pdf';
 
   return (
     <section
