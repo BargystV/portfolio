@@ -31,8 +31,8 @@ const LanguageContext = createContext<LanguageContextType | null>(null);
  * @param children - дочерние React-узлы
  */
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // Текущий язык, по умолчанию — английский
-  const [lang, setLang] = useState<Lang>('en');
+  // Текущий язык, по умолчанию — русский
+  const [lang, setLang] = useState<Lang>('ru');
 
   // Переключение между 'en' и 'ru'
   const toggle = () => setLang((prev) => (prev === 'en' ? 'ru' : 'en'));
