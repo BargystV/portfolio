@@ -23,7 +23,8 @@ export const translations = {
     // Hero
     hero_name: 'Boris Varshaver',
     hero_role: 'Senior Android Developer',
-    hero_tagline: '8+ years building Android apps. Passionate about mobile × AI.',
+    hero_tagline: '8+ years of commercial Android development.',
+    hero_tagline2: 'Building AI agents for personal task automation.',
     hero_download: 'Download Resume',
     hero_contact: 'Contact Me',
 
@@ -116,7 +117,8 @@ export const translations = {
     // Hero
     hero_name: 'Борис Варшавер',
     hero_role: 'Senior Android Developer',
-    hero_tagline: '8+ лет разработки Android-приложений. Увлечён пересечением мобайла и AI.',
+    hero_tagline: '8+ лет коммерческой разработки Android-приложений.',
+    hero_tagline2: 'Разрабатываю AI-агентов для автоматизации персональных задач.',
     hero_download: 'Скачать резюме',
     hero_contact: 'Написать мне',
 

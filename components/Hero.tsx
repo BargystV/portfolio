@@ -62,14 +62,15 @@ export default function Hero() {
         </motion.p>
 
         {/* Tagline — краткое описание, выводится через i18n */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-white/50 text-base sm:text-lg max-w-xl mx-auto mb-10"
         >
-          {t('hero_tagline')}
-        </motion.p>
+          <p>{t('hero_tagline')}</p>
+          <p>{t('hero_tagline2')}</p>
+        </motion.div>
 
         {/* CTA buttons — кнопки скачать резюме и перейти к контактам */}
         <motion.div
