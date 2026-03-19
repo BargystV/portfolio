@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(python3 -c \"import reportlab; print\\(reportlab.Version\\)\")",
+      "Bash(pip3 install:*)",
+      "Bash(python3:*)",
+      "Read(//System/Library/Fonts/Supplemental/**)",
+      "Bash(cp \"/Users/bargystvelp/Desktop/Резюме/Варшавер Борис Романович.pdf\" \"/Users/bargystvelp/Projects/WebstormProjects/boris-portfolio/public/resume.pdf\")",
+      "Bash(cp \"/Users/bargystvelp/Desktop/Резюме/Boris Varshaver.pdf\" \"/Users/bargystvelp/Projects/WebstormProjects/boris-portfolio/public/resume-en.pdf\")"
+    ]
+  }
+}

@@ -17,7 +17,6 @@ export const translations = {
     nav_skills: 'Skills',
     nav_projects: 'Projects',
     nav_experience: 'Experience',
-    nav_blog: 'Blog',
     nav_contact: 'Contact',
 
     // Hero
@@ -96,11 +95,6 @@ export const translations = {
     exp_freelance_b1: 'MaybeCoffee: dating app for coffee shops (client-server)',
     exp_freelance_b2: 'Hebrew → English translator app',
 
-    // Blog
-    blog_title: 'Blog',
-    blog_coming: 'Coming soon',
-    blog_desc: 'Articles about Android development, AI tools, and software engineering.',
-
     // Contact
     contact_title: 'Contact',
     contact_subtitle: 'Open to new opportunities — feel free to reach out.',
@@ -113,7 +107,6 @@ export const translations = {
     nav_skills: 'Навыки',
     nav_projects: 'Проекты',
     nav_experience: 'Опыт',
-    nav_blog: 'Блог',
     nav_contact: 'Контакты',
 
     // Hero
@@ -191,11 +184,6 @@ export const translations = {
     exp_freelance_type: 'Удалённо',
     exp_freelance_b1: 'MaybeCoffee: клиент-серверное приложение для знакомств в кофейнях',
     exp_freelance_b2: 'Приложение-переводчик иврит → английский',
-
-    // Blog
-    blog_title: 'Блог',
-    blog_coming: 'Скоро',
-    blog_desc: 'Статьи об Android-разработке, AI-инструментах и инженерии.',
 
     // Contact
     contact_title: 'Контакты',

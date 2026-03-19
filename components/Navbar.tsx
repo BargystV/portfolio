@@ -14,7 +14,6 @@ const navItems: { key: TranslationKey; href: string }[] = [
   { key: 'nav_skills', href: '#skills' },
   { key: 'nav_projects', href: '#projects' },
   { key: 'nav_experience', href: '#experience' },
-  { key: 'nav_blog', href: '#blog' },
   { key: 'nav_contact', href: '#contact' },
 ];
 
