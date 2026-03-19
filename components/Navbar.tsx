@@ -55,7 +55,7 @@ export default function Navbar() {
           href="#hero"
           className="font-mono text-[#00d084] font-bold text-lg tracking-tight"
         >
-          BV<span className="text-white/40">.</span>
+          BV
         </a>
 
         {/* Desktop nav */}
@@ -74,13 +74,13 @@ export default function Navbar() {
 
         {/* Lang toggle + burger */}
         <div className="flex items-center gap-3">
-          {/* Кнопка переключения языка: показывает язык, на который переключится */}
+          {/* Кнопка переключения языка: показывает текущий активный язык */}
           <button
             onClick={toggle}
             className="font-mono text-xs px-3 py-1.5 rounded border border-white/10 text-white/60 hover:border-[#00d084] hover:text-[#00d084] transition-all duration-200"
             aria-label="Toggle language"
           >
-            {lang === 'en' ? 'RU' : 'EN'}
+            {lang === 'en' ? 'EN' : 'RU'}
           </button>
 
           {/* Burger */}
