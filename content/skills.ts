@@ -32,9 +32,12 @@ export const skillGroups: SkillGroup[] = [
       'Moxy',
       'Glide',
       'Proguard',
-      'AirWatch SDK',
       'Zxing',
-      'LibGDX',
+      'NFC',
+      'QR',
+      'VisionLabs',
+      'JavaPoet',
+      'Bouncycastle',
     ],
   },
   {
@@ -54,17 +57,13 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    // AI-инструменты, специализированные технологии и прочее
+    // AI-инструменты и прочее
     key: 'ai',
     items: [
       'Claude Code',
       'n8n',
       'LLM API',
-      'NFC',
-      'QR',
-      'VisionLabs',
-      'JavaPoet',
-      'Bouncycastle',
+      'LibGDX',
     ],
   },
 ];
