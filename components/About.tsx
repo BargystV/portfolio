@@ -29,7 +29,7 @@ export default function About() {
 
         <div className="space-y-5 text-white/60 leading-relaxed text-base sm:text-lg">
           {/* Перебираем три ключа абзацев, каждый появляется с задержкой i * 0.1с */}
-          {(['about_p1', 'about_p2', 'about_p3'] as const).map((key, i) => (
+          {(['about_p1', 'about_p2', 'about_p3', 'about_p4'] as const).map((key, i) => (
             <motion.p
               key={key}
               initial={{ opacity: 0, y: 20 }}

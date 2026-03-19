@@ -32,11 +32,13 @@ export const translations = {
     // About
     about_title: 'About',
     about_p1:
-      'I\'m a Senior Android Developer with over 8 years of commercial experience building production-grade Android applications — from POS terminal payment systems and enterprise MRM solutions to consumer apps and games.',
+      'Senior Android Developer with over 8 years of commercial experience — from POS terminal payment systems and enterprise MRM solutions to consumer apps and games.',
     about_p2:
-      'I\'m fascinated by the intersection of mobile development and AI. I actively use AI tools (Claude Code, n8n, LLM APIs) in my daily workflow to boost productivity and build smarter products. Currently also expanding into backend development with Kotlin and Spring Boot.',
+      'I\'m fascinated by the intersection of mobile development and AI. I actively use AI tools (Claude Code, n8n, LLM APIs) in my daily workflow.',
     about_p3:
-      'Outside of code, I play guitar, write poetry, and travel. I\'m curious about space, philosophy, and psychology. Always learning — English B1, Spanish A2.',
+      'I love automating and organizing — I have several Telegram bots for personal databases: books, movies, recipes, shopping. I\'m writing a life simulation: cells, rules, emergent behavior — it\'s fascinating how simple algorithms give rise to complex systems.',
+    about_p4:
+      'Outside of code, I play guitar, jaw harp, and hang drum, write poetry, and travel. I climbed Elbrus, did mountaineering, rock climbing, and flew a paraglider. Curious about space, philosophy, and psychology. Learning English (B1) and Spanish (A2) — I want to visit Peru.',
 
     // Skills
     skills_title: 'Skills',
@@ -122,11 +124,13 @@ export const translations = {
     // About
     about_title: 'Обо мне',
     about_p1:
-      'Senior Android Developer с более чем 8 годами коммерческого опыта разработки production-приложений — от платёжных систем для POS-терминалов и корпоративных MRM-решений до пользовательских приложений и игр.',
+      'Senior Android Developer с более чем 8 годами коммерческого опыта — от платёжных систем для POS-терминалов и корпоративных MRM-решений до пользовательских приложений и игр.',
     about_p2:
-      'Меня увлекает пересечение мобильной разработки и AI. Активно использую AI-инструменты (Claude Code, n8n, LLM API) в ежедневной работе для повышения продуктивности. Параллельно развиваюсь в бэкенд-разработке на Kotlin и Spring Boot.',
+      'Меня увлекает пересечение мобильной разработки и AI. Активно использую AI-инструменты (Claude Code, n8n, LLM API) в ежедневной работе.',
     about_p3:
-      'В свободное время играю на гитаре, пишу стихи и путешествую. Увлекаюсь космосом, философией и психологией. Продолжаю изучать английский (B1) и испанский (A2).',
+      'Люблю автоматизировать и систематизировать — у меня есть несколько Telegram-ботов для личных баз данных: книги, фильмы, рецепты, покупки. Пишу симуляцию жизни: клетки, правила, эмерджентное поведение — интересно наблюдать, как простые алгоритмы порождают сложные системы.',
+    about_p4:
+      'В свободное время играю на гитаре, варгане и ханге, пишу стихи, путешествую. Восходил на Эльбрус, занимался альпинизмом и скалолазанием, летал на параплане. Увлекаюсь космосом, философией и психологией. Изучаю английский (B1) и испанский (A2) — хочу в Перу.',
 
     // Skills
     skills_title: 'Навыки',
