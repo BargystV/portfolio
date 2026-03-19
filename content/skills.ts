@@ -29,7 +29,6 @@ export const skillGroups: SkillGroup[] = [
       'Coroutines',
       'Room',
       'Retrofit',
-      'Ktor',
       'OkHttp',
       'Koin',
       'Moxy',
@@ -55,7 +54,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Backend-технологии и инфраструктура
     key: 'backend',
-    items: ['Spring Boot', 'Kafka', 'PostgreSQL', 'SQLite'],
+    items: ['Spring Boot', 'Ktor', 'Kafka', 'PostgreSQL', 'SQLite'],
   },
   {
     // AI-инструменты
