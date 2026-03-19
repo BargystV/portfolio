@@ -16,7 +16,8 @@ import { useLanguage } from '@/lib/LanguageContext';
 export default function Hero() {
   // Получаем язык, функцию перевода из языкового контекста
   const { t, lang } = useLanguage();
-  // Имя файла резюме зависит от текущего языка
+  // Путь к PDF и имя скачиваемого файла зависят от текущего языка
+  const resumeHref = lang === 'ru' ? '/resume.pdf' : '/resume-en.pdf';
   const resumeFilename = lang === 'ru' ? 'Варшавер Борис Романович.pdf' : 'Varshaver Boris Romanovich.pdf';
 
   return (
@@ -83,7 +84,7 @@ export default function Hero() {
         >
           {/* Ссылка на скачивание резюме */}
           <a
-            href="/resume.pdf"
+            href={resumeHref}
             download={resumeFilename}
             className="px-6 py-3 rounded-lg bg-[#00d084] text-[#0d1117] font-semibold text-sm hover:bg-[#00d084]/90 transition-colors duration-200"
           >
