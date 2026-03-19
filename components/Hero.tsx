@@ -14,8 +14,10 @@ import { useLanguage } from '@/lib/LanguageContext';
  * - анимированную подсказку прокрутки вниз.
  */
 export default function Hero() {
-  // Получаем функцию перевода из языкового контекста
-  const { t } = useLanguage();
+  // Получаем язык, функцию перевода из языкового контекста
+  const { t, lang } = useLanguage();
+  // Имя файла резюме зависит от текущего языка
+  const resumeFilename = lang === 'ru' ? 'Варшавер Борис Романович.pdf' : 'Varshaver Boris Romanovich.pdf';
 
   return (
     <section
@@ -82,7 +84,7 @@ export default function Hero() {
           {/* Ссылка на скачивание резюме */}
           <a
             href="/resume.pdf"
-            download
+            download={resumeFilename}
             className="px-6 py-3 rounded-lg bg-[#00d084] text-[#0d1117] font-semibold text-sm hover:bg-[#00d084]/90 transition-colors duration-200"
           >
             {t('hero_download')}
