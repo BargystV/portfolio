@@ -5,7 +5,7 @@
  */
 export interface SkillGroup {
   /** Ключ группы — используется для получения локализованного заголовка */
-  key: 'languages' | 'mobile' | 'architecture' | 'tools' | 'backend' | 'ai' | 'other';
+  key: 'languages' | 'mobile' | 'architecture' | 'tools' | 'backend' | 'ai';
   /** Список технологий или инструментов в данной группе */
   items: string[];
 }
@@ -21,24 +21,34 @@ export const skillGroups: SkillGroup[] = [
     items: ['Kotlin', 'Java', 'Python', 'C/C++'],
   },
   {
-    // Мобильная разработка и Android-библиотеки
+    // Мобильная разработка и Android-библиотеки (сортировка по категориям)
     key: 'mobile',
     items: [
+      // UI
       'Jetpack Compose',
       'Compose Multiplatform',
+      // Async
       'Coroutines',
-      'Room',
+      // Network
       'Retrofit',
       'OkHttp',
+      // DB
+      'Room',
+      // DI
       'Koin',
-      'Moxy',
+      // Image
       'Glide',
+      // Build
       'Proguard',
+      // Scan / Hardware
       'ZXing',
       'NFC',
       'Biometrics',
+      // Code generation / Security
       'JavaPoet',
       'BouncyCastle',
+      // Game / Graphics
+      'LibGDX',
     ],
   },
   {
@@ -54,16 +64,11 @@ export const skillGroups: SkillGroup[] = [
   {
     // Backend-технологии и инфраструктура
     key: 'backend',
-    items: ['Spring Boot', 'Ktor', 'Kafka', 'PostgreSQL', 'SQLite'],
+    items: ['Spring Boot', 'Ktor', 'Kafka', 'PostgreSQL'],
   },
   {
     // AI-инструменты
     key: 'ai',
     items: ['Claude Code', 'n8n', 'LLM API'],
-  },
-  {
-    // Прочие технологии
-    key: 'other',
-    items: ['LibGDX'],
   },
 ];
