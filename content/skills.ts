@@ -34,7 +34,7 @@ export const skillGroups: SkillGroup[] = [
       'Proguard',
       'ZXing',
       'NFC',
-      'VisionLabs',
+      'Biometrics',
       'JavaPoet',
       'BouncyCastle',
     ],
