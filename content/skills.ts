@@ -32,12 +32,11 @@ export const skillGroups: SkillGroup[] = [
       'Moxy',
       'Glide',
       'Proguard',
-      'Zxing',
+      'ZXing',
       'NFC',
-      'QR',
       'VisionLabs',
       'JavaPoet',
-      'Bouncycastle',
+      'BouncyCastle',
     ],
   },
   {
@@ -48,12 +47,12 @@ export const skillGroups: SkillGroup[] = [
   {
     // Инструменты разработки и тестирования
     key: 'tools',
-    items: ['Git', 'Gradle', 'JUnit', 'SQLite'],
+    items: ['Git', 'Gradle', 'JUnit'],
   },
   {
     // Backend-технологии и инфраструктура
     key: 'backend',
-    items: ['Spring Boot', 'Kafka', 'PostgreSQL'],
+    items: ['Spring Boot', 'Kafka', 'PostgreSQL', 'SQLite'],
   },
   {
     // AI-инструменты
