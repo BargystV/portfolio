@@ -54,12 +54,10 @@ export default function WorkAndProjects() {
                           href={block.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group inline-flex items-center gap-1.5"
                         >
-                          <h3 className="text-3xl font-bold text-white group-hover:text-[#00d084] transition-colors duration-200 mb-1">
+                          <h3 className="text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-1">
                             {block.company}
                           </h3>
-                          <ExternalLinkIcon />
                         </a>
                       ) : (
                         <h3 className="text-3xl font-bold text-white mb-1">
@@ -83,8 +81,8 @@ export default function WorkAndProjects() {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.4, delay: j * 0.06 }}
-                          whileHover={{ y: -4 }}
-                          className="flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-all duration-300"
+                          whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut' } }}
+                          className="flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-colors duration-150"
                         >
                           <div className="flex-1">
                             {/* Локализованное название проекта */}
@@ -158,8 +156,8 @@ export default function WorkAndProjects() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: j * 0.06 }}
-                        whileHover={{ y: -4 }}
-                        className="flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-all duration-300"
+                        whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut' } }}
+                        className="flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-colors duration-150"
                       >
                         <div className="flex-1">
                           <h4 className="font-bold text-white text-base mb-2">
@@ -217,30 +215,6 @@ export default function WorkAndProjects() {
         </div>
       </div>
     </section>
-  );
-}
-
-/**
- * Иконка внешней ссылки в виде SVG.
- * Отображается рядом с названием компании при наведении.
- */
-function ExternalLinkIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="14"
-      height="14"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-white/30 group-hover:text-[#00d084] transition-colors duration-200 mb-1 shrink-0"
-    >
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-      <polyline points="15 3 21 3 21 9" />
-      <line x1="10" y1="14" x2="21" y2="3" />
-    </svg>
   );
 }
 
