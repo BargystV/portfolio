@@ -15,8 +15,7 @@ export const translations = {
     // Navbar
     nav_about: 'About',
     nav_skills: 'Skills',
-    nav_projects: 'Projects',
-    nav_experience: 'Experience',
+    nav_work: 'Work & Projects',
     nav_contact: 'Contact',
 
     // Hero
@@ -51,11 +50,46 @@ export const translations = {
     skills_backend: 'Backend / Infra',
     skills_ai: 'AI',
 
-    // Projects
-    projects_title: 'Projects',
+    // Work & Projects (объединённая секция)
+    work_title: 'Work & Projects',
+    work_pet_title: 'Personal Projects',
+
     proj_github: 'GitHub',
     proj_gplay: 'Google Play',
     proj_private: 'Private',
+
+    // Nadeks projects
+    proj_pos_nadeks_name: 'POS Terminal App',
+    proj_pos_nadeks_desc:
+      'Android application for POS terminals (continuation from Mahuru). Vendor SDKs: card reading, encryption, receipt printing, transport setup. Native C/C++ code, biometrics (VisionLabs), offline JSON-flow mode. Core refactoring of command processing pipeline and processing abstractions.',
+
+    // Mahuru projects
+    proj_gamecash_name: 'GameCash',
+    proj_gamecash_desc: 'PvP crypto mini-games app built from scratch with cryptocurrency integration.',
+
+    proj_magnitMRM_name: 'Magnit MRM',
+    proj_magnitMRM_desc:
+      'Enterprise MRM application for Magnit corporation: calendar, tasks, file constructor (analog Google Sheets), notifications feed, search, drafts, archive. Stack: Kotlin, Retrofit, Room, Koin, Moxy.',
+
+    proj_paymentPos_name: 'Payment App',
+    proj_paymentPos_desc:
+      'Payment application for POS terminals: anti-fraud checks (root/emulator/antidebug), JavaPoet code generation, VisionLabs biometrics, 7 vendor SDKs.',
+
+    proj_walletNFC_name: 'Wallet / NFC',
+    proj_walletNFC_desc:
+      'NFC/QR wallet, cash register emulator, custom ASAP SDK transport for inter-process communication.',
+
+    proj_mahuru_backend_name: 'Backend Development',
+    proj_mahuru_backend_desc:
+      'Microservice backend on Kotlin: REST & WebFlux APIs, Spring Boot, Kafka event streaming, PostgreSQL, Liquibase migrations, Jaeger tracing, Prometheus/Micrometer metrics.',
+
+    // Freelance projects
+    proj_maybecoffee_name: 'MaybeCoffee',
+    proj_maybecoffee_desc:
+      'Client-server dating app for coffee shops: matchmaking, real-time chat, user profiles.',
+
+    proj_hebrewTrans_name: 'Hebrew → English Translator',
+    proj_hebrewTrans_desc: 'Android translator app for Hebrew to English.',
 
     proj_lifesim_name: 'Life Simulation',
     proj_lifesim_desc:
@@ -77,10 +111,7 @@ export const translations = {
     proj_poet_desc:
       'Android app that suggests rhymes and synonyms. Published on Google Play. Diploma project.',
 
-    // Experience
-    experience_title: 'Experience',
-    exp_present: 'Present',
-
+    // Experience bullets (переиспользуются в workblocks)
     exp_nadeks_role: 'Android Developer',
     exp_nadeks_type: 'Remote',
     exp_nadeks_b1: 'Android app for POS terminals (continuation from Mahuru)',
@@ -111,8 +142,7 @@ export const translations = {
     // Navbar
     nav_about: 'Обо мне',
     nav_skills: 'Навыки',
-    nav_projects: 'Проекты',
-    nav_experience: 'Опыт',
+    nav_work: 'Работа и проекты',
     nav_contact: 'Контакты',
 
     // Hero
@@ -147,11 +177,46 @@ export const translations = {
     skills_backend: 'Backend / Инфра',
     skills_ai: 'AI',
 
-    // Projects
-    projects_title: 'Проекты',
+    // Work & Projects (объединённая секция)
+    work_title: 'Работа и проекты',
+    work_pet_title: 'Личные проекты',
+
     proj_github: 'GitHub',
     proj_gplay: 'Google Play',
     proj_private: 'Приватный',
+
+    // Nadeks projects
+    proj_pos_nadeks_name: 'Приложение для POS-терминала',
+    proj_pos_nadeks_desc:
+      'Android-приложение для POS-терминалов (продолжение из Mahuru). Вендорские SDK: считывание карт, шифрование, печать чеков, настройка транспортов. Нативный код C/C++, биометрия (VisionLabs), offline-режим на базе JSON-flow. Рефакторинг ядра обработки команд и абстракций процессинга.',
+
+    // Mahuru projects
+    proj_gamecash_name: 'GameCash',
+    proj_gamecash_desc: 'Приложение PvP мини-игр на криптовалюту, написанное с нуля.',
+
+    proj_magnitMRM_name: 'Magnit MRM',
+    proj_magnitMRM_desc:
+      'Корпоративное MRM-приложение для сети «Магнит»: календарь, задачи, файловый конструктор (аналог Google Sheets), лента уведомлений, поиск, черновики, архив. Стек: Kotlin, Retrofit, Room, Koin, Moxy.',
+
+    proj_paymentPos_name: 'Платёжное приложение',
+    proj_paymentPos_desc:
+      'Платёжное приложение для POS-терминалов: антифрод-проверки (root/эмулятор/antidebug), кодогенерация через JavaPoet, биометрия VisionLabs, 7 вендорских SDK.',
+
+    proj_walletNFC_name: 'Кошелёк / NFC',
+    proj_walletNFC_desc:
+      'Кошелёк с поддержкой NFC/QR, эмулятор кассы, кастомный ASAP SDK-транспорт для межпроцессного взаимодействия.',
+
+    proj_mahuru_backend_name: 'Backend-разработка',
+    proj_mahuru_backend_desc:
+      'Микросервисный backend на Kotlin: REST и WebFlux API, Spring Boot, событийный стриминг через Kafka, PostgreSQL, миграции Liquibase, трейсинг Jaeger, метрики Prometheus/Micrometer.',
+
+    // Freelance projects
+    proj_maybecoffee_name: 'MaybeCoffee',
+    proj_maybecoffee_desc:
+      'Клиент-серверное приложение для знакомств в кофейнях: матчинг, чат, профили пользователей.',
+
+    proj_hebrewTrans_name: 'Переводчик иврит → английский',
+    proj_hebrewTrans_desc: 'Android-приложение-переводчик с иврита на английский.',
 
     proj_lifesim_name: 'Life Simulation',
     proj_lifesim_desc:
@@ -173,10 +238,7 @@ export const translations = {
     proj_poet_desc:
       'Android-приложение для подбора рифм и синонимов. Опубликовано на Google Play. Дипломный проект.',
 
-    // Experience
-    experience_title: 'Опыт работы',
-    exp_present: 'н.в.',
-
+    // Experience bullets (переиспользуются в workblocks)
     exp_nadeks_role: 'Android Developer',
     exp_nadeks_type: 'Удалённо',
     exp_nadeks_b1: 'Разработка и поддержка Android-приложения для POS-терминалов',

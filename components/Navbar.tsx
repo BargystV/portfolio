@@ -12,8 +12,7 @@ import { TranslationKey } from '@/lib/i18n';
 const navItems: { key: TranslationKey; href: string }[] = [
   { key: 'nav_about', href: '#about' },
   { key: 'nav_skills', href: '#skills' },
-  { key: 'nav_projects', href: '#projects' },
-  { key: 'nav_experience', href: '#experience' },
+  { key: 'nav_work', href: '#work' },
   { key: 'nav_contact', href: '#contact' },
 ];
 

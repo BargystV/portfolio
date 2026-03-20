@@ -2,8 +2,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
-import Projects from '@/components/Projects';
-import Experience from '@/components/Experience';
+import WorkAndProjects from '@/components/WorkAndProjects';
 import Contact from '@/components/Contact';
 
 export default function Home() {
@@ -14,8 +13,7 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
-        <Projects />
-        <Experience />
+        <WorkAndProjects />
         <Contact />
       </main>
       <footer className="py-8 text-center text-white/20 text-xs font-mono border-t border-white/5">
