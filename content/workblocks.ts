@@ -39,6 +39,8 @@ export interface WorkBlock {
   period?: string;
   /** Период работы на русском */
   periodRu?: string;
+  /** Ссылка на сайт компании */
+  url?: string;
   /** Список проектов, разработанных в рамках этого блока */
   projects: WorkProject[];
 }
@@ -52,6 +54,7 @@ export const workBlocks: WorkBlock[] = [
     // Текущее место работы — Nadeks
     id: 'nadeks',
     company: 'Nadeks',
+    url: 'https://nadeks.ru/',
     roleKey: 'exp_nadeks_role',
     typeKey: 'exp_nadeks_type',
     period: 'Mar 2025 – Present',
@@ -71,6 +74,7 @@ export const workBlocks: WorkBlock[] = [
     // Предыдущее место работы — Mahuru (5+ лет)
     id: 'mahuru',
     company: 'Mahuru',
+    url: 'http://mahuru.com/',
     roleKey: 'exp_mahuru_role',
     typeKey: 'exp_mahuru_type',
     period: 'Aug 2019 – Mar 2025',
@@ -118,6 +122,7 @@ export const workBlocks: WorkBlock[] = [
     // Ранний фриланс-опыт
     id: 'freelance',
     company: 'Freelance',
+    url: 'https://freelance.ru/',
     roleKey: 'exp_freelance_role',
     typeKey: 'exp_freelance_type',
     period: 'May 2017 – Jan 2019',

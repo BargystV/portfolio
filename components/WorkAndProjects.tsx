@@ -48,9 +48,24 @@ export default function WorkAndProjects() {
                     {/* Вертикальная акцентная полоса рядом с шапкой */}
                     <div className="w-1 self-stretch bg-[#00d084]/30 rounded-full shrink-0" />
                     <div>
-                      <h3 className="text-3xl font-bold text-white mb-1">
-                        {block.company}
-                      </h3>
+                      {/* Название компании — кликабельно если задан url */}
+                      {block.url ? (
+                        <a
+                          href={block.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-center gap-1.5"
+                        >
+                          <h3 className="text-3xl font-bold text-white group-hover:text-[#00d084] transition-colors duration-200 mb-1">
+                            {block.company}
+                          </h3>
+                          <ExternalLinkIcon />
+                        </a>
+                      ) : (
+                        <h3 className="text-3xl font-bold text-white mb-1">
+                          {block.company}
+                        </h3>
+                      )}
                       {/* Период работы зелёным цветом под названием компании */}
                       <p className="font-mono text-xs text-[#00d084]">
                         {lang === 'en' ? block.period : block.periodRu}
@@ -202,6 +217,30 @@ export default function WorkAndProjects() {
         </div>
       </div>
     </section>
+  );
+}
+
+/**
+ * Иконка внешней ссылки в виде SVG.
+ * Отображается рядом с названием компании при наведении.
+ */
+function ExternalLinkIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-white/30 group-hover:text-[#00d084] transition-colors duration-200 mb-1 shrink-0"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
   );
 }
 
