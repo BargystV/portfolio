@@ -6,7 +6,7 @@ Next.js 14 (App Router) · TypeScript strict · Tailwind CSS · Framer Motion
 
 ## Основные соглашения
 
-- **Данные — в `/content/`**: никогда не хардкодить строки в компонентах. Проекты → `content/projects.ts`, Опыт → `content/experience.ts`, Навыки → `content/skills.ts`
+- **Данные — в `/content/`**: никогда не хардкодить строки в компонентах. Работа и проекты → `content/workblocks.ts`, Навыки → `content/skills.ts`
 - **Весь UI-текст — через i18n**: добавлять ключи в оба объекта `en` и `ru` в `lib/i18n.ts`, затем использовать `t('key')` через хук `useLanguage()`
 - **Клиентские компоненты**: любой компонент с хуками или Framer Motion требует `'use client'` в начале файла
 - **Анимации**: использовать Framer Motion `whileInView` с `viewport={{ once: true }}` для анимаций при скролле
@@ -16,7 +16,7 @@ Next.js 14 (App Router) · TypeScript strict · Tailwind CSS · Framer Motion
 
 ```
 app/            # layout.tsx (метатеги, LanguageProvider), page.tsx (сборка секций)
-components/     # По одному компоненту на секцию — Navbar, Hero, About, Skills, Projects, Experience, Blog, Contact
+components/     # По одному компоненту на секцию — Navbar, Hero, About, Skills, WorkAndProjects, Contact
 content/        # Файлы с данными (TS, без JSX)
 lib/            # i18n.ts (переводы), LanguageContext.tsx (хук useLanguage)
 public/         # photo.jpg, resume.pdf
