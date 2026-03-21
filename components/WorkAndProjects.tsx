@@ -11,6 +11,33 @@ import { workBlocks } from '@/content/workblocks';
  * список обязанностей и карточки проектов.
  * Блок личных проектов показывает только заголовок и карточки.
  */
+/**
+ * Рендерит описание проекта: первая строка — вводный абзац,
+ * строки начинающиеся с «•» — маркированный список вклада.
+ */
+function renderDesc(text: string) {
+  const lines = text.split('\n');
+  const intro = lines[0];
+  const bullets = lines.slice(1).filter((l) => l.startsWith('•'));
+
+  return (
+    <>
+      <p className="text-white/55 text-sm leading-relaxed mb-2">{intro}</p>
+      {bullets.length > 0 && (
+        <ul className="space-y-1 mb-4">
+          {bullets.map((b, i) => (
+            <li key={i} className="flex gap-2 text-sm text-white/45 leading-relaxed">
+              {/* Акцентная точка списка */}
+              <span className="text-[#00d084]/60 mt-0.5 shrink-0">▸</span>
+              <span>{b.slice(2)}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
+
 export default function WorkAndProjects() {
   // Получаем текущий язык и функцию перевода из языкового контекста
   const { lang, t } = useLanguage();
@@ -96,9 +123,7 @@ export default function WorkAndProjects() {
                               </p>
                             )}
                             {/* Локализованное описание проекта */}
-                            <p className="text-white/55 text-sm leading-relaxed mb-4 whitespace-pre-line">
-                              {t(project.descKey)}
-                            </p>
+                            {renderDesc(t(project.descKey))}
                             {/* Теги стека технологий */}
                             <div className="flex flex-wrap gap-2 mb-5">
                               {project.stack.map((tech) => (
