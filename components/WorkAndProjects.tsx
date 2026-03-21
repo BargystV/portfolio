@@ -231,13 +231,14 @@ export default function WorkAndProjects() {
                 </>
               ) : (
                 <>
-                  {/* Заголовок для блока личных проектов */}
-                  <h3 className="text-lg font-semibold text-white/70 mb-6">
-                    {t('work_pet_title')}
-                  </h3>
+                  {/* Шапка блока личных проектов — по аналогии с рабочими блоками */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-1 self-stretch bg-[#00d084]/30 rounded-full shrink-0" />
+                    <h3 className="text-3xl font-bold text-white">{t('work_pet_title')}</h3>
+                  </div>
 
-                  {/* Сетка карточек личных проектов */}
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  {/* Карточки личных проектов */}
+                  <div className="grid gap-5">
                     {block.projects.map((project, j) => (
                       <ProjectCard
                         key={project.nameKey}
