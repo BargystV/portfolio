@@ -58,7 +58,7 @@ export default function Contact() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="py-24 px-4 bg-white/[0.02]">
+    <section id="contact" className="pt-24 pb-12 px-4 bg-white/[0.02]">
       <div className="max-w-5xl mx-auto">
         {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
@@ -111,16 +111,6 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Location — местоположение, появляется с задержкой 0.4с */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 text-center text-white/25 text-sm font-mono"
-        >
-          📍 {t('contact_location')}
-        </motion.p>
       </div>
     </section>
   );
