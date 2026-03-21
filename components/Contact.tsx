@@ -59,7 +59,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 px-4 bg-white/[0.02]">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -83,32 +83,30 @@ export default function Contact() {
           {t('contact_subtitle')}
         </motion.p>
 
-        {/* Сетка карточек с контактами */}
-        <div className="grid sm:grid-cols-2 gap-4">
+        {/* Горизонтальный ряд иконок контактов */}
+        <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
           {contactLinks.map((link, i) => (
-            // Карточка-ссылка появляется снизу с задержкой i * 0.08с
+            // Иконка появляется снизу с задержкой i * 0.08с
             <motion.a
               key={link.label}
               href={link.href}
-              // Внешние ссылки открываем в новой вкладке
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="flex items-center gap-4 rounded-xl border border-white/8 bg-white/[0.02] px-5 py-4 hover:border-[#00d084]/30 hover:bg-[#00d084]/5 transition-all duration-200 group"
+              whileHover={{ y: -4, transition: { duration: 0.15 } }}
+              className="flex flex-col items-center gap-3 group"
             >
-              {/* Иконка контакта — меняет цвет при наведении */}
-              <span className="text-white/30 group-hover:text-[#00d084] transition-colors duration-200">
+              {/* Круглая иконка с hover-подсветкой */}
+              <span className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-white/[0.03] text-white/40 group-hover:text-[#00d084] group-hover:border-[#00d084]/40 group-hover:bg-[#00d084]/5 transition-all duration-200">
                 {link.icon}
               </span>
-              <div>
-                {/* Метка типа контакта (Email, Telegram и т.д.) */}
-                <p className="text-xs text-white/30 font-mono mb-0.5">{link.label}</p>
-                {/* Отображаемое значение (адрес, ник, номер) */}
-                <p className="text-white/80 text-sm">{link.value}</p>
-              </div>
+              {/* Подпись под иконкой */}
+              <span className="text-xs font-mono text-white/30 group-hover:text-white/60 transition-colors duration-200">
+                {link.label}
+              </span>
             </motion.a>
           ))}
         </div>
