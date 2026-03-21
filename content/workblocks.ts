@@ -11,8 +11,10 @@ export interface WorkProject {
   descKey: TranslationKey;
   /** Список технологий/стека проекта */
   stack: string[];
-  /** Период работы над проектом */
+  /** Период работы над проектом на английском */
   period?: string;
+  /** Период работы над проектом на русском */
+  periodRu?: string;
   /** URL репозитория на GitHub */
   githubUrl?: string;
   /** Флаг наличия публикации на Google Play */
@@ -66,6 +68,7 @@ export const workBlocks: WorkBlock[] = [
         descKey: 'proj_pos_nadeks_desc',
         stack: ['Kotlin', 'Java', 'Android', 'C/C++', 'Room', 'Retrofit', 'Sentry'],
         period: 'Mar 2025 – Present',
+        periodRu: 'Март 2025 – н.в.',
         isPrivate: true,
       },
     ],
@@ -114,6 +117,7 @@ export const workBlocks: WorkBlock[] = [
         descKey: 'proj_mahuru_backend_desc',
         stack: ['Kotlin', 'Spring Boot', 'Kafka', 'PostgreSQL', 'Liquibase'],
         period: 'Jun – Sep 2024',
+        periodRu: 'Июнь – Сент 2024',
         isPrivate: true,
       },
     ],
@@ -154,6 +158,7 @@ export const workBlocks: WorkBlock[] = [
         descKey: 'proj_aiagent_desc',
         stack: ['n8n', 'Python', 'LLM API', 'Notion'],
         period: 'Apr 2025 – Present',
+        periodRu: 'Апр 2025 – н.в.',
         isPrivate: true,
       },
       {
@@ -162,6 +167,7 @@ export const workBlocks: WorkBlock[] = [
         descKey: 'proj_lifesim_desc',
         stack: ['Kotlin', 'LibGDX'],
         period: 'Sep 2025 – Jan 2026',
+        periodRu: 'Сент 2025 – Янв 2026',
         githubUrl: 'https://github.com/BargystV/simulation-of-life',
       },
       {
@@ -170,6 +176,7 @@ export const workBlocks: WorkBlock[] = [
         descKey: 'proj_poet_desc',
         stack: ['Kotlin', 'Android'],
         period: 'May – Nov 2017',
+        periodRu: 'Май – Нояб 2017',
         googlePlayUrl: true,
       },
       {

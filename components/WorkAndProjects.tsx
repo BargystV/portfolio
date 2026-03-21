@@ -59,6 +59,7 @@ function ProjectCard({
   contributionsLabel,
   isWork,
   t,
+  lang,
 }: {
   project: WorkProject;
   delay: number;
@@ -68,6 +69,7 @@ function ProjectCard({
   contributionsLabel: string;
   isWork: boolean;
   t: (key: TranslationKey) => string;
+  lang: string;
 }) {
   // Текст инлайн-тоста справа от названия — null означает «скрыт»
   const [inlineToast, setInlineToast] = useState<string | null>(null);
@@ -118,9 +120,11 @@ function ProjectCard({
         </AnimatePresence>
       </div>
 
-      {/* Период разработки — отображается только если задан */}
+      {/* Период разработки — отображается только если задан, локализован */}
       {project.period && (
-        <p className="font-mono text-xs text-white/30 mb-3">{project.period}</p>
+        <p className="font-mono text-xs text-white/30 mb-3">
+          {lang === 'ru' && project.periodRu ? project.periodRu : project.period}
+        </p>
       )}
 
       {/* Описание: с буллетами для рабочих, простое для личных */}
@@ -217,6 +221,7 @@ export default function WorkAndProjects() {
                         contributionsLabel={t('proj_contributions')}
                         isWork={true}
                         t={t}
+                        lang={lang}
                       />
                     ))}
                   </div>
@@ -241,6 +246,7 @@ export default function WorkAndProjects() {
                         contributionsLabel={t('proj_contributions')}
                         isWork={false}
                         t={t}
+                        lang={lang}
                       />
                     ))}
                   </div>
