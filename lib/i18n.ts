@@ -63,7 +63,7 @@ export const translations = {
     proj_toast_gplay: 'Available on Google Play',
 
     // Nadeks projects
-    proj_pos_nadeks_name: 'ARIASOFT.POS',
+    proj_pos_nadeks_name: 'ARIASOFT.POS / ARIASOFT.T2P',
     proj_pos_nadeks_desc:
       'Corporate payment application for 9+ hardware platforms with unified business logic and a public SDK for third-party integrators.\n• Designed Multihal architecture, eliminating separate builds per terminal — single APK for the entire device fleet\n• Integrated server-side JSON offline flow and implemented client-side state handling for logic management without network\n• Introduced JavaPoet-based code generation system to standardise security auditing at compile time\n• Extended JNI layer when adding new Java classes, implemented tasks in C++\n• Integrated biometric transaction authorisation via VisionLabs SDK\n• Implemented support for three POS protocols: ASAP, Privat, Arcus2\n• Refactored command processing subsystem and logical core\n• Configured ProGuard obfuscation to protect payment protocols from reverse engineering',
 
@@ -195,7 +195,7 @@ export const translations = {
     proj_toast_gplay: 'Доступно на Google Play',
 
     // Nadeks projects
-    proj_pos_nadeks_name: 'ARIASOFT.POS',
+    proj_pos_nadeks_name: 'ARIASOFT.POS / ARIASOFT.T2P',
     proj_pos_nadeks_desc:
       'Корпоративное платёжное приложение для 9+ аппаратных платформ с единой бизнес-логикой и публичным SDK для сторонних интеграторов.\n• Спроектировал Multihal-архитектуру, устранив необходимость отдельных сборок под каждый терминал — единый APK для всего парка устройств\n• Интегрировал серверный offline-флоу на базе JSON и реализовал клиентскую обработку состояний для управления логикой без подключения к сети\n• Ввёл систему кодогенерации на базе JavaPoet для стандартизации security-аудита на уровне компиляции\n• Расширял JNI-слой при добавлении новых Java-классов, реализовывал задачи на C++\n• Интегрировал биометрическую авторизацию транзакций через VisionLabs SDK\n• Реализовал поддержку трёх кассовых протоколов: ASAP, Privat, Arcus2\n• Провёл рефакторинг подсистемы процессинга команд и логического ядра\n• Настроил ProGuard-обфускацию для защиты платёжных протоколов от реверс-инжиниринга',
 

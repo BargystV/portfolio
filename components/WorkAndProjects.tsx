@@ -41,8 +41,7 @@ function renderDesc(text: string, contributionsLabel: string) {
  * зелёный — есть GitHub, жёлтый — Google Play, красный — приватный, серый — нет ссылки.
  */
 function getDotColor(project: WorkProject): string {
-  if (project.githubUrl) return 'bg-[#00d084]';
-  if (project.googlePlayUrl) return 'bg-yellow-400';
+  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'bg-[#00d084]';
   if (project.isPrivate) return 'bg-red-500';
   return 'bg-white/20';
 }
@@ -80,6 +79,10 @@ function ProjectCard({
       window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
       return;
     }
+    if (project.rustoreUrl) {
+      window.open(project.rustoreUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
     let message: string;
     if (project.googlePlayUrl) message = toastGplay;
     else if (project.isPrivate) message = toastPrivate;
@@ -89,7 +92,7 @@ function ProjectCard({
     setTimeout(() => setInlineToast(null), 2000);
   }
 
-  const isClickable = !!project.githubUrl;
+  const isClickable = !!(project.githubUrl || project.rustoreUrl);
 
   return (
     <motion.div

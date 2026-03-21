@@ -17,6 +17,8 @@ export interface WorkProject {
   periodRu?: string;
   /** URL репозитория на GitHub */
   githubUrl?: string;
+  /** URL приложения в RuStore */
+  rustoreUrl?: string;
   /** Флаг наличия публикации на Google Play */
   googlePlayUrl?: boolean;
   /** Флаг приватности проекта */
@@ -69,7 +71,7 @@ export const workBlocks: WorkBlock[] = [
         stack: ['Kotlin', 'Java', 'Android', 'C/C++', 'Room', 'Retrofit', 'Sentry'],
         period: 'Feb 2020 – Present (started at Mahuru)',
         periodRu: 'Февр 2020 – н.в. (начинал в Mahuru)',
-        isPrivate: true,
+        rustoreUrl: 'https://www.rustore.ru/catalog/app/com.ariasoft.cardterminal.t2p',
       },
     ],
   },
