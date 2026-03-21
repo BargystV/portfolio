@@ -14,7 +14,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-24 px-4">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
