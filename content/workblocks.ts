@@ -67,8 +67,8 @@ export const workBlocks: WorkBlock[] = [
         nameKey: 'proj_pos_nadeks_name',
         descKey: 'proj_pos_nadeks_desc',
         stack: ['Kotlin', 'Java', 'Android', 'C/C++', 'Room', 'Retrofit', 'Sentry'],
-        period: 'Mar 2025 – Present',
-        periodRu: 'Март 2025 – н.в.',
+        period: 'Feb 2020 – Present (started at Mahuru)',
+        periodRu: 'Февр 2020 – н.в. (начинал в Mahuru)',
         isPrivate: true,
       },
     ],
@@ -95,13 +95,6 @@ export const workBlocks: WorkBlock[] = [
         nameKey: 'proj_magnitMRM_name',
         descKey: 'proj_magnitMRM_desc',
         stack: ['Kotlin', 'Android', 'Retrofit', 'Room', 'Koin', 'Moxy'],
-        isPrivate: true,
-      },
-      {
-        // Платёжное приложение для POS-терминалов
-        nameKey: 'proj_paymentPos_name',
-        descKey: 'proj_paymentPos_desc',
-        stack: ['Kotlin', 'Android', 'JavaPoet', 'VisionLabs'],
         isPrivate: true,
       },
       {
