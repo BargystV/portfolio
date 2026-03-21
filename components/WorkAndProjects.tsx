@@ -22,7 +22,10 @@ function renderDesc(text: string) {
 
   return (
     <>
-      <p className="text-white/55 text-sm leading-relaxed mb-2">{intro}</p>
+      <p className="text-white/55 text-sm leading-relaxed mb-3">{intro}</p>
+      {bullets.length > 0 && (
+        <hr className="border-white/8 mb-3" />
+      )}
       {bullets.length > 0 && (
         <ul className="space-y-1 mb-4">
           {bullets.map((b, i) => (
