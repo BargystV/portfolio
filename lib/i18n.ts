@@ -59,7 +59,7 @@ export const translations = {
     proj_private: 'Private',
 
     // Nadeks projects
-    proj_pos_nadeks_name: 'POS Terminal App',
+    proj_pos_nadeks_name: 'ARIASOFT.POS',
     proj_pos_nadeks_desc:
       'Android application for POS terminals (continuation from Mahuru). Vendor SDKs: card reading, encryption, receipt printing, transport setup. Native C/C++ code, biometrics (VisionLabs), offline JSON-flow mode. Core refactoring of command processing pipeline and processing abstractions.',
 
@@ -186,7 +186,7 @@ export const translations = {
     proj_private: 'Приватный',
 
     // Nadeks projects
-    proj_pos_nadeks_name: 'Приложение для POS-терминала',
+    proj_pos_nadeks_name: 'ARIASOFT.POS',
     proj_pos_nadeks_desc:
       'Android-приложение для POS-терминалов (продолжение из Mahuru). Вендорские SDK: считывание карт, шифрование, печать чеков, настройка транспортов. Нативный код C/C++, биометрия (VisionLabs), offline-режим на базе JSON-flow. Рефакторинг ядра обработки команд и абстракций процессинга.',
 
