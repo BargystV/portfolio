@@ -1,16 +1,11 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
-import { workBlocks } from '@/content/workblocks';
+import { workBlocks, WorkProject } from '@/content/workblocks';
+import { TranslationKey } from '@/lib/i18n';
 
-/**
- * Компонент объединённой секции "Работа и проекты".
- * Отображает 4 блока: Nadeks, Mahuru, Freelance, Личные проекты.
- * Каждый рабочий блок содержит шапку компании (период, роль, тип),
- * список обязанностей и карточки проектов.
- * Блок личных проектов показывает только заголовок и карточки.
- */
 /**
  * Рендерит описание проекта: первая строка — вводный абзац,
  * строки начинающиеся с «•» — маркированный список вклада.
@@ -41,6 +36,120 @@ function renderDesc(text: string, contributionsLabel: string) {
   );
 }
 
+/**
+ * Возвращает цвет статусной точки проекта:
+ * зелёный — есть GitHub, жёлтый — Google Play, красный — приватный, серый — нет ссылки.
+ */
+function getDotColor(project: WorkProject): string {
+  if (project.githubUrl) return 'bg-[#00d084]';
+  if (project.googlePlayUrl) return 'bg-yellow-400';
+  if (project.isPrivate) return 'bg-red-500';
+  return 'bg-white/20';
+}
+
+/**
+ * Карточка проекта со статусной точкой, кликом и инлайн-тостом справа от названия.
+ */
+function ProjectCard({
+  project,
+  delay,
+  toastPrivate,
+  toastNoLink,
+  toastGplay,
+  contributionsLabel,
+  isWork,
+  t,
+}: {
+  project: WorkProject;
+  delay: number;
+  toastPrivate: string;
+  toastNoLink: string;
+  toastGplay: string;
+  contributionsLabel: string;
+  isWork: boolean;
+  t: (key: TranslationKey) => string;
+}) {
+  // Текст инлайн-тоста справа от названия — null означает «скрыт»
+  const [inlineToast, setInlineToast] = useState<string | null>(null);
+
+  /** Определяет действие по клику в зависимости от статуса проекта */
+  function handleClick() {
+    if (project.githubUrl) {
+      window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    let message: string;
+    if (project.googlePlayUrl) message = toastGplay;
+    else if (project.isPrivate) message = toastPrivate;
+    else message = toastNoLink;
+
+    setInlineToast(message);
+    setTimeout(() => setInlineToast(null), 2000);
+  }
+
+  const isClickable = !!project.githubUrl;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay }}
+      whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut' } }}
+      onClick={handleClick}
+      className={`relative flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-colors duration-150 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
+    >
+      {/* Шапка: статусная точка + название + инлайн-тост справа */}
+      <div className="flex items-center gap-2.5 mb-2">
+        <span className={`w-2 h-2 rounded-full shrink-0 ${getDotColor(project)}`} />
+        <h4 className="font-bold text-white text-base">{t(project.nameKey)}</h4>
+        <AnimatePresence>
+          {inlineToast && (
+            <motion.span
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -6 }}
+              transition={{ duration: 0.15 }}
+              className="ml-1 self-center text-xs font-mono text-white/40 border border-white/10 px-2 py-0.5 rounded"
+            >
+              {inlineToast}
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Период разработки — отображается только если задан */}
+      {project.period && (
+        <p className="font-mono text-xs text-white/30 mb-3">{project.period}</p>
+      )}
+
+      {/* Описание: с буллетами для рабочих, простое для личных */}
+      {isWork
+        ? renderDesc(t(project.descKey), contributionsLabel)
+        : <p className="text-white/55 text-sm leading-relaxed mb-4">{t(project.descKey)}</p>
+      }
+
+      {/* Теги стека технологий */}
+      <div className="flex flex-wrap gap-2">
+        {project.stack.map((tech) => (
+          <span
+            key={tech}
+            className="px-2 py-0.5 rounded text-xs font-mono text-[#00d084]/70 bg-[#00d084]/5 border border-[#00d084]/15"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+/**
+ * Компонент объединённой секции "Работа и проекты".
+ * Отображает 4 блока: Nadeks, Mahuru, Freelance, Личные проекты.
+ * Каждый рабочий блок содержит шапку компании и карточки проектов.
+ * Блок личных проектов показывает только заголовок и карточки.
+ */
 export default function WorkAndProjects() {
   // Получаем текущий язык и функцию перевода из языкового контекста
   const { lang, t } = useLanguage();
@@ -71,28 +180,22 @@ export default function WorkAndProjects() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              {/* Шапка компании — только для рабочих блоков */}
               {block.company ? (
                 <>
+                  {/* Шапка компании — только для рабочих блоков */}
                   <div className="flex items-center gap-4 mb-6">
                     {/* Вертикальная акцентная полоса рядом с шапкой */}
                     <div className="w-1 self-stretch bg-[#00d084]/30 rounded-full shrink-0" />
                     <div>
                       {/* Название компании — кликабельно если задан url */}
                       {block.url ? (
-                        <a
-                          href={block.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <a href={block.url} target="_blank" rel="noopener noreferrer">
                           <h3 className="text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-1">
                             {block.company}
                           </h3>
                         </a>
                       ) : (
-                        <h3 className="text-3xl font-bold text-white mb-1">
-                          {block.company}
-                        </h3>
+                        <h3 className="text-3xl font-bold text-white mb-1">{block.company}</h3>
                       )}
                       {/* Период работы зелёным цветом под названием компании */}
                       <p className="font-mono text-xs text-[#00d084]">
@@ -101,72 +204,22 @@ export default function WorkAndProjects() {
                     </div>
                   </div>
 
-                  {/* Сетка карточек проектов */}
+                  {/* Карточки рабочих проектов */}
                   <div className="grid gap-5">
-                      {block.projects.map((project, j) => (
-                        // Карточка проекта — появляется снизу с задержкой j * 0.06с, при наведении поднимается
-                        <motion.div
-                          key={project.nameKey}
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: j * 0.06 }}
-                          whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut' } }}
-                          className="flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-colors duration-150"
-                        >
-                          <div className="flex-1">
-                            {/* Локализованное название проекта */}
-                            <h4 className="font-bold text-white text-base mb-2">
-                              {t(project.nameKey)}
-                            </h4>
-                            {/* Период разработки — отображается только если задан */}
-                            {project.period && (
-                              <p className="font-mono text-xs text-white/30 mb-3">
-                                {project.period}
-                              </p>
-                            )}
-                            {/* Локализованное описание проекта */}
-                            {renderDesc(t(project.descKey), t('proj_contributions'))}
-                            {/* Теги стека технологий */}
-                            <div className="flex flex-wrap gap-2 mb-5">
-                              {project.stack.map((tech) => (
-                                <span
-                                  key={tech}
-                                  className="px-2 py-0.5 rounded text-xs font-mono text-[#00d084]/70 bg-[#00d084]/5 border border-[#00d084]/15"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Кнопки ссылок на GitHub / Google Play / приватный */}
-                          <div className="flex gap-3 mt-auto">
-                            {project.githubUrl && (
-                              <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white border border-white/10 hover:border-white/30 px-3 py-1.5 rounded transition-all duration-200"
-                              >
-                                <GitHubIcon />
-                                {t('proj_github')}
-                              </a>
-                            )}
-                            {project.googlePlayUrl && (
-                              <span className="flex items-center gap-1.5 text-xs text-white/40 border border-white/8 px-3 py-1.5 rounded">
-                                {t('proj_gplay')}
-                              </span>
-                            )}
-                            {project.isPrivate && (
-                              <span className="flex items-center gap-1.5 text-xs text-white/30 border border-white/8 px-3 py-1.5 rounded font-mono">
-                                🔒 {t('proj_private')}
-                              </span>
-                            )}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
+                    {block.projects.map((project, j) => (
+                      <ProjectCard
+                        key={project.nameKey}
+                        project={project}
+                        delay={j * 0.06}
+                        toastPrivate={t('proj_toast_private')}
+                        toastNoLink={t('proj_toast_no_link')}
+                        toastGplay={t('proj_toast_gplay')}
+                        contributionsLabel={t('proj_contributions')}
+                        isWork={true}
+                        t={t}
+                      />
+                    ))}
+                  </div>
                 </>
               ) : (
                 <>
@@ -178,62 +231,17 @@ export default function WorkAndProjects() {
                   {/* Сетка карточек личных проектов */}
                   <div className="grid sm:grid-cols-2 gap-5">
                     {block.projects.map((project, j) => (
-                      <motion.div
+                      <ProjectCard
                         key={project.nameKey}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: j * 0.06 }}
-                        whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut' } }}
-                        className="flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-colors duration-150"
-                      >
-                        <div className="flex-1">
-                          <h4 className="font-bold text-white text-base mb-2">
-                            {t(project.nameKey)}
-                          </h4>
-                          {project.period && (
-                            <p className="font-mono text-xs text-white/30 mb-3">
-                              {project.period}
-                            </p>
-                          )}
-                          <p className="text-white/55 text-sm leading-relaxed mb-4">
-                            {t(project.descKey)}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mb-5">
-                            {project.stack.map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-2 py-0.5 rounded text-xs font-mono text-[#00d084]/70 bg-[#00d084]/5 border border-[#00d084]/15"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex gap-3 mt-auto">
-                          {project.githubUrl && (
-                            <a
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white border border-white/10 hover:border-white/30 px-3 py-1.5 rounded transition-all duration-200"
-                            >
-                              <GitHubIcon />
-                              {t('proj_github')}
-                            </a>
-                          )}
-                          {project.googlePlayUrl && (
-                            <span className="flex items-center gap-1.5 text-xs text-white/40 border border-white/8 px-3 py-1.5 rounded">
-                              {t('proj_gplay')}
-                            </span>
-                          )}
-                          {project.isPrivate && (
-                            <span className="flex items-center gap-1.5 text-xs text-white/30 border border-white/8 px-3 py-1.5 rounded font-mono">
-                              🔒 {t('proj_private')}
-                            </span>
-                          )}
-                        </div>
-                      </motion.div>
+                        project={project}
+                        delay={j * 0.06}
+                        toastPrivate={t('proj_toast_private')}
+                        toastNoLink={t('proj_toast_no_link')}
+                        toastGplay={t('proj_toast_gplay')}
+                        contributionsLabel={t('proj_contributions')}
+                        isWork={false}
+                        t={t}
+                      />
                     ))}
                   </div>
                 </>
@@ -243,17 +251,5 @@ export default function WorkAndProjects() {
         </div>
       </div>
     </section>
-  );
-}
-
-/**
- * Иконка GitHub в виде SVG.
- * Используется внутри кнопки ссылки на репозиторий.
- */
-function GitHubIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-    </svg>
   );
 }
