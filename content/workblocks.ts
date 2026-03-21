@@ -64,7 +64,7 @@ export const workBlocks: WorkBlock[] = [
         // Основное приложение для POS-терминалов в Nadeks
         nameKey: 'proj_pos_nadeks_name',
         descKey: 'proj_pos_nadeks_desc',
-        stack: ['Kotlin', 'Java', 'Android', 'C++ (JNI/CMake)', 'MVVM', 'Room', 'Retrofit', 'OkHttp', 'Gradle (Fat-AAR)', 'ProGuard', 'Bouncy Castle', 'EventBus', 'JavaPoet', 'VisionLabs', 'ZXing', 'Sentry'],
+        stack: ['Kotlin', 'Java', 'Android', 'C/C++', 'MVVM', 'Room', 'Retrofit', 'OkHttp', 'Gradle', 'ProGuard', 'Bouncy Castle', 'EventBus', 'JavaPoet', 'VisionLabs', 'ZXing', 'Sentry'],
         period: 'Mar 2025 – Present',
         isPrivate: true,
       },

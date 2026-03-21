@@ -72,7 +72,7 @@ export default function WorkAndProjects() {
                   </div>
 
                   {/* Сетка карточек проектов */}
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  <div className="grid gap-5">
                       {block.projects.map((project, j) => (
                         // Карточка проекта — появляется снизу с задержкой j * 0.06с, при наведении поднимается
                         <motion.div
