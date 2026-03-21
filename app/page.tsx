@@ -16,8 +16,8 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Skills />
         <WorkAndProjects />
+        <Skills />
         <Contact />
       </main>
       <footer className="py-6 px-4 text-white/20 text-xs font-mono border-t border-white/5">
