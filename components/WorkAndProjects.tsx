@@ -24,7 +24,7 @@ function renderDesc(text: string) {
     <>
       <p className="text-white/55 text-sm leading-relaxed mb-3">{intro}</p>
       {bullets.length > 0 && (
-        <hr className="border-white/8 mb-3" />
+        <hr className="border-[#00d084]/20 mb-3" />
       )}
       {bullets.length > 0 && (
         <ul className="space-y-1 mb-4">
