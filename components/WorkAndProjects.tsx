@@ -15,7 +15,7 @@ import { workBlocks } from '@/content/workblocks';
  * Рендерит описание проекта: первая строка — вводный абзац,
  * строки начинающиеся с «•» — маркированный список вклада.
  */
-function renderDesc(text: string) {
+function renderDesc(text: string, contributionsLabel: string) {
   const lines = text.split('\n');
   const intro = lines[0];
   const bullets = lines.slice(1).filter((l) => l.startsWith('•'));
@@ -24,7 +24,7 @@ function renderDesc(text: string) {
     <>
       <p className="text-white/55 text-sm leading-relaxed mb-3">{intro}</p>
       {bullets.length > 0 && (
-        <div className="w-10 h-px bg-[#00d084]/30 mb-3" />
+        <p className="text-[#00d084]/50 font-mono text-xs mb-2">{contributionsLabel}</p>
       )}
       {bullets.length > 0 && (
         <ul className="space-y-1 mb-4">
@@ -126,7 +126,7 @@ export default function WorkAndProjects() {
                               </p>
                             )}
                             {/* Локализованное описание проекта */}
-                            {renderDesc(t(project.descKey))}
+                            {renderDesc(t(project.descKey), t('proj_contributions'))}
                             {/* Теги стека технологий */}
                             <div className="flex flex-wrap gap-2 mb-5">
                               {project.stack.map((tech) => (

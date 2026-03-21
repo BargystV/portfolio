@@ -57,6 +57,7 @@ export const translations = {
     proj_github: 'GitHub',
     proj_gplay: 'Google Play',
     proj_private: 'Private',
+    proj_contributions: 'My contributions',
 
     // Nadeks projects
     proj_pos_nadeks_name: 'ARIASOFT.POS',
@@ -184,6 +185,7 @@ export const translations = {
     proj_github: 'GitHub',
     proj_gplay: 'Google Play',
     proj_private: 'Приватный',
+    proj_contributions: 'Мой вклад',
 
     // Nadeks projects
     proj_pos_nadeks_name: 'ARIASOFT.POS',
