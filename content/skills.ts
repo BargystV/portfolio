@@ -14,4 +14,25 @@ export interface SkillGroup {
  * Массив групп навыков, отображаемых в секции Skills.
  * Порядок элементов определяет порядок отображения на странице.
  */
-export const skillGroups: SkillGroup[] = [];
+export const skillGroups: SkillGroup[] = [
+  {
+    // Языки программирования
+    key: 'languages',
+    items: ['Kotlin', 'Java', 'C/C++'],
+  },
+  {
+    // Мобильная разработка и Android-библиотеки
+    key: 'mobile',
+    items: ['Android', 'Room', 'Retrofit', 'OkHttp', 'EventBus', 'JavaPoet', 'ZXing', 'VisionLabs', 'Bouncy Castle', 'ProGuard'],
+  },
+  {
+    // Архитектурные паттерны
+    key: 'architecture',
+    items: ['MVVM'],
+  },
+  {
+    // Инструменты разработки и мониторинга
+    key: 'tools',
+    items: ['Gradle', 'Sentry'],
+  },
+];
