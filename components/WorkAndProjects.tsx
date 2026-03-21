@@ -96,7 +96,7 @@ export default function WorkAndProjects() {
                               </p>
                             )}
                             {/* Локализованное описание проекта */}
-                            <p className="text-white/55 text-sm leading-relaxed mb-4">
+                            <p className="text-white/55 text-sm leading-relaxed mb-4 whitespace-pre-line">
                               {t(project.descKey)}
                             </p>
                             {/* Теги стека технологий */}
