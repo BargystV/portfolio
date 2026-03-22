@@ -24,36 +24,31 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 /**
- * Определяет язык по IP-геолокации пользователя.
- * Возвращает 'ru' для России, 'en' для остальных стран.
- * При ошибке запроса возвращает 'en' как безопасный дефолт.
+ * Определяет язык по списку языков браузера пользователя.
+ * Возвращает 'ru' если русский присутствует в любой позиции списка, иначе 'en'.
  */
-async function detectLangByGeo(): Promise<Lang> {
-  try {
-    const res = await fetch('https://ipapi.co/country_code/', { signal: AbortSignal.timeout(3000) });
-    const countryCode = (await res.text()).trim();
-    return countryCode === 'RU' ? 'ru' : 'en';
-  } catch {
-    // При недоступности API или таймауте — английский по умолчанию
-    return 'en';
-  }
+function detectLang(): Lang {
+  if (typeof navigator === 'undefined') return 'en';
+  // Проверяем весь список языков — если русский есть хоть где-то, возвращаем 'ru'
+  const langs = navigator.languages?.length ? navigator.languages : [navigator.language];
+  return langs.some((l) => l.toLowerCase().startsWith('ru')) ? 'ru' : 'en';
 }
 
 /**
  * Провайдер языкового контекста.
- * При монтировании определяет язык по IP-геолокации:
- * Россия → 'ru', остальные страны → 'en'.
+ * При инициализации определяет язык по настройкам браузера:
+ * русский браузер → 'ru', остальные → 'en'.
  * Пользователь может вручную переключить язык.
  *
  * @param children - дочерние React-узлы
  */
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // Начальный язык 'en' до определения геолокации
+  // На сервере navigator недоступен, поэтому начальный язык 'en'
   const [lang, setLang] = useState<Lang>('en');
 
-  // Определяем язык по геолокации один раз при монтировании
+  // После гидрации определяем язык браузера на клиенте
   useEffect(() => {
-    detectLangByGeo().then(setLang);
+    setLang(detectLang());
   }, []);
 
   // Переключение между 'en' и 'ru'
