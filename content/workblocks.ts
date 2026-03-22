@@ -173,6 +173,13 @@ export const workBlocks: WorkBlock[] = [
         githubUrl: 'https://github.com/BargystV/simulation-of-life',
       },
       {
+        // Android-приложение Amazonica (открытый репозиторий)
+        nameKey: 'proj_amazonica_name',
+        descKey: 'proj_amazonica_desc',
+        stack: ['Kotlin', 'Android'],
+        githubUrl: 'https://github.com/BargystV/Amazonica',
+      },
+      {
         // Дипломный проект — помощник поэта, опубликован на Google Play
         nameKey: 'proj_poet_name',
         descKey: 'proj_poet_desc',
@@ -180,13 +187,6 @@ export const workBlocks: WorkBlock[] = [
         period: 'May – Nov 2017',
         periodRu: 'Май – Нояб 2017',
         googlePlayUrl: true,
-      },
-      {
-        // Android-приложение Amazonica (открытый репозиторий)
-        nameKey: 'proj_amazonica_name',
-        descKey: 'proj_amazonica_desc',
-        stack: ['Kotlin', 'Android'],
-        githubUrl: 'https://github.com/BargystV/Amazonica',
       },
     ],
   },
