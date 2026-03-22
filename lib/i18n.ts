@@ -79,6 +79,10 @@ export const translations = {
     proj_paymentPos_desc:
       'Payment application for POS terminals: anti-fraud checks (root/emulator/antidebug), JavaPoet code generation, VisionLabs biometrics, 7 vendor SDKs.',
 
+    proj_halkpay_name: 'HALK-Pay',
+    proj_halkpay_desc:
+      'Digital wallet Android app for Halk Bank (Turkmenistan) with NFC payments via HCE.\n• Designed and implemented NFC HCE service — the core business feature: APDU command exchange with payment terminals\n• Introduced three independent native security modules (NDK/C): Frida detection, Magisk Hide detection, and debugger detection — each shipped as a separate Android library with independent versioning\n• Implemented full security layer: SSL certificate pinning, EncryptedSharedPreferences, secure PAN/CVV handling at UI level, QR data encryption (RSA via Bouncy Castle)\n• Integrated and configured DexProtector (enterprise) for production builds, including ProGuard compatibility — which enabled the app to be published on Google Play\n• Refactored MVVM architecture: extracted shared logic into base ViewModels and fragments, added card data validation',
+
     proj_walletNFC_name: 'Wallet / NFC',
     proj_walletNFC_desc:
       'NFC/QR wallet, cash register emulator, custom ASAP SDK transport for inter-process communication.',
@@ -210,6 +214,10 @@ export const translations = {
     proj_paymentPos_name: 'Платёжное приложение',
     proj_paymentPos_desc:
       'Платёжное приложение для POS-терминалов: антифрод-проверки (root/эмулятор/antidebug), кодогенерация через JavaPoet, биометрия VisionLabs, 7 вендорских SDK.',
+
+    proj_halkpay_name: 'HALK-Pay',
+    proj_halkpay_desc:
+      'Android-приложение цифрового кошелька для Halk Bank (Туркменистан) с NFC-платежами через HCE.\n• Спроектировал и реализовал NFC HCE-сервис — ключевую бизнес-функцию приложения: обмен APDU-командами с платёжным терминалом\n• Внедрил три независимых нативных security-модуля (NDK/C): детектирование Frida, Magisk Hide и debugger — каждый вынесен в отдельную Android-библиотеку с независимым версионированием\n• Реализовал полный security-слой: SSL certificate pinning, EncryptedSharedPreferences, безопасная работа с PAN/CVV на уровне UI, шифрование QR-данных (RSA via Bouncy Castle)\n• Интегрировал и настроил DexProtector (enterprise) для продакшн-сборки, включая конфигурацию совместимости с ProGuard — что вывело проект в Google Play\n• Рефакторил архитектуру MVVM: вынес общую логику в базовые ViewModel и фрагменты, добавил валидацию карточных данных',
 
     proj_walletNFC_name: 'Кошелёк / NFC',
     proj_walletNFC_desc:

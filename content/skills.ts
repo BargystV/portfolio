@@ -23,7 +23,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Мобильная разработка и Android-библиотеки
     key: 'mobile',
-    items: ['Android', 'Room', 'Retrofit', 'OkHttp', 'EventBus', 'JavaPoet', 'ZXing', 'VisionLabs', 'Bouncy Castle', 'ProGuard'],
+    items: ['Android', 'HCE', 'Room', 'Retrofit', 'OkHttp', 'EventBus', 'JavaPoet', 'ZXing', 'VisionLabs', 'Bouncy Castle', 'BER-TLV', 'DataBinding', 'Hilt', 'RxJava', 'ProGuard'],
   },
   {
     // Архитектурные паттерны
@@ -33,6 +33,6 @@ export const skillGroups: SkillGroup[] = [
   {
     // Инструменты разработки и мониторинга
     key: 'tools',
-    items: ['Gradle', 'Sentry'],
+    items: ['Gradle', 'Sentry', 'DexProtector'],
   },
 ];

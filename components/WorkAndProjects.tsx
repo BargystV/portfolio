@@ -83,6 +83,11 @@ function ProjectCard({
       window.open(project.rustoreUrl, '_blank', 'noopener,noreferrer');
       return;
     }
+    // Если googlePlayUrl — строка, открываем ссылку напрямую; иначе показываем тост
+    if (typeof project.googlePlayUrl === 'string') {
+      window.open(project.googlePlayUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
     let message: string;
     if (project.googlePlayUrl) message = toastGplay;
     else if (project.isPrivate) message = toastPrivate;
@@ -92,7 +97,7 @@ function ProjectCard({
     setTimeout(() => setInlineToast(null), 2000);
   }
 
-  const isClickable = !!(project.githubUrl || project.rustoreUrl);
+  const isClickable = !!(project.githubUrl || project.rustoreUrl || typeof project.googlePlayUrl === 'string');
 
   return (
     <motion.div

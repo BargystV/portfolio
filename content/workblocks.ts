@@ -19,8 +19,8 @@ export interface WorkProject {
   githubUrl?: string;
   /** URL приложения в RuStore */
   rustoreUrl?: string;
-  /** Флаг наличия публикации на Google Play */
-  googlePlayUrl?: boolean;
+  /** URL приложения на Google Play (строка) или флаг наличия без прямой ссылки (boolean) */
+  googlePlayUrl?: string | boolean;
   /** Флаг приватности проекта */
   isPrivate?: boolean;
 }
@@ -68,7 +68,7 @@ export const workBlocks: WorkBlock[] = [
         // Основное приложение для POS-терминалов в Nadeks
         nameKey: 'proj_pos_nadeks_name',
         descKey: 'proj_pos_nadeks_desc',
-        stack: ['Kotlin', 'Java', 'Android', 'C/C++', 'Room', 'Retrofit', 'Sentry'],
+        stack: ['Kotlin', 'Java', 'C/C++', 'Android', 'Room', 'Retrofit', 'Sentry'],
         period: 'Feb 2020 – Present (started at Mahuru)',
         periodRu: 'Февр 2020 – н.в. (начинал в Mahuru)',
         rustoreUrl: 'https://www.rustore.ru/catalog/app/com.ariasoft.cardterminal.t2p',
@@ -85,6 +85,15 @@ export const workBlocks: WorkBlock[] = [
     period: 'Aug 2019 – Mar 2025',
     periodRu: 'Авг 2019 – Март 2025',
     projects: [
+      {
+        // Цифровой кошелёк с NFC HCE-платежами для Halk Bank (Туркменистан)
+        nameKey: 'proj_halkpay_name',
+        descKey: 'proj_halkpay_desc',
+        stack: ['Kotlin', 'C/C++', 'Android', 'Hilt', 'Retrofit', 'RxJava', 'DexProtector'],
+        period: 'May 2021 – Dec 2023',
+        periodRu: 'Май 2021 – Дек 2023',
+        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.tactilion.wallet.halkpay',
+      },
       {
         // PvP игра с криптовалютой
         nameKey: 'proj_gamecash_name',
