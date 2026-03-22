@@ -65,7 +65,7 @@ export const translations = {
     // Nadeks projects
     proj_pos_nadeks_name: 'ARIASOFT.POS / ARIASOFT.T2P',
     proj_pos_nadeks_desc:
-      'Corporate payment application for 9+ hardware platforms with unified business logic and a public SDK for third-party integrators.\n• Designed Multihal architecture, eliminating separate builds per terminal — single APK for the entire device fleet\n• Integrated server-side JSON offline flow and implemented client-side state handling for logic management without network\n• Introduced JavaPoet-based code generation system to standardise security auditing at compile time\n• Extended JNI layer when adding new Java classes, implemented tasks in C++\n• Integrated biometric transaction authorisation via VisionLabs SDK\n• Implemented support for three POS protocols: ASAP, Privat, Arcus2\n• Refactored command processing subsystem and logical core\n• Configured ProGuard obfuscation to protect payment protocols from reverse engineering',
+      'Corporate payment application for 9+ hardware platforms with unified business logic and a public SDK for third-party integrators.\n• Designed Multihal architecture, eliminating separate builds per terminal — single APK for the entire device fleet\n• Integrated server-side JSON offline flow and implemented client-side state handling for logic management without network\n• Introduced JavaPoet-based code generation system to standardise security auditing at compile time\n• Extended JNI layer when adding new Java classes, implemented tasks in C++\n• Integrated biometric transaction authorisation\n• Implemented support for several POS protocols\n• Refactored command processing subsystem and logical core\n• Configured ProGuard obfuscation to protect payment protocols from reverse engineering',
 
     // Mahuru projects
     proj_gamecash_name: 'GameCash',
@@ -81,15 +81,15 @@ export const translations = {
 
     proj_halkpay_name: 'HALK-Pay',
     proj_halkpay_desc:
-      'Digital wallet Android app for Halk Bank (Turkmenistan) with NFC payments via HCE.\n• Designed and implemented NFC HCE service — the core business feature: APDU command exchange with payment terminals\n• Introduced three independent native security modules (NDK/C): Frida detection, Magisk Hide detection, and debugger detection — each shipped as a separate Android library with independent versioning\n• Implemented full security layer: SSL certificate pinning, EncryptedSharedPreferences, secure PAN/CVV handling at UI level, QR data encryption (RSA via Bouncy Castle)\n• Integrated and configured DexProtector (enterprise) for production builds, including ProGuard compatibility — which enabled the app to be published on Google Play\n• Refactored MVVM architecture: extracted shared logic into base ViewModels and fragments, added card data validation',
+      'Digital wallet Android app for a large bank with NFC payments via HCE.\n• Designed and implemented NFC HCE service — the core business feature: implemented the interaction protocol with payment terminals\n• Introduced independent native security modules (NDK/C): implemented a modular system for detecting compromised environments — shipped as independent Android libraries\n• Implemented multi-layer security: channel protection, secure data storage, protected payment data handling at UI level, user data encryption\n• Configured obfuscation and code protection for production builds — which enabled the app to be published on Google Play\n• Refactored MVVM architecture: extracted shared logic into base ViewModels and fragments, added card data validation',
 
     proj_walletNFC_name: 'Wallet / NFC',
     proj_walletNFC_desc:
       'NFC/QR wallet, cash register emulator, custom ASAP SDK transport for inter-process communication.',
 
-    proj_mahuru_backend_name: 'Alfa Backend',
+    proj_mahuru_backend_name: 'Insurance Backend',
     proj_mahuru_backend_desc:
-      'Corporate backend for Alfa Insurance Group — microservice system on Kotlin/Spring; contributed to domain service development.\n• Fixed a race condition in the service layer: parallelized independent data processing, eliminating thread blocking\n• Implemented a full vertical slice: Controller → Service → Repository with JPA/PostgreSQL',
+      'Corporate backend for a large insurance group — microservice system on Kotlin/Spring; contributed to domain service development.\n• Fixed a race condition in the service layer: parallelized independent data processing, eliminating thread blocking\n• Implemented a full vertical slice: Controller → Service → Repository with JPA/PostgreSQL',
 
     // Freelance projects
     proj_maybecoffee_name: 'MaybeCoffee',
@@ -201,7 +201,7 @@ export const translations = {
     // Nadeks projects
     proj_pos_nadeks_name: 'ARIASOFT.POS / ARIASOFT.T2P',
     proj_pos_nadeks_desc:
-      'Корпоративное платёжное приложение для 9+ аппаратных платформ с единой бизнес-логикой и публичным SDK для сторонних интеграторов.\n• Спроектировал Multihal-архитектуру, устранив необходимость отдельных сборок под каждый терминал — единый APK для всего парка устройств\n• Интегрировал серверный offline-флоу на базе JSON и реализовал клиентскую обработку состояний для управления логикой без подключения к сети\n• Ввёл систему кодогенерации на базе JavaPoet для стандартизации security-аудита на уровне компиляции\n• Расширял JNI-слой при добавлении новых Java-классов, реализовывал задачи на C++\n• Интегрировал биометрическую авторизацию транзакций через VisionLabs SDK\n• Реализовал поддержку трёх кассовых протоколов: ASAP, Privat, Arcus2\n• Провёл рефакторинг подсистемы процессинга команд и логического ядра\n• Настроил ProGuard-обфускацию для защиты платёжных протоколов от реверс-инжиниринга',
+      'Корпоративное платёжное приложение для 9+ аппаратных платформ с единой бизнес-логикой и публичным SDK для сторонних интеграторов.\n• Спроектировал Multihal-архитектуру, устранив необходимость отдельных сборок под каждый терминал — единый APK для всего парка устройств\n• Интегрировал серверный offline-флоу на базе JSON и реализовал клиентскую обработку состояний для управления логикой без подключения к сети\n• Ввёл систему кодогенерации на базе JavaPoet для стандартизации security-аудита на уровне компиляции\n• Расширял JNI-слой при добавлении новых Java-классов, реализовывал задачи на C++\n• Интегрировал биометрическую авторизацию транзакций\n• Реализовал поддержку нескольких кассовых протоколов\n• Провёл рефакторинг подсистемы процессинга команд и логического ядра\n• Настроил ProGuard-обфускацию для защиты платёжных протоколов от реверс-инжиниринга',
 
     // Mahuru projects
     proj_gamecash_name: 'GameCash',
@@ -217,15 +217,15 @@ export const translations = {
 
     proj_halkpay_name: 'HALK-Pay',
     proj_halkpay_desc:
-      'Android-приложение цифрового кошелька для Halk Bank (Туркменистан) с NFC-платежами через HCE.\n• Спроектировал и реализовал NFC HCE-сервис — ключевую бизнес-функцию приложения: обмен APDU-командами с платёжным терминалом\n• Внедрил три независимых нативных security-модуля (NDK/C): детектирование Frida, Magisk Hide и debugger — каждый вынесен в отдельную Android-библиотеку с независимым версионированием\n• Реализовал полный security-слой: SSL certificate pinning, EncryptedSharedPreferences, безопасная работа с PAN/CVV на уровне UI, шифрование QR-данных (RSA via Bouncy Castle)\n• Интегрировал и настроил DexProtector (enterprise) для продакшн-сборки, включая конфигурацию совместимости с ProGuard — что вывело проект в Google Play\n• Рефакторил архитектуру MVVM: вынес общую логику в базовые ViewModel и фрагменты, добавил валидацию карточных данных',
+      'Android-приложение цифрового кошелька для крупного банка с NFC-платежами через HCE.\n• Спроектировал и реализовал NFC HCE-сервис — ключевую бизнес-функцию приложения: реализовал протокол взаимодействия с платёжным терминалом\n• Внедрил независимые нативные security-модули (NDK/C): реализовал модульную систему обнаружения скомпрометированного окружения — вынесена в независимые Android-библиотеки\n• Реализовал многоуровневый security-слой: защита канала связи, безопасное хранение данных, защищённая работа с платёжными данными на уровне UI, шифрование пользовательских данных\n• Настроил обфускацию и защиту кода для продакшн-сборки — что вывело проект в Google Play\n• Рефакторил архитектуру MVVM: вынес общую логику в базовые ViewModel и фрагменты, добавил валидацию карточных данных',
 
     proj_walletNFC_name: 'Кошелёк / NFC',
     proj_walletNFC_desc:
       'Кошелёк с поддержкой NFC/QR, эмулятор кассы, кастомный ASAP SDK-транспорт для межпроцессного взаимодействия.',
 
-    proj_mahuru_backend_name: 'Alfa Backend',
+    proj_mahuru_backend_name: 'Insurance Backend',
     proj_mahuru_backend_desc:
-      'Корпоративный backend страховой группы Альфа — микросервисная система на Kotlin/Spring; участие в разработке domain-сервисов.\n• Устранил race condition в сервисном слое: распараллелил обработку независимых данных, устранив блокировки между потоками\n• Разработал полный вертикальный срез: Controller → Service → Repository с JPA/PostgreSQL',
+      'Корпоративный backend крупной страховой группы — микросервисная система на Kotlin/Spring; участие в разработке domain-сервисов.\n• Устранил race condition в сервисном слое: распараллелил обработку независимых данных, устранив блокировки между потоками\n• Разработал полный вертикальный срез: Controller → Service → Repository с JPA/PostgreSQL',
 
     // Freelance projects
     proj_maybecoffee_name: 'MaybeCoffee',
