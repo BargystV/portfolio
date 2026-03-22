@@ -87,9 +87,9 @@ export const translations = {
     proj_walletNFC_desc:
       'NFC/QR wallet, cash register emulator, custom ASAP SDK transport for inter-process communication.',
 
-    proj_mahuru_backend_name: 'Backend Development',
+    proj_mahuru_backend_name: 'Alfa Backend',
     proj_mahuru_backend_desc:
-      'Microservice backend on Kotlin: REST & WebFlux APIs, Spring Boot, Kafka event streaming, PostgreSQL, Liquibase migrations, Jaeger tracing, Prometheus/Micrometer metrics.',
+      'Corporate backend for Alfa Insurance Group — microservice system on Kotlin/Spring; contributed to domain service development.\n• Fixed a race condition in the service layer: parallelized independent data processing, eliminating thread blocking\n• Implemented a full vertical slice: Controller → Service → Repository with JPA/PostgreSQL',
 
     // Freelance projects
     proj_maybecoffee_name: 'MaybeCoffee',
@@ -223,9 +223,9 @@ export const translations = {
     proj_walletNFC_desc:
       'Кошелёк с поддержкой NFC/QR, эмулятор кассы, кастомный ASAP SDK-транспорт для межпроцессного взаимодействия.',
 
-    proj_mahuru_backend_name: 'Backend-разработка',
+    proj_mahuru_backend_name: 'Alfa Backend',
     proj_mahuru_backend_desc:
-      'Микросервисный backend на Kotlin: REST и WebFlux API, Spring Boot, событийный стриминг через Kafka, PostgreSQL, миграции Liquibase, трейсинг Jaeger, метрики Prometheus/Micrometer.',
+      'Корпоративный backend страховой группы Альфа — микросервисная система на Kotlin/Spring; участие в разработке domain-сервисов.\n• Устранил race condition в сервисном слое: распараллелил обработку независимых данных, устранив блокировки между потоками\n• Разработал полный вертикальный срез: Controller → Service → Repository с JPA/PostgreSQL',
 
     // Freelance projects
     proj_maybecoffee_name: 'MaybeCoffee',

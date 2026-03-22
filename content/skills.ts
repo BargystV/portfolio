@@ -35,4 +35,9 @@ export const skillGroups: SkillGroup[] = [
     key: 'tools',
     items: ['Gradle', 'Sentry', 'DexProtector'],
   },
+  {
+    // Backend-разработка
+    key: 'backend',
+    items: ['Spring Boot', 'Spring WebFlux', 'Kafka', 'PostgreSQL', 'JPA', 'Liquibase', 'Testcontainers'],
+  },
 ];

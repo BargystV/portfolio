@@ -86,6 +86,15 @@ export const workBlocks: WorkBlock[] = [
     periodRu: 'Авг 2019 – Март 2025',
     projects: [
       {
+        // Backend-разработка в рамках Mahuru (июнь–сентябрь 2024)
+        nameKey: 'proj_mahuru_backend_name',
+        descKey: 'proj_mahuru_backend_desc',
+        stack: ['Kotlin', 'Spring Boot', 'Spring WebFlux', 'Kafka', 'PostgreSQL', 'JPA'],
+        period: 'Jun 2024 – Sep 2024',
+        periodRu: 'Июнь 2024 – Сент 2024',
+        isPrivate: true,
+      },
+      {
         // Цифровой кошелёк с NFC HCE-платежами для Halk Bank (Туркменистан)
         nameKey: 'proj_halkpay_name',
         descKey: 'proj_halkpay_desc',
@@ -95,13 +104,6 @@ export const workBlocks: WorkBlock[] = [
         googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.tactilion.wallet.halkpay',
       },
       {
-        // PvP игра с криптовалютой
-        nameKey: 'proj_gamecash_name',
-        descKey: 'proj_gamecash_desc',
-        stack: ['Kotlin', 'Android', 'Retrofit', 'Room'],
-        isPrivate: true,
-      },
-      {
         // Корпоративное MRM-приложение для Магнит
         nameKey: 'proj_magnitMRM_name',
         descKey: 'proj_magnitMRM_desc',
@@ -109,19 +111,10 @@ export const workBlocks: WorkBlock[] = [
         isPrivate: true,
       },
       {
-        // Кошелёк с NFC/QR и кастомным транспортом
-        nameKey: 'proj_walletNFC_name',
-        descKey: 'proj_walletNFC_desc',
-        stack: ['Kotlin', 'Android', 'NFC', 'QR'],
-        isPrivate: true,
-      },
-      {
-        // Backend-разработка в рамках Mahuru (июнь–сентябрь 2024)
-        nameKey: 'proj_mahuru_backend_name',
-        descKey: 'proj_mahuru_backend_desc',
-        stack: ['Kotlin', 'Spring Boot', 'Kafka', 'PostgreSQL', 'Liquibase'],
-        period: 'Jun – Sep 2024',
-        periodRu: 'Июнь – Сент 2024',
+        // PvP игра с криптовалютой
+        nameKey: 'proj_gamecash_name',
+        descKey: 'proj_gamecash_desc',
+        stack: ['Kotlin', 'Android', 'Retrofit', 'Room'],
         isPrivate: true,
       },
     ],
