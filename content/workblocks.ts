@@ -183,13 +183,6 @@ export const workBlocks: WorkBlock[] = [
         stack: ['Kotlin', 'Android'],
         githubUrl: 'https://github.com/BargystV/Amazonica',
       },
-      {
-        // Android-приложение ReviroApp (открытый репозиторий)
-        nameKey: 'proj_reviro_name',
-        descKey: 'proj_reviro_desc',
-        stack: ['Android', 'Kotlin'],
-        githubUrl: 'https://github.com/BargystV/ReviroApp',
-      },
     ],
   },
 ];

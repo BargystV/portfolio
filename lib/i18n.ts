@@ -107,10 +107,6 @@ export const translations = {
     proj_amazonica_desc:
       'Android application built with Kotlin.',
 
-    proj_reviro_name: 'ReviroApp',
-    proj_reviro_desc:
-      'Android application.',
-
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
       'Automated AI agent for personal life management: Notion Calendar, purchases & movies database, books. Orchestrated via n8n with LLM integration for natural language control.',
@@ -242,10 +238,6 @@ export const translations = {
     proj_amazonica_name: 'Amazonica',
     proj_amazonica_desc:
       'Android-приложение на Kotlin.',
-
-    proj_reviro_name: 'ReviroApp',
-    proj_reviro_desc:
-      'Android-приложение.',
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
