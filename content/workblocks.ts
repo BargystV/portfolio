@@ -128,8 +128,8 @@ export const workBlocks: WorkBlock[] = [
     url: 'https://freelance.ru/',
     roleKey: 'exp_freelance_role',
     typeKey: 'exp_freelance_type',
-    period: 'May 2017 – Jan 2019',
-    periodRu: 'Май 2017 – Янв 2019',
+    period: 'Nov 2017 – Jan 2019',
+    periodRu: 'Нояб 2017 – Янв 2019',
     projects: [
       {
         // Два Android-приложения для сервиса знакомств в кофейнях
@@ -147,13 +147,6 @@ export const workBlocks: WorkBlock[] = [
           '/screenshots/maybecoffee/5.jpg',
           '/screenshots/maybecoffee/6.jpg',
         ],
-      },
-      {
-        // Переводчик иврит → английский
-        nameKey: 'proj_hebrewTrans_name',
-        descKey: 'proj_hebrewTrans_desc',
-        stack: ['Kotlin', 'Android'],
-        isPrivate: true,
       },
     ],
   },
