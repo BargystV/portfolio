@@ -23,6 +23,8 @@ export interface WorkProject {
   googlePlayUrl?: string | boolean;
   /** Флаг приватности проекта */
   isPrivate?: boolean;
+  /** Пути к скриншотам в /public — при наличии открывает галерею по клику */
+  screenshots?: string[];
 }
 
 /**
@@ -130,11 +132,21 @@ export const workBlocks: WorkBlock[] = [
     periodRu: 'Май 2017 – Янв 2019',
     projects: [
       {
-        // Приложение для знакомств в кофейнях
+        // Два Android-приложения для сервиса знакомств в кофейнях
         nameKey: 'proj_maybecoffee_name',
         descKey: 'proj_maybecoffee_desc',
-        stack: ['Kotlin', 'Android', 'Retrofit'],
+        stack: ['Java', 'Android', 'Firebase', 'Google Maps', 'Retrofit', 'SQLite'],
+        period: 'Nov 2017 – Jan 2019',
+        periodRu: 'Нояб 2017 – Янв 2019',
         isPrivate: true,
+        screenshots: [
+          '/screenshots/maybecoffee/1.jpg',
+          '/screenshots/maybecoffee/2.jpg',
+          '/screenshots/maybecoffee/3.jpg',
+          '/screenshots/maybecoffee/4.jpg',
+          '/screenshots/maybecoffee/5.jpg',
+          '/screenshots/maybecoffee/6.jpg',
+        ],
       },
       {
         // Переводчик иврит → английский

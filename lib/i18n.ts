@@ -94,7 +94,7 @@ export const translations = {
     // Freelance projects
     proj_maybecoffee_name: 'MaybeCoffee',
     proj_maybecoffee_desc:
-      'Client-server dating app for coffee shops: matchmaking, real-time chat, user profiles.',
+      'Two Android applications for a dating service with a "meet for coffee" concept — user app and coffee shop staff app.\n• Implemented end-to-end user flow: profiles, partner search on map, geo-based mini-chats\n• Developed in-chat order and payment module, including history and status tracking\n• Implemented coffee shop staff app: order queue, status management, loyalty programme\n• Brought both apps to production-ready state',
 
     proj_hebrewTrans_name: 'Hebrew → English Translator',
     proj_hebrewTrans_desc: 'Android translator app for Hebrew to English.',
@@ -226,7 +226,7 @@ export const translations = {
     // Freelance projects
     proj_maybecoffee_name: 'MaybeCoffee',
     proj_maybecoffee_desc:
-      'Клиент-серверное приложение для знакомств в кофейнях: матчинг, чат, профили пользователей.',
+      'Два Android-приложения для сервиса знакомств с концепцией «познакомься и выпей кофе» — пользовательское и для персонала кофеен.\n• Реализовал end-to-end пользовательский флоу: профили, поиск партнёров на карте, мини-чаты по геолокации\n• Разработал модуль заказа и оплаты внутри чата, включая историю и отслеживание статусов\n• Реализовал приложение для персонала кофеен: очередь заказов, управление статусами, программа лояльности\n• Довёл оба приложения до production-ready состояния',
 
     proj_hebrewTrans_name: 'Переводчик иврит → английский',
     proj_hebrewTrans_desc: 'Android-приложение-переводчик с иврита на английский.',

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 import { workBlocks, WorkProject } from '@/content/workblocks';
 import { TranslationKey } from '@/lib/i18n';
+import ScreenshotModal from '@/components/ScreenshotModal';
 
 /**
  * Рендерит описание проекта: первая строка — вводный абзац,
@@ -38,10 +39,11 @@ function renderDesc(text: string, contributionsLabel: string) {
 
 /**
  * Возвращает цвет статусной точки проекта:
- * зелёный — есть GitHub, жёлтый — Google Play, красный — приватный, серый — нет ссылки.
+ * зелёный — есть GitHub/Store, жёлтый — есть скриншоты или Google Play, красный — приватный, серый — нет ссылки.
  */
 function getDotColor(project: WorkProject): string {
   if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'bg-[#00d084]';
+  if (project.screenshots?.length) return 'bg-yellow-400';
   if (project.isPrivate) return 'bg-red-500';
   return 'bg-white/20';
 }
@@ -59,6 +61,7 @@ function ProjectCard({
   isWork,
   t,
   lang,
+  onScreenshots,
 }: {
   project: WorkProject;
   delay: number;
@@ -69,6 +72,8 @@ function ProjectCard({
   isWork: boolean;
   t: (key: TranslationKey) => string;
   lang: string;
+  /** Callback открытия галереи скриншотов — передаётся только если у проекта есть скриншоты */
+  onScreenshots?: () => void;
 }) {
   // Текст инлайн-тоста справа от названия — null означает «скрыт»
   const [inlineToast, setInlineToast] = useState<string | null>(null);
@@ -88,6 +93,11 @@ function ProjectCard({
       window.open(project.googlePlayUrl, '_blank', 'noopener,noreferrer');
       return;
     }
+    // Если есть скриншоты — открываем галерею
+    if (project.screenshots?.length && onScreenshots) {
+      onScreenshots();
+      return;
+    }
     let message: string;
     if (project.googlePlayUrl) message = toastGplay;
     else if (project.isPrivate) message = toastPrivate;
@@ -97,7 +107,12 @@ function ProjectCard({
     setTimeout(() => setInlineToast(null), 2000);
   }
 
-  const isClickable = !!(project.githubUrl || project.rustoreUrl || typeof project.googlePlayUrl === 'string');
+  const isClickable = !!(
+    project.githubUrl ||
+    project.rustoreUrl ||
+    typeof project.googlePlayUrl === 'string' ||
+    project.screenshots?.length
+  );
 
   return (
     <motion.div
@@ -162,9 +177,19 @@ function ProjectCard({
  * Каждый рабочий блок содержит шапку компании и карточки проектов.
  * Блок личных проектов показывает только заголовок и карточки.
  */
+/**
+ * Данные для открытой галереи скриншотов — null означает закрыта.
+ */
+interface ScreenshotModalState {
+  screenshots: string[];
+  name: string;
+}
+
 export default function WorkAndProjects() {
   // Получаем текущий язык и функцию перевода из языкового контекста
   const { lang, t } = useLanguage();
+  // Состояние модальной галереи скриншотов
+  const [screenshotModal, setScreenshotModal] = useState<ScreenshotModalState | null>(null);
 
   return (
     <section id="work" className="py-24 px-4 bg-white/[0.02]">
@@ -230,6 +255,11 @@ export default function WorkAndProjects() {
                         isWork={true}
                         t={t}
                         lang={lang}
+                        onScreenshots={
+                          project.screenshots?.length
+                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey) })
+                            : undefined
+                        }
                       />
                     ))}
                   </div>
@@ -256,6 +286,11 @@ export default function WorkAndProjects() {
                         isWork={false}
                         t={t}
                         lang={lang}
+                        onScreenshots={
+                          project.screenshots?.length
+                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey) })
+                            : undefined
+                        }
                       />
                     ))}
                   </div>
@@ -265,6 +300,17 @@ export default function WorkAndProjects() {
           ))}
         </div>
       </div>
+
+      {/* Модальная галерея скриншотов */}
+      <AnimatePresence>
+        {screenshotModal && (
+          <ScreenshotModal
+            screenshots={screenshotModal.screenshots}
+            projectName={screenshotModal.name}
+            onClose={() => setScreenshotModal(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
