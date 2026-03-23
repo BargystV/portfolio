@@ -33,7 +33,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Инструменты разработки и мониторинга
     key: 'tools',
-    items: ['Gradle', 'Sentry', 'DexProtector'],
+    items: ['Gradle', 'Sentry', 'DexProtector', 'LibGDX'],
   },
   {
     // Backend-разработка
