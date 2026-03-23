@@ -71,9 +71,9 @@ export const translations = {
     proj_gamecash_name: 'GameCash',
     proj_gamecash_desc: 'PvP crypto mini-games app built from scratch with cryptocurrency integration.',
 
-    proj_magnitMRM_name: 'Magnit MRM',
+    proj_magnitMRM_name: 'Enterprise MRM',
     proj_magnitMRM_desc:
-      'Enterprise MRM application for Magnit corporation: calendar, tasks, file constructor (analog Google Sheets), notifications feed, search, drafts, archive. Stack: Kotlin, Retrofit, Room, Koin, Moxy.',
+      'Enterprise MRM application for one of the largest retailers in Russia; client-side development from scratch within a mobile team.\n• Designed and built 15+ screens: task/meeting/assembly management, custom calendar (year/month/week), file constructor with spreadsheet editor, search across tasks/attachments/people\n• Integrated enterprise MDM to secure the communication channel and enforce access control in an enterprise environment\n• Implemented offline-first architecture with local cache (Room) and synchronization via Retrofit/OkHttp',
 
     proj_paymentPos_name: 'Payment App',
     proj_paymentPos_desc:
@@ -203,9 +203,9 @@ export const translations = {
     proj_gamecash_name: 'GameCash',
     proj_gamecash_desc: 'Приложение PvP мини-игр на криптовалюту, написанное с нуля.',
 
-    proj_magnitMRM_name: 'Magnit MRM',
+    proj_magnitMRM_name: 'Enterprise MRM',
     proj_magnitMRM_desc:
-      'Корпоративное MRM-приложение для сети «Магнит»: календарь, задачи, файловый конструктор (аналог Google Sheets), лента уведомлений, поиск, черновики, архив. Стек: Kotlin, Retrofit, Room, Koin, Moxy.',
+      'Корпоративное MRM-приложение для одного из крупнейших ритейлеров России; разработка client-side с нуля в составе мобильной команды.\n• Спроектировал и разработал 15+ экранов: управление поручениями/встречами/собраниями, кастомный календарь (год/месяц/неделя), файл-конструктор с табличным редактором, поиск по делам/вложениям/людям\n• Внедрил корпоративную MDM-интеграцию для защиты канала связи и контроля доступа в рамках enterprise-окружения\n• Реализовал offline-first архитектуру с локальным кэшем (Room) и синхронизацией через Retrofit/OkHttp',
 
     proj_paymentPos_name: 'Платёжное приложение',
     proj_paymentPos_desc:

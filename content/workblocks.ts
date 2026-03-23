@@ -111,8 +111,22 @@ export const workBlocks: WorkBlock[] = [
         // Корпоративное MRM-приложение для Магнит
         nameKey: 'proj_magnitMRM_name',
         descKey: 'proj_magnitMRM_desc',
-        stack: ['Kotlin', 'Android', 'Retrofit', 'Room', 'Koin', 'Moxy'],
+        stack: ['Kotlin', 'Android', 'Coroutines', 'Retrofit', 'Room', 'Koin', 'Moxy'],
         isPrivate: true,
+        screenshots: [
+          '/screenshots/mrm/1.png',
+          '/screenshots/mrm/2.png',
+          '/screenshots/mrm/3.png',
+          '/screenshots/mrm/4.png',
+          '/screenshots/mrm/5.png',
+          '/screenshots/mrm/6.png',
+          '/screenshots/mrm/7.png',
+          '/screenshots/mrm/8.png',
+          '/screenshots/mrm/9.png',
+          '/screenshots/mrm/10.png',
+          '/screenshots/mrm/11.png',
+          '/screenshots/mrm/12.png',
+        ],
       },
       {
         // PvP игра с криптовалютой
