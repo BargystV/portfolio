@@ -112,6 +112,8 @@ export const workBlocks: WorkBlock[] = [
         nameKey: 'proj_magnitMRM_name',
         descKey: 'proj_magnitMRM_desc',
         stack: ['Kotlin', 'Android', 'Coroutines', 'Retrofit', 'Room', 'Koin', 'Moxy'],
+        period: 'Aug 2019 – Jun 2021',
+        periodRu: 'Авг 2019 – Июнь 2021',
         isPrivate: true,
         screenshots: [
           '/screenshots/mrm/1.png',
