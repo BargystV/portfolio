@@ -28,7 +28,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Архитектурные паттерны
     key: 'architecture',
-    items: ['MVVM'],
+    items: ['MVVM', 'MVP', 'Command Pattern', 'State machine', 'Microservices', 'API Gateway', 'ECS', 'Data-Oriented Design'],
   },
   {
     // Инструменты разработки и мониторинга
