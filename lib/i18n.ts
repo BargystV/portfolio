@@ -69,7 +69,8 @@ export const translations = {
 
     // Mahuru projects
     proj_gamecash_name: 'GameCash',
-    proj_gamecash_desc: 'PvP crypto mini-games app built from scratch with cryptocurrency integration.',
+    proj_gamecash_desc:
+      'Crypto gaming platform with lobby system and BTC/ETH wagering — built the Android app from scratch to production.\n• Designed and implemented full client: game lobbies with configurable parameters, crypto wallet management (deposit/withdrawal), authentication with 2FA\n• Built the network layer on OkHttp and local storage on SQLite: game state sync, transaction history\n• Independently shipped the product to production — from first commit to release',
 
     proj_magnitMRM_name: 'Enterprise MRM',
     proj_magnitMRM_desc:
@@ -201,7 +202,8 @@ export const translations = {
 
     // Mahuru projects
     proj_gamecash_name: 'GameCash',
-    proj_gamecash_desc: 'Приложение PvP мини-игр на криптовалюту, написанное с нуля.',
+    proj_gamecash_desc:
+      'Криптовалютная игровая платформа с лобби-системой и ставками в BTC/ETH — разработал Android-приложение с нуля до production.\n• Спроектировал и реализовал полный клиент: игровые лобби с настраиваемыми параметрами, управление криптокошельком (депозит/вывод), аутентификация с 2FA\n• Реализовал сетевой слой на OkHttp и локальное хранилище на SQLite: синхронизация состояния игр, история транзакций\n• Самостоятельно вывел продукт в production — от первого коммита до релиза',
 
     proj_magnitMRM_name: 'Enterprise MRM',
     proj_magnitMRM_desc:
