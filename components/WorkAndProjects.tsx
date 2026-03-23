@@ -11,7 +11,7 @@ import ScreenshotModal from '@/components/ScreenshotModal';
  * Рендерит описание проекта: первая строка — вводный абзац,
  * строки начинающиеся с «•» — маркированный список вклада.
  */
-function renderDesc(text: string, contributionsLabel: string) {
+function renderDesc(text: string) {
   const lines = text.split('\n');
   const intro = lines[0];
   const bullets = lines.slice(1).filter((l) => l.startsWith('•'));
@@ -19,9 +19,6 @@ function renderDesc(text: string, contributionsLabel: string) {
   return (
     <>
       <p className="text-white/55 text-sm leading-relaxed mb-3">{intro}</p>
-      {bullets.length > 0 && (
-        <p className="text-[#00d084]/50 font-mono text-xs mb-2">{contributionsLabel}</p>
-      )}
       {bullets.length > 0 && (
         <ul className="space-y-1 mb-4">
           {bullets.map((b, i) => (
@@ -57,8 +54,6 @@ function ProjectCard({
   toastPrivate,
   toastNoLink,
   toastGplay,
-  contributionsLabel,
-  isWork,
   t,
   lang,
   onScreenshots,
@@ -68,8 +63,6 @@ function ProjectCard({
   toastPrivate: string;
   toastNoLink: string;
   toastGplay: string;
-  contributionsLabel: string;
-  isWork: boolean;
   t: (key: TranslationKey) => string;
   lang: string;
   /** Callback открытия галереи скриншотов — передаётся только если у проекта есть скриншоты */
@@ -150,11 +143,8 @@ function ProjectCard({
         </p>
       )}
 
-      {/* Описание: с буллетами для рабочих, простое для личных */}
-      {isWork
-        ? renderDesc(t(project.descKey), contributionsLabel)
-        : <p className="text-white/55 text-sm leading-relaxed mb-4">{t(project.descKey)}</p>
-      }
+      {/* Описание: renderDesc корректно обрабатывает и буллеты, и простой текст */}
+      {renderDesc(t(project.descKey))}
 
       {/* Теги стека технологий */}
       <div className="flex flex-wrap gap-2">
@@ -253,8 +243,6 @@ export default function WorkAndProjects() {
                         toastPrivate={t('proj_toast_private')}
                         toastNoLink={t('proj_toast_no_link')}
                         toastGplay={t('proj_toast_gplay')}
-                        contributionsLabel={t('proj_contributions')}
-                        isWork={true}
                         t={t}
                         lang={lang}
                         onScreenshots={
@@ -284,8 +272,6 @@ export default function WorkAndProjects() {
                         toastPrivate={t('proj_toast_private')}
                         toastNoLink={t('proj_toast_no_link')}
                         toastGplay={t('proj_toast_gplay')}
-                        contributionsLabel={t('proj_contributions')}
-                        isWork={false}
                         t={t}
                         lang={lang}
                         onScreenshots={

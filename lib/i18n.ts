@@ -99,9 +99,9 @@ export const translations = {
     proj_hebrewTrans_name: 'Hebrew → English Translator',
     proj_hebrewTrans_desc: 'Android translator app for Hebrew to English.',
 
-    proj_lifesim_name: 'Life Simulation',
+    proj_lifesim_name: 'Simulation of Life',
     proj_lifesim_desc:
-      'Plant lifecycle simulation: growth, seed reproduction, death. Each offspring inherits a genome with mutations — evolutionary algorithm based on genetic variability.',
+      'Desktop evolutionary simulation — full cycle from architecture to multiplatform build.\n• Designed Data-Oriented ECS from scratch: flat primitive arrays instead of objects, stateless engines, O(1) entity creation/destruction without allocations in hot path\n• Developed genomic system with inheritance and mutation (~3% per byte), modeling natural selection through competition for light',
 
     proj_amazonica_name: 'Amazonica',
     proj_amazonica_desc:
@@ -113,7 +113,7 @@ export const translations = {
 
     proj_poet_name: 'Poet Helper',
     proj_poet_desc:
-      'Android app that suggests rhymes and synonyms. Published on Google Play. Diploma project.',
+      'Android app for selecting rhymes and synonyms — diploma project, published on Google Play.\n• Designed a rhyme and synonym matching algorithm from scratch: parsed multiple open dictionaries, populated a local SQLite database, and built search logic on top of it\n• Independently learned Android development: UI architecture, Activity/Fragment lifecycle, multithreading, and data persistence',
 
     // Experience bullets (переиспользуются в workblocks)
     exp_nadeks_role: 'Android Developer',
@@ -231,9 +231,9 @@ export const translations = {
     proj_hebrewTrans_name: 'Переводчик иврит → английский',
     proj_hebrewTrans_desc: 'Android-приложение-переводчик с иврита на английский.',
 
-    proj_lifesim_name: 'Life Simulation',
+    proj_lifesim_name: 'Simulation of Life',
     proj_lifesim_desc:
-      'Симуляция жизненного цикла растений: рост, размножение через семена, смерть. Геном каждого потомка наследуется с мутациями — эволюционный алгоритм на основе генетического наследования.',
+      'Десктопная эволюционная симуляция — полный цикл от архитектуры до мультиплатформенной сборки.\n• Спроектировал Data-Oriented ECS с нуля: плоские примитивные массивы вместо объектов, stateless-движки, O(1) создание/уничтожение сущностей без аллокаций в hot path\n• Разработал геномную систему с наследованием и мутацией (~3% на байт), моделирующую естественный отбор через конкуренцию за свет',
 
     proj_amazonica_name: 'Amazonica',
     proj_amazonica_desc:
@@ -245,7 +245,7 @@ export const translations = {
 
     proj_poet_name: 'Помощник поэта',
     proj_poet_desc:
-      'Android-приложение для подбора рифм и синонимов. Опубликовано на Google Play. Дипломный проект.',
+      'Android-приложение для подбора рифм и синонимов — дипломный проект, опубликован на Google Play.\n• Разработал алгоритм подбора рифм и синонимов с нуля: спарсил несколько открытых словарей, наполнил локальную SQLite-базу и реализовал поиск на её основе\n• Самостоятельно освоил разработку под Android: UI-архитектура, жизненный цикл Activity/Fragment, многопоточность, работа с данными',
 
     // Experience bullets (переиспользуются в workblocks)
     exp_nadeks_role: 'Android Developer',
