@@ -14,6 +14,8 @@ interface ScreenshotModalProps {
   projectName: string;
   /** Callback закрытия модалки */
   onClose: () => void;
+  /** Флаг широкоформатных скриншотов (презентации, слайды, 16:9 / 4:3) */
+  wide?: boolean;
 }
 
 /** Варианты анимации слайда при смене скриншота */
@@ -27,7 +29,7 @@ const slideVariants = {
  * Модальная галерея скриншотов приложения.
  * Поддерживает навигацию стрелками клавиатуры и кликом по оверлею для закрытия.
  */
-export default function ScreenshotModal({ screenshots, projectName, onClose }: ScreenshotModalProps) {
+export default function ScreenshotModal({ screenshots, projectName, onClose, wide = false }: ScreenshotModalProps) {
   const [index, setIndex] = useState(0);
   // Направление анимации: 1 — вперёд, -1 — назад
   const [direction, setDirection] = useState(0);
@@ -97,8 +99,14 @@ export default function ScreenshotModal({ screenshots, projectName, onClose }: S
             ←
           </button>
 
-          {/* Контейнер изображения в формате телефона */}
-          <div className="relative w-[320px] h-[640px] sm:w-[400px] sm:h-[800px] max-h-[75vh] rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl">
+          {/* Контейнер изображения: широкий (16:9/4:3) или вертикальный (телефон) */}
+          <div
+            className={`relative rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl ${
+              wide
+                ? 'w-[min(720px,85vw)] aspect-[4/3]'
+                : 'w-[320px] h-[640px] sm:w-[400px] sm:h-[800px] max-h-[75vh]'
+            }`}
+          >
             <AnimatePresence custom={direction} mode="wait">
               <motion.div
                 key={index}
@@ -115,7 +123,7 @@ export default function ScreenshotModal({ screenshots, projectName, onClose }: S
                   alt={`${projectName} screenshot ${index + 1}`}
                   fill
                   className="object-contain"
-                  sizes="280px"
+                  sizes={wide ? '720px' : '400px'}
                 />
               </motion.div>
             </AnimatePresence>

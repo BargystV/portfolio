@@ -42,8 +42,8 @@ function renderDesc(text: string, contributionsLabel: string) {
  * зелёный — есть GitHub/Store, жёлтый — есть скриншоты или Google Play, красный — приватный, серый — нет ссылки.
  */
 function getDotColor(project: WorkProject): string {
-  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'bg-[#00d084]';
   if (project.screenshots?.length) return 'bg-yellow-400';
+  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'bg-[#00d084]';
   if (project.isPrivate) return 'bg-red-500';
   return 'bg-white/20';
 }
@@ -183,6 +183,8 @@ function ProjectCard({
 interface ScreenshotModalState {
   screenshots: string[];
   name: string;
+  /** Флаг широкоформатных скриншотов */
+  wide?: boolean;
 }
 
 export default function WorkAndProjects() {
@@ -257,7 +259,7 @@ export default function WorkAndProjects() {
                         lang={lang}
                         onScreenshots={
                           project.screenshots?.length
-                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey) })
+                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey), wide: project.screenshotWide })
                             : undefined
                         }
                       />
@@ -288,7 +290,7 @@ export default function WorkAndProjects() {
                         lang={lang}
                         onScreenshots={
                           project.screenshots?.length
-                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey) })
+                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey), wide: project.screenshotWide })
                             : undefined
                         }
                       />
@@ -307,6 +309,7 @@ export default function WorkAndProjects() {
           <ScreenshotModal
             screenshots={screenshotModal.screenshots}
             projectName={screenshotModal.name}
+            wide={screenshotModal.wide}
             onClose={() => setScreenshotModal(null)}
           />
         )}

@@ -25,6 +25,8 @@ export interface WorkProject {
   isPrivate?: boolean;
   /** Пути к скриншотам в /public — при наличии открывает галерею по клику */
   screenshots?: string[];
+  /** Флаг широкоформатных скриншотов (16:9 / 4:3) — меняет ориентацию модального окна */
+  screenshotWide?: boolean;
 }
 
 /**
@@ -183,10 +185,27 @@ export const workBlocks: WorkBlock[] = [
         // Дипломный проект — помощник поэта, опубликован на Google Play
         nameKey: 'proj_poet_name',
         descKey: 'proj_poet_desc',
-        stack: ['Kotlin', 'Android'],
+        stack: ['Java', 'Android', 'SQLite'],
         period: 'May – Nov 2017',
-        periodRu: 'Май – Нояб 2017',
+        periodRu: 'Май 2017 – Нояб 2017',
         googlePlayUrl: true,
+        screenshotWide: true,
+        screenshots: [
+          '/screenshots/poet/slide-01.png',
+          '/screenshots/poet/slide-02.png',
+          '/screenshots/poet/slide-03.png',
+          '/screenshots/poet/slide-04.png',
+          '/screenshots/poet/slide-05.png',
+          '/screenshots/poet/slide-06.png',
+          '/screenshots/poet/slide-07.png',
+          '/screenshots/poet/slide-08.png',
+          '/screenshots/poet/slide-09.png',
+          '/screenshots/poet/slide-10.png',
+          '/screenshots/poet/slide-11.png',
+          '/screenshots/poet/slide-12.png',
+          '/screenshots/poet/slide-13.png',
+          '/screenshots/poet/slide-14.png',
+        ],
       },
     ],
   },
