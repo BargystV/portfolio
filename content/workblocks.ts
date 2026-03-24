@@ -205,6 +205,8 @@ export const workBlocks: WorkBlock[] = [
         nameKey: 'proj_amazonica_name',
         descKey: 'proj_amazonica_desc',
         stack: ['Kotlin', 'Android', 'Jetpack Compose', 'Navigation Compose', 'Coroutines', 'Retrofit', 'Room', 'Koin', 'Coil'],
+        period: 'Dec 2024 – Jan 2025',
+        periodRu: 'Дек 2024 – Янв 2025',
         githubUrl: 'https://github.com/BargystV/Amazonica',
       },
       {
