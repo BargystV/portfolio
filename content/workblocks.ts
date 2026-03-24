@@ -204,7 +204,7 @@ export const workBlocks: WorkBlock[] = [
         // Android-приложение Amazonica (открытый репозиторий)
         nameKey: 'proj_amazonica_name',
         descKey: 'proj_amazonica_desc',
-        stack: ['Kotlin', 'Android'],
+        stack: ['Kotlin', 'Android', 'Jetpack Compose', 'Navigation Compose', 'Coroutines', 'Retrofit', 'Room', 'Koin', 'Coil'],
         githubUrl: 'https://github.com/BargystV/Amazonica',
       },
       {

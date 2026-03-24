@@ -106,7 +106,7 @@ export const translations = {
 
     proj_amazonica_name: 'Amazonica',
     proj_amazonica_desc:
-      'Android application built with Kotlin.',
+      'Android e-commerce app: catalog, cart, auth — built from scratch as a Jetpack Compose learning platform.\n• Designed single-module Clean Architecture with data / di / ui layers and a shared BaseViewModel with centralised error handling\n• Implemented nested navigation across three NavGraphs (Main / Auth / Catalog) and the Container/Stateless pattern for Compose Preview support\n• Introduced RepositoryResult<T> wrapper to isolate UI from data sources (Retrofit + Room + SharedPreferences)',
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
@@ -239,7 +239,7 @@ export const translations = {
 
     proj_amazonica_name: 'Amazonica',
     proj_amazonica_desc:
-      'Android-приложение на Kotlin.',
+      'Android-приложение интернет-магазина: каталог, корзина, авторизация — разработано с нуля как площадка для освоения Jetpack Compose.\n• Спроектировал одномодульную Clean Architecture с разбивкой на слои data / di / ui и общим BaseViewModel с централизованной обработкой ошибок\n• Реализовал вложенную навигацию из трёх NavGraph (Main / Auth / Catalog) и паттерн Container/Stateless для поддержки Compose Preview\n• Внедрил обёртку RepositoryResult<T> для изоляции UI от источников данных (Retrofit + Room + SharedPreferences)',
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
