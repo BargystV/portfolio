@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/lib/LanguageContext';
 import { Analytics } from '@vercel/analytics/next';
+import ParticleBackground from '@/components/ParticleBackground';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -48,7 +49,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-[#0d1117] antialiased">
-        <LanguageProvider>{children}</LanguageProvider>
+        <ParticleBackground />
+        <LanguageProvider>
+          <div className="relative z-10">{children}</div>
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>
