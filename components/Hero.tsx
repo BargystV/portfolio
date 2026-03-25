@@ -102,23 +102,6 @@ export default function Hero() {
         </motion.div>
 
         {/* Scroll hint — подсказка прокрутки, появляется с задержкой 1.2с */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="mt-20 flex justify-center"
-        >
-          <a href="#about" aria-label="Scroll down">
-            {/* Индикатор прокрутки — бесконечно движется вверх-вниз */}
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-              className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center pt-1.5"
-            >
-              <div className="w-1 h-2 rounded-full bg-[#00d084]/60" />
-            </motion.div>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
