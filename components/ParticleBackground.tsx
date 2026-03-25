@@ -35,6 +35,10 @@ export default function ParticleBackground() {
 
     let animId: number;
     let particles: Particle[] = [];
+    /** Текущий импульс скролла, затухает каждый кадр */
+    let scrollImpulse = 0;
+    /** Предыдущая позиция скролла для вычисления дельты */
+    let lastScrollY = window.scrollY;
 
     /** Инициализация размеров canvas и массива частиц */
     const init = () => {
@@ -58,13 +62,19 @@ export default function ParticleBackground() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Обновление позиций с отражением от краёв
+      // Плавное затухание импульса скролла
+      scrollImpulse *= 0.85;
+
+      // Обновление позиций с учётом импульса скролла (инвертирован — скролл вниз толкает частицы вверх)
       for (const p of particles) {
         p.x += p.vx;
-        p.y += p.vy;
+        p.y += p.vy - scrollImpulse * p.r;
 
+        // Отражение по горизонтали
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        // Оборачивание по вертикали — вылетевшая частица появляется с противоположной стороны
+        if (p.y < 0) p.y += canvas.height;
+        else if (p.y > canvas.height) p.y -= canvas.height;
       }
 
       // Отрисовка соединительных линий между близкими частицами
@@ -100,12 +110,21 @@ export default function ParticleBackground() {
     init();
     animate();
 
+    /** Обработка скролла — накапливает импульс по дельте */
+    const onScroll = () => {
+      const delta = window.scrollY - lastScrollY;
+      scrollImpulse += delta * 0.3;
+      lastScrollY = window.scrollY;
+    };
+
     const onResize = () => init();
     window.addEventListener('resize', onResize);
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', onResize);
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 

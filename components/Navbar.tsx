@@ -44,7 +44,7 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#0d1117]/90 backdrop-blur-md border-b border-white/5' : 'bg-transparent'
+        scrolled ? 'bg-[#0d1117] border-b border-white/5' : 'bg-[#0d1117]'
       }`}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
@@ -111,7 +111,7 @@ export default function Navbar() {
 
       {/* Mobile menu — отображается только при isOpen === true */}
       {isOpen && (
-        <div className="md:hidden bg-[#0d1117]/95 backdrop-blur-md border-t border-white/5 px-4 py-4">
+        <div className="md:hidden bg-[#0d1117] border-t border-white/5 px-4 py-4">
           <ul className="flex flex-col gap-4 text-sm text-white/60">
             {navItems.map(({ key, href }) => (
               <li key={key}>

@@ -52,7 +52,7 @@ export default function Contact() {
   const { t } = useLanguage();
 
   return (
-    <section id="contact" className="pt-24 pb-12 px-4 bg-white/[0.02]">
+    <section id="contact" className="pt-24 pb-12 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
@@ -94,7 +94,7 @@ export default function Contact() {
               className="flex flex-col items-center gap-3 group"
             >
               {/* Круглая иконка с hover-подсветкой */}
-              <span className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-white/[0.03] text-white/40 group-hover:text-[#00d084] group-hover:border-[#00d084]/40 group-hover:bg-[#00d084]/5 transition-all duration-200">
+              <span className="flex items-center justify-center w-12 h-12 rounded-full border border-white/10 bg-[#0d1117] text-white/40 group-hover:text-[#00d084] group-hover:border-[#00d084]/40 group-hover:bg-[#101e18] transition-all duration-200">
                 {link.icon}
               </span>
               {/* Подпись под иконкой */}

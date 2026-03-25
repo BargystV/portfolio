@@ -29,7 +29,7 @@ export default function Skills() {
   const { t } = useLanguage();
 
   return (
-    <section id="skills" className="py-24 px-4 bg-white/[0.02]">
+    <section id="skills" className="py-24 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2
@@ -67,7 +67,7 @@ export default function Skills() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: gi * 0.08 + si * 0.04 }}
-                    className="px-3 py-1 rounded-full text-sm text-white/70 border border-white/10 bg-white/[0.03] hover:border-[#00d084]/40 hover:text-white transition-all duration-200"
+                    className="px-3 py-1 rounded-full text-sm text-white/70 border border-white/10 bg-[#0d1117] hover:border-[#00d084]/40 hover:text-white transition-all duration-200"
                   >
                     {skill}
                   </motion.span>

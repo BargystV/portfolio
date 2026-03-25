@@ -115,7 +115,7 @@ function ProjectCard({
       transition={{ duration: 0.4, delay }}
       whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut' } }}
       onClick={handleClick}
-      className={`relative flex flex-col rounded-xl border border-white/8 bg-white/[0.03] p-6 hover:border-[#00d084]/30 transition-colors duration-150 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`relative flex flex-col rounded-xl border border-white/8 bg-[#0d1117] p-6 hover:border-[#00d084]/30 transition-colors duration-150 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {/* Шапка: статусная точка + название + инлайн-тост справа */}
       <div className="flex items-center gap-2.5 mb-2">
@@ -184,7 +184,7 @@ export default function WorkAndProjects() {
   const [screenshotModal, setScreenshotModal] = useState<ScreenshotModalState | null>(null);
 
   return (
-    <section id="work" className="py-24 px-4 bg-white/[0.02]">
+    <section id="work" className="py-24 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Заголовок секции с анимацией появления при скролле */}
         <motion.h2

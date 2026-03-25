@@ -95,7 +95,7 @@ export default function Hero() {
           {/* Якорная ссылка на секцию контактов */}
           <a
             href="#contact"
-            className="px-6 py-3 rounded-lg border border-[#00d084]/40 text-[#00d084] font-semibold text-sm hover:border-[#00d084] hover:bg-[#00d084]/5 transition-all duration-200"
+            className="px-6 py-3 rounded-lg border border-[#00d084]/40 text-[#00d084] font-semibold text-sm bg-[#0d1117] hover:border-[#00d084] hover:bg-[#101e18] transition-all duration-200"
           >
             {t('hero_contact')}
           </a>

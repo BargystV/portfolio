@@ -20,7 +20,7 @@ export default function Home() {
         <Skills />
         <Contact />
       </main>
-      <footer className="py-6 px-4 text-white/20 text-xs font-mono border-t border-white/5">
+      <footer className="py-6 px-4 text-white/20 text-xs font-mono border-t border-white/5 bg-[#0d1117]">
         <div className="max-w-5xl mx-auto flex items-center justify-center">
           <BuildDate isoDate={BUILD_ISO} />
         </div>
