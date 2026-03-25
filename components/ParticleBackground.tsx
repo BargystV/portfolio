@@ -17,6 +17,10 @@ const DENSITY = 80;
 const LINK_DIST = 120;
 /** Цвет частиц и линий (терминальный зелёный) */
 const COLOR = '0, 208, 132';
+/** Радиус зоны отталкивания курсора */
+const MOUSE_RADIUS = 100;
+/** Сила отталкивания от курсора */
+const MOUSE_FORCE = 0.6;
 
 /**
  * Полноэкранный анимированный canvas-фон с дрейфующими частицами.
@@ -39,6 +43,9 @@ export default function ParticleBackground() {
     let scrollImpulse = 0;
     /** Предыдущая позиция скролла для вычисления дельты */
     let lastScrollY = window.scrollY;
+    /** Позиция курсора (-1 = вне окна) */
+    let mouseX = -1;
+    let mouseY = -1;
 
     /** Инициализация размеров canvas и массива частиц */
     const init = () => {
@@ -65,8 +72,31 @@ export default function ParticleBackground() {
       // Плавное затухание импульса скролла
       scrollImpulse *= 0.85;
 
-      // Обновление позиций с учётом импульса скролла (инвертирован — скролл вниз толкает частицы вверх)
+      // Обновление позиций с учётом импульса скролла и отталкивания от курсора
       for (const p of particles) {
+        // Отталкивание от курсора
+        if (mouseX >= 0) {
+          const dx = p.x - mouseX;
+          const dy = p.y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MOUSE_RADIUS && dist > 0) {
+            const force = (1 - dist / MOUSE_RADIUS) * MOUSE_FORCE;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+          }
+        }
+
+        // Ограничение максимальной скорости для плавности
+        const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+        if (speed > 2) {
+          p.vx = (p.vx / speed) * 2;
+          p.vy = (p.vy / speed) * 2;
+        }
+
+        // Затухание скорости к базовой
+        p.vx *= 0.98;
+        p.vy *= 0.98;
+
         p.x += p.vx;
         p.y += p.vy - scrollImpulse * p.r;
 
@@ -117,14 +147,30 @@ export default function ParticleBackground() {
       lastScrollY = window.scrollY;
     };
 
+    /** Обновление позиции курсора */
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    /** Сброс курсора при выходе за пределы окна */
+    const onMouseLeave = () => {
+      mouseX = -1;
+      mouseY = -1;
+    };
+
     const onResize = () => init();
     window.addEventListener('resize', onResize);
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave);
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseleave', onMouseLeave);
     };
   }, []);
 
