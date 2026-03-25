@@ -183,6 +183,15 @@ export const workBlocks: WorkBlock[] = [
     id: 'personal',
     projects: [
       {
+        // Персональный сайт-портфолио на Next.js
+        nameKey: 'proj_portfolio_name',
+        descKey: 'proj_portfolio_desc',
+        stack: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+        period: 'Mar 2026 – Present',
+        periodRu: 'Март 2026 – н.в.',
+        githubUrl: 'https://github.com/BargystV/portfolio',
+      },
+      {
         // Приватный AI-агент для управления личными делами через n8n
         nameKey: 'proj_aiagent_name',
         descKey: 'proj_aiagent_desc',

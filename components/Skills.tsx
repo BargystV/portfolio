@@ -12,6 +12,7 @@ import { TranslationKey } from '@/lib/i18n';
 const groupTitleKey: Record<string, TranslationKey> = {
   languages: 'skills_languages',
   mobile: 'skills_mobile',
+  web: 'skills_web',
   architecture: 'skills_architecture',
   tools: 'skills_tools',
   backend: 'skills_backend',

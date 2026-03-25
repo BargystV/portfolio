@@ -5,7 +5,7 @@
  */
 export interface SkillGroup {
   /** Ключ группы — используется для получения локализованного заголовка */
-  key: 'languages' | 'mobile' | 'architecture' | 'tools' | 'backend' | 'ai';
+  key: 'languages' | 'mobile' | 'web' | 'architecture' | 'tools' | 'backend' | 'ai';
   /** Список технологий или инструментов в данной группе */
   items: string[];
 }
@@ -24,6 +24,11 @@ export const skillGroups: SkillGroup[] = [
     // Мобильная разработка и Android-библиотеки
     key: 'mobile',
     items: ['Android', 'HCE', 'Room', 'Retrofit', 'OkHttp', 'Gson', 'Coroutines', 'Koin', 'Moxy', 'EventBus', 'JavaPoet', 'ZXing', 'VisionLabs', 'Bouncy Castle', 'BER-TLV', 'DataBinding', 'Jetpack Compose', 'Navigation Compose', 'Hilt', 'RxJava', 'ProGuard', 'Firebase', 'Google Maps', 'SQLite', 'Glide', 'Coil', 'Facebook Shimmer'],
+  },
+  {
+    // Веб-разработка и фронтенд
+    key: 'web',
+    items: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
   },
   {
     // Архитектурные паттерны

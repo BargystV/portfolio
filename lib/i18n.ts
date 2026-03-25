@@ -45,6 +45,7 @@ export const translations = {
     skills_title: 'Skills',
     skills_languages: 'Languages',
     skills_mobile: 'Mobile & Android',
+    skills_web: 'Web / Frontend',
     skills_architecture: 'Architecture',
     skills_tools: 'Tools',
     skills_backend: 'Backend / Infra',
@@ -107,6 +108,10 @@ export const translations = {
     proj_amazonica_name: 'Amazonica',
     proj_amazonica_desc:
       'Android e-commerce app: catalog, cart, auth — built from scratch as a Jetpack Compose learning platform.\n• Designed single-module Clean Architecture with data / di / ui layers and a shared BaseViewModel with centralised error handling\n• Implemented nested navigation across three NavGraphs (Main / Auth / Catalog) and the Container/Stateless pattern for Compose Preview support\n• Introduced RepositoryResult<T> wrapper to isolate UI from data sources (Retrofit + Room + SharedPreferences)',
+
+    proj_portfolio_name: 'Boris Portfolio',
+    proj_portfolio_desc:
+      'Personal portfolio website: single-page SPA with bilingual interface (EN/RU).\n• Built a custom i18n system on React Context without external libraries\n• Developed animated particle background with scroll and mouse reactivity (Canvas API) + scroll-triggered section animations (Framer Motion)\n• Configured deployment on Vercel with SEO meta tags, Open Graph and built-in analytics',
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
@@ -178,6 +183,7 @@ export const translations = {
     skills_title: 'Навыки',
     skills_languages: 'Языки',
     skills_mobile: 'Mobile & Android',
+    skills_web: 'Web / Frontend',
     skills_architecture: 'Архитектура',
     skills_tools: 'Инструменты',
     skills_backend: 'Backend / Инфра',
@@ -240,6 +246,10 @@ export const translations = {
     proj_amazonica_name: 'Amazonica',
     proj_amazonica_desc:
       'Android-приложение интернет-магазина: каталог, корзина, авторизация — разработано с нуля как площадка для освоения Jetpack Compose.\n• Спроектировал одномодульную Clean Architecture с разбивкой на слои data / di / ui и общим BaseViewModel с централизованной обработкой ошибок\n• Реализовал вложенную навигацию из трёх NavGraph (Main / Auth / Catalog) и паттерн Container/Stateless для поддержки Compose Preview\n• Внедрил обёртку RepositoryResult<T> для изоляции UI от источников данных (Retrofit + Room + SharedPreferences)',
+
+    proj_portfolio_name: 'Boris Portfolio',
+    proj_portfolio_desc:
+      'Персональный сайт-портфолио: одностраничное SPA с двуязычным интерфейсом (EN/RU).\n• Реализовал i18n-систему на React Context без внешних библиотек\n• Разработал анимированный частицевый фон с реакцией на скролл и мышь (Canvas API) + scroll-triggered анимации секций (Framer Motion)\n• Настроил деплой на Vercel с SEO-метатегами, Open Graph и встроенной аналитикой',
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
