@@ -44,12 +44,14 @@ export const translations = {
     // Skills
     skills_title: 'Skills',
     skills_languages: 'Languages',
-    skills_mobile: 'Mobile & Android',
-    skills_web: 'Web / Frontend',
-    skills_architecture: 'Architecture',
-    skills_tools: 'Tools',
-    skills_backend: 'Backend / Infra',
-    skills_ai: 'AI',
+    skills_android: 'Android',
+    skills_networking: 'Networking & Serialization',
+    skills_security: 'Security & Cryptography',
+    skills_backend: 'Backend',
+    skills_frontend: 'Frontend & Web',
+    skills_architecture: 'Architecture & Patterns',
+    skills_infra: 'Infrastructure & DevOps',
+    skills_ai: 'AI & Automation',
 
     // Work & Projects (объединённая секция)
     work_title: 'Work & Projects',
@@ -182,12 +184,14 @@ export const translations = {
     // Skills
     skills_title: 'Навыки',
     skills_languages: 'Языки',
-    skills_mobile: 'Mobile & Android',
-    skills_web: 'Web / Frontend',
-    skills_architecture: 'Архитектура',
-    skills_tools: 'Инструменты',
-    skills_backend: 'Backend / Инфра',
-    skills_ai: 'AI',
+    skills_android: 'Android',
+    skills_networking: 'Сеть и сериализация',
+    skills_security: 'Безопасность и криптография',
+    skills_backend: 'Backend',
+    skills_frontend: 'Фронтенд и веб',
+    skills_architecture: 'Архитектура и паттерны',
+    skills_infra: 'Инфраструктура и DevOps',
+    skills_ai: 'AI и автоматизация',
 
     // Work & Projects (объединённая секция)
     work_title: 'Работа и проекты',

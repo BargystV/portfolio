@@ -11,11 +11,13 @@ import { TranslationKey } from '@/lib/i18n';
  */
 const groupTitleKey: Record<string, TranslationKey> = {
   languages: 'skills_languages',
-  mobile: 'skills_mobile',
-  web: 'skills_web',
-  architecture: 'skills_architecture',
-  tools: 'skills_tools',
+  android: 'skills_android',
+  networking: 'skills_networking',
+  security: 'skills_security',
   backend: 'skills_backend',
+  frontend: 'skills_frontend',
+  architecture: 'skills_architecture',
+  infra: 'skills_infra',
   ai: 'skills_ai',
 };
 

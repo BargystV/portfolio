@@ -5,7 +5,7 @@
  */
 export interface SkillGroup {
   /** Ключ группы — используется для получения локализованного заголовка */
-  key: 'languages' | 'mobile' | 'web' | 'architecture' | 'tools' | 'backend' | 'ai';
+  key: 'languages' | 'android' | 'networking' | 'security' | 'backend' | 'frontend' | 'architecture' | 'infra' | 'ai';
   /** Список технологий или инструментов в данной группе */
   items: string[];
 }
@@ -18,17 +18,32 @@ export const skillGroups: SkillGroup[] = [
   {
     // Языки программирования
     key: 'languages',
-    items: ['Kotlin', 'Java', 'C/C++'],
+    items: ['Kotlin', 'Java', 'C/C++', 'Python', 'TypeScript'],
   },
   {
-    // Мобильная разработка и Android-библиотеки
-    key: 'mobile',
-    items: ['Android', 'HCE', 'Room', 'Retrofit', 'OkHttp', 'Gson', 'Coroutines', 'Koin', 'Moxy', 'EventBus', 'JavaPoet', 'ZXing', 'VisionLabs', 'Bouncy Castle', 'BER-TLV', 'DataBinding', 'Jetpack Compose', 'Navigation Compose', 'Hilt', 'RxJava', 'ProGuard', 'Firebase', 'Google Maps', 'SQLite', 'Glide', 'Coil', 'Facebook Shimmer'],
+    // Android-разработка и библиотеки
+    key: 'android',
+    items: ['Android', 'Jetpack Compose', 'Navigation Compose', 'DataBinding', 'HCE', 'Room', 'Hilt', 'Koin', 'Moxy', 'Coroutines', 'RxJava', 'EventBus', 'Glide', 'Coil', 'Facebook Shimmer', 'ZXing', 'VisionLabs', 'LibGDX'],
   },
   {
-    // Веб-разработка и фронтенд
-    key: 'web',
-    items: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+    // Сетевое взаимодействие и сериализация
+    key: 'networking',
+    items: ['Retrofit', 'OkHttp', 'Gson'],
+  },
+  {
+    // Безопасность и криптография
+    key: 'security',
+    items: ['Bouncy Castle', 'BER-TLV', 'ProGuard', 'DexProtector', 'JavaPoet'],
+  },
+  {
+    // Backend-разработка
+    key: 'backend',
+    items: ['Spring Boot', 'Spring WebFlux', 'Kafka', 'PostgreSQL', 'SQLite', 'JPA', 'Liquibase', 'Testcontainers'],
+  },
+  {
+    // Фронтенд и веб-разработка
+    key: 'frontend',
+    items: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
   },
   {
     // Архитектурные паттерны
@@ -36,18 +51,13 @@ export const skillGroups: SkillGroup[] = [
     items: ['MVVM', 'MVP', 'Command Pattern', 'State machine', 'Microservices', 'API Gateway', 'ECS', 'Data-Oriented Design'],
   },
   {
-    // Инструменты разработки и мониторинга
-    key: 'tools',
-    items: ['Gradle', 'Sentry', 'DexProtector', 'LibGDX'],
-  },
-  {
-    // Backend-разработка
-    key: 'backend',
-    items: ['Spring Boot', 'Spring WebFlux', 'Kafka', 'PostgreSQL', 'JPA', 'Liquibase', 'Testcontainers'],
+    // Инфраструктура и DevOps
+    key: 'infra',
+    items: ['Gradle', 'Firebase', 'Google Maps', 'Sentry'],
   },
   {
     // AI и автоматизация
     key: 'ai',
-    items: ['Python', 'n8n'],
+    items: ['n8n', 'Claude Code'],
   },
 ];
