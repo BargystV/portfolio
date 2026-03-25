@@ -110,7 +110,7 @@ export const translations = {
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
-      'Automated AI agent for personal life management: Notion Calendar, purchases & movies database, books. Orchestrated via n8n with LLM integration for natural language control.',
+      'Private AI assistant for everyday life — manages calendar, purchases, and recipes in Notion via natural language.\n• Built multi-step n8n workflows: intent classification → tool routing → Notion API calls\n• Integrated LLM as the orchestration layer: the agent parses free-form messages, extracts structured data, and dispatches CRUD operations across multiple Notion databases',
 
     proj_poet_name: 'Poet Helper',
     proj_poet_desc:
@@ -243,7 +243,7 @@ export const translations = {
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
-      'Автоматизированный AI-агент для управления личной жизнью: Notion Calendar, база данных покупок, фильмов, книг. Оркестрация через n8n, интеграция LLM для естественного языкового управления.',
+      'Приватный AI-ассистент для повседневной жизни — управляет календарём, покупками и рецептами в Notion через естественный язык.\n• Построил многошаговые n8n-воркфлоу: классификация интента → маршрутизация инструментов → вызовы Notion API\n• Интегрировал LLM как слой оркестрации: агент разбирает произвольные сообщения, извлекает структурированные данные и диспатчит CRUD-операции по нескольким базам Notion',
 
     proj_poet_name: 'Помощник поэта',
     proj_poet_desc:

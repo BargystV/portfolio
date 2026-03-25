@@ -186,10 +186,16 @@ export const workBlocks: WorkBlock[] = [
         // Приватный AI-агент для управления личными делами через n8n
         nameKey: 'proj_aiagent_name',
         descKey: 'proj_aiagent_desc',
-        stack: ['n8n', 'Python', 'LLM API', 'Notion'],
+        stack: ['Python', 'n8n'],
         period: 'Apr 2025 – Present',
         periodRu: 'Апр 2025 – н.в.',
         isPrivate: true,
+        screenshotWide: true,
+        screenshots: [
+          '/screenshots/aiagents/1.png',
+          '/screenshots/aiagents/2.png',
+          '/screenshots/aiagents/3.png',
+        ],
       },
       {
         // Симуляция жизненного цикла растений с эволюционным алгоритмом

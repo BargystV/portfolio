@@ -40,4 +40,9 @@ export const skillGroups: SkillGroup[] = [
     key: 'backend',
     items: ['Spring Boot', 'Spring WebFlux', 'Kafka', 'PostgreSQL', 'JPA', 'Liquibase', 'Testcontainers'],
   },
+  {
+    // AI и автоматизация
+    key: 'ai',
+    items: ['Python', 'n8n'],
+  },
 ];
