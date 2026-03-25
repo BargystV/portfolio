@@ -35,7 +35,7 @@ export const translations = {
     about_p2:
       'I\'m fascinated by the intersection of mobile development and AI. I actively use AI tools (Claude Code, n8n, LLM APIs) in my daily workflow.',
     about_p3:
-      'I love automating and organizing — I have several Telegram bots for personal databases: books, movies, recipes, shopping.',
+      'I love automating and organizing — I have several Telegram bots for personal databases: calendar, recipes, shopping.',
     about_p4:
       'I\'m writing a life simulation: cells, rules, emergent behavior — it\'s fascinating how simple algorithms give rise to complex systems.',
     about_p5:
@@ -175,7 +175,7 @@ export const translations = {
     about_p2:
       'Меня увлекает пересечение мобильной разработки и AI. Активно использую AI-инструменты (Claude Code, n8n, LLM API) в ежедневной работе.',
     about_p3:
-      'Люблю автоматизировать и систематизировать — у меня есть несколько Telegram-ботов для личных баз данных: книги, фильмы, рецепты, покупки.',
+      'Люблю автоматизировать и систематизировать — у меня есть несколько Telegram-ботов для личных баз данных: календарь, рецепты, покупки.',
     about_p4:
       'Пишу симуляцию жизни: клетки, правила, эмерджентное поведение — интересно наблюдать, как простые алгоритмы порождают сложные системы.',
     about_p5:
