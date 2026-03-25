@@ -6,8 +6,12 @@ import { useEffect, useRef } from 'react';
 interface Particle {
   x: number;
   y: number;
-  vx: number;
-  vy: number;
+  /** Базовая скорость дрейфа (постоянная) */
+  bvx: number;
+  bvy: number;
+  /** Дополнительный импульс от курсора (затухает) */
+  ex: number;
+  ey: number;
   r: number;
 }
 
@@ -59,8 +63,10 @@ export default function ParticleBackground() {
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
+        bvx: (Math.random() - 0.5) * 0.3,
+        bvy: (Math.random() - 0.5) * 0.3,
+        ex: 0,
+        ey: 0,
         r: Math.random() * 1.2 + 0.5,
       }));
     };
@@ -74,34 +80,27 @@ export default function ParticleBackground() {
 
       // Обновление позиций с учётом импульса скролла и отталкивания от курсора
       for (const p of particles) {
-        // Отталкивание от курсора
+        // Отталкивание от курсора — добавляет импульс
         if (mouseX >= 0) {
           const dx = p.x - mouseX;
           const dy = p.y - mouseY;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < MOUSE_RADIUS && dist > 0) {
             const force = (1 - dist / MOUSE_RADIUS) * MOUSE_FORCE;
-            p.vx += (dx / dist) * force;
-            p.vy += (dy / dist) * force;
+            p.ex += (dx / dist) * force;
+            p.ey += (dy / dist) * force;
           }
         }
 
-        // Ограничение максимальной скорости для плавности
-        const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        if (speed > 2) {
-          p.vx = (p.vx / speed) * 2;
-          p.vy = (p.vy / speed) * 2;
-        }
+        // Затухание только дополнительного импульса, базовый дрейф не трогаем
+        p.ex *= 0.95;
+        p.ey *= 0.95;
 
-        // Затухание скорости к базовой
-        p.vx *= 0.98;
-        p.vy *= 0.98;
-
-        p.x += p.vx;
-        p.y += p.vy - scrollImpulse * p.r;
+        p.x += p.bvx + p.ex;
+        p.y += p.bvy + p.ey - scrollImpulse * p.r;
 
         // Отражение по горизонтали
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.x < 0 || p.x > canvas.width) p.bvx *= -1;
         // Оборачивание по вертикали — вылетевшая частица появляется с противоположной стороны
         if (p.y < 0) p.y += canvas.height;
         else if (p.y > canvas.height) p.y -= canvas.height;
