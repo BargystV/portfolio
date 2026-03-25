@@ -31,7 +31,7 @@ export const translations = {
     // About
     about_title: 'About',
     about_p1:
-      'Senior Android Developer with over 8 years of commercial experience — from POS terminal payment systems and enterprise MRM solutions to consumer apps and games.',
+      'Senior Android Developer with over 9 years of commercial experience — from POS terminal payment systems and enterprise MRM solutions to consumer apps and games.',
     about_p2:
       'I\'m fascinated by the intersection of mobile development and AI. I actively use AI tools (Claude Code, n8n, LLM APIs) in my daily workflow.',
     about_p3:
@@ -171,7 +171,7 @@ export const translations = {
     // About
     about_title: 'Обо мне',
     about_p1:
-      'Senior Android Developer с более чем 8 годами коммерческого опыта — от платёжных систем для POS-терминалов и корпоративных MRM-решений до пользовательских приложений и игр.',
+      'Senior Android Developer с более чем 9 годами коммерческого опыта — от платёжных систем для POS-терминалов и корпоративных MRM-решений до пользовательских приложений и игр.',
     about_p2:
       'Меня увлекает пересечение мобильной разработки и AI. Активно использую AI-инструменты (Claude Code, n8n, LLM API) в ежедневной работе.',
     about_p3:
