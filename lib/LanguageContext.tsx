@@ -51,8 +51,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLang(detectLang());
   }, []);
 
-  // Переключение между 'en' и 'ru'
-  const toggle = () => setLang((prev) => (prev === 'en' ? 'ru' : 'en'));
+  // Переключение между 'en' и 'ru'; оповещает фон о рефлоу
+  const toggle = () => {
+    window.dispatchEvent(new CustomEvent('lang-switch'));
+    setLang((prev) => (prev === 'en' ? 'ru' : 'en'));
+  };
 
   // Получение перевода строки по ключу для активного языка
   const t = (key: TranslationKey): string => translations[lang][key];

@@ -139,11 +139,26 @@ export default function ParticleBackground() {
     init();
     animate();
 
+    /** Флаг заморозки скролл-импульса при смене языка */
+    let scrollFrozen = false;
+    let frozenTimer: ReturnType<typeof setTimeout>;
+
+    /** При смене языка замораживаем скролл-импульс на 300ms, пока контент рефлоится */
+    const onLangSwitch = () => {
+      scrollFrozen = true;
+      clearTimeout(frozenTimer);
+      frozenTimer = setTimeout(() => {
+        lastScrollY = window.scrollY;
+        scrollFrozen = false;
+      }, 300);
+    };
+
     /** Обработка скролла — накапливает импульс по дельте */
     const onScroll = () => {
       const delta = window.scrollY - lastScrollY;
-      scrollImpulse += delta * 0.3;
       lastScrollY = window.scrollY;
+      if (scrollFrozen) return;
+      scrollImpulse += delta * 0.3;
     };
 
     /** Обновление позиции курсора */
@@ -162,13 +177,16 @@ export default function ParticleBackground() {
     window.addEventListener('resize', onResize);
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('lang-switch', onLangSwitch);
     document.addEventListener('mouseleave', onMouseLeave);
 
     return () => {
       cancelAnimationFrame(animId);
+      clearTimeout(frozenTimer);
       window.removeEventListener('resize', onResize);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('lang-switch', onLangSwitch);
       document.removeEventListener('mouseleave', onMouseLeave);
     };
   }, []);
