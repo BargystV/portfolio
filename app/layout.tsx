@@ -14,7 +14,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Boris Varshaver — Senior Android Developer',
   description:
-    '8+ years of Android development. Kotlin, Java, Jetpack Compose, MVVM, Clean Architecture. Passionate about mobile × AI.',
+    '9+ years of Android development. Kotlin, Java, Jetpack Compose, MVVM, Clean Architecture. Passionate about mobile × AI.',
   keywords: [
     'Android Developer',
     'Kotlin',
@@ -26,14 +26,14 @@ export const metadata: Metadata = {
   authors: [{ name: 'Boris Varshaver' }],
   openGraph: {
     title: 'Boris Varshaver — Senior Android Developer',
-    description: '8+ years of Android development. Kotlin, Java, AI tools.',
+    description: '9+ years of Android development. Kotlin, Java, AI tools.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary',
     title: 'Boris Varshaver — Senior Android Developer',
-    description: '8+ years of Android development. Kotlin, Java, AI tools.',
+    description: '9+ years of Android development. Kotlin, Java, AI tools.',
   },
   robots: {
     index: true,
