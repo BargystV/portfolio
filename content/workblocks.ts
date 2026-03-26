@@ -229,7 +229,7 @@ export const workBlocks: WorkBlock[] = [
         nameKey: 'proj_poet_name',
         descKey: 'proj_poet_desc',
         stack: ['Java', 'Android', 'SQLite'],
-        period: 'May – Nov 2017',
+        period: 'May 2017 – Nov 2017',
         periodRu: 'Май 2017 – Нояб 2017',
         googlePlayUrl: true,
         screenshotWide: true,
