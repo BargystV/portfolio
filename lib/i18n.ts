@@ -44,7 +44,7 @@ export const translations = {
     // Skills
     skills_title: 'Skills',
     skills_languages: 'Languages',
-    skills_android: 'Android',
+    skills_android: 'Mobile',
     skills_networking: 'Networking & Serialization',
     skills_security: 'Security & Cryptography',
     skills_backend: 'Backend',
@@ -184,7 +184,7 @@ export const translations = {
     // Skills
     skills_title: 'Навыки',
     skills_languages: 'Языки',
-    skills_android: 'Android',
+    skills_android: 'Мобильная разработка',
     skills_networking: 'Сеть и сериализация',
     skills_security: 'Безопасность и криптография',
     skills_backend: 'Backend',
