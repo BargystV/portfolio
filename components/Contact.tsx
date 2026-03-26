@@ -35,8 +35,8 @@ const contactLinks = [
   },
   {
     label: 'LinkedIn',
-    value: 'boris-varshaver',
-    href: 'https://www.linkedin.com/in/boris-varshaver-392111288/',
+    value: 'bargystvelp',
+    href: 'https://www.linkedin.com/in/bargystvelp/',
     icon: <LinkedInIcon />,
   },
 ];
