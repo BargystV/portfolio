@@ -18,7 +18,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Языки программирования
     key: 'languages',
-    items: ['Kotlin', 'Java', 'C/C++', 'Python', 'TypeScript'],
+    items: ['Kotlin', 'Java', 'C/C++', 'Python', 'TypeScript', 'Bash'],
   },
   {
     // Android-разработка и библиотеки
@@ -53,7 +53,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Инфраструктура и DevOps
     key: 'infra',
-    items: ['Gradle', 'Firebase', 'Google Maps', 'Sentry'],
+    items: ['Docker', 'Docker Compose', 'Gradle', 'Firebase', 'Google Maps', 'Sentry'],
   },
   {
     // AI и автоматизация

@@ -216,6 +216,15 @@ export const workBlocks: WorkBlock[] = [
         githubUrl: 'https://github.com/BargystV/simulation-of-life',
       },
       {
+        // Self-hosted MTProto-прокси для Telegram
+        nameKey: 'proj_mtproxy_name',
+        descKey: 'proj_mtproxy_desc',
+        stack: ['Bash', 'Docker', 'Docker Compose'],
+        period: 'Apr 2025 – Apr 2025',
+        periodRu: 'Апр 2025 – Апр 2025',
+        githubUrl: 'https://github.com/BargystV/my-mtproxy',
+      },
+      {
         // Android-приложение Amazonica (открытый репозиторий)
         nameKey: 'proj_amazonica_name',
         descKey: 'proj_amazonica_desc',

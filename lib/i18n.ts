@@ -119,6 +119,10 @@ export const translations = {
     proj_aiagent_desc:
       'Private AI assistant for everyday life — manages calendar, purchases, and recipes in Notion via natural language.\n• Built multi-step n8n workflows: intent classification → tool routing → Notion API calls\n• Integrated LLM as the orchestration layer: the agent parses free-form messages, extracts structured data, and dispatches CRUD operations across multiple Notion databases',
 
+    proj_mtproxy_name: 'My-MTProxy',
+    proj_mtproxy_desc:
+      'Self-hosted Telegram proxy server with HTTPS traffic masking, designed for private use by a small group.\n• Designed a provisioning script (Bash) that deploys a fully ready service on a clean VPS with a single command: OS update, Docker installation, firewall configuration, container launch\n• Implemented transport-level traffic masking — the connection is visually indistinguishable from regular HTTPS\n• Automatic secret generation and ready-to-use connection link output immediately after installation',
+
     proj_poet_name: 'Poet Helper',
     proj_poet_desc:
       'Android app for selecting rhymes and synonyms — diploma project, published on Google Play.\n• Designed a rhyme and synonym matching algorithm from scratch: parsed multiple open dictionaries, populated a local SQLite database, and built search logic on top of it\n• Independently learned Android development: UI architecture, Activity/Fragment lifecycle, multithreading, and data persistence',
@@ -258,6 +262,10 @@ export const translations = {
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
       'Приватный AI-ассистент для повседневной жизни — управляет календарём, покупками и рецептами в Notion через естественный язык.\n• Построил многошаговые n8n-воркфлоу: классификация интента → маршрутизация инструментов → вызовы Notion API\n• Интегрировал LLM как слой оркестрации: агент разбирает произвольные сообщения, извлекает структурированные данные и диспатчит CRUD-операции по нескольким базам Notion',
+
+    proj_mtproxy_name: 'My-MTProxy',
+    proj_mtproxy_desc:
+      'Self-hosted прокси-сервер для Telegram с маскировкой трафика под HTTPS, рассчитанный на приватное использование малой группой пользователей.\n• Спроектировал провижининг-скрипт (Bash), разворачивающий полностью готовый сервис на чистом VPS одной командой: обновление ОС, установка Docker, настройка фаервола, запуск контейнера\n• Реализовал маскировку трафика на уровне транспорта — соединение визуально неотличимо от обычного HTTPS\n• Автоматическая генерация секрета и вывод готовой ссылки подключения сразу после установки',
 
     proj_poet_name: 'Помощник поэта',
     proj_poet_desc:
