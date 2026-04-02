@@ -56,6 +56,9 @@ export const translations = {
     // Work & Projects (объединённая секция)
     work_title: 'Work & Projects',
     work_pet_title: 'Personal Projects',
+    work_projects_one: '1 project',
+    work_projects_few: '{count} projects',
+    work_projects_many: '{count} projects',
 
     proj_github: 'GitHub',
     proj_gplay: 'Google Play',
@@ -199,6 +202,9 @@ export const translations = {
     // Work & Projects (объединённая секция)
     work_title: 'Работа и проекты',
     work_pet_title: 'Личные проекты',
+    work_projects_one: '1 проект',
+    work_projects_few: '{count} проекта',
+    work_projects_many: '{count} проектов',
 
     proj_github: 'GitHub',
     proj_gplay: 'Google Play',
