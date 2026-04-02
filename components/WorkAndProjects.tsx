@@ -46,11 +46,47 @@ function getDotColor(project: WorkProject): string {
 }
 
 /**
- * Карточка проекта со статусной точкой, кликом и инлайн-тостом справа от названия.
+ * Возвращает локализованный текст счётчика проектов с правильным склонением.
+ */
+function projectCountText(count: number, t: (key: TranslationKey) => string, lang: string): string {
+  if (count === 1) return t('work_projects_one');
+  if (lang === 'ru') {
+    // Русское склонение: 2-4 проекта, 5-20 проектов, 21 проект и т.д.
+    const mod10 = count % 10;
+    const mod100 = count % 100;
+    if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) {
+      return t('work_projects_few').replace('{count}', String(count));
+    }
+    return t('work_projects_many').replace('{count}', String(count));
+  }
+  return t('work_projects_many').replace('{count}', String(count));
+}
+
+/**
+ * Chevron-стрелка с плавным вращением для индикации свёрнутого/развёрнутого состояния.
+ */
+function Chevron({ expanded, size = 'md' }: { expanded: boolean; size?: 'md' | 'sm' }) {
+  return (
+    <motion.span
+      animate={{ rotate: expanded ? 90 : 0 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      className={`inline-flex items-center justify-center text-[#00d084] shrink-0 ${size === 'sm' ? 'text-xs w-4' : 'text-base w-5'}`}
+    >
+      ▶
+    </motion.span>
+  );
+}
+
+/**
+ * Карточка проекта с двумя состояниями:
+ * свёрнутое — компактная строка с названием и статусом,
+ * развёрнутое — полная карточка с описанием, стеком и ссылками.
  */
 function ProjectCard({
   project,
   delay,
+  isExpanded,
+  onToggle,
   toastPrivate,
   toastNoLink,
   toastGplay,
@@ -60,6 +96,8 @@ function ProjectCard({
 }: {
   project: WorkProject;
   delay: number;
+  isExpanded: boolean;
+  onToggle: () => void;
   toastPrivate: string;
   toastNoLink: string;
   toastGplay: string;
@@ -72,7 +110,10 @@ function ProjectCard({
   const [inlineToast, setInlineToast] = useState<string | null>(null);
 
   /** Определяет действие по клику в зависимости от статуса проекта */
-  function handleClick() {
+  function handleActionClick(e: React.MouseEvent) {
+    // Предотвращаем toggle при клике на ссылки внутри раскрытой карточки
+    e.stopPropagation();
+
     if (project.githubUrl) {
       window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
       return;
@@ -113,12 +154,14 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay }}
-      whileHover={{ y: -4, transition: { duration: 0.15, ease: 'easeOut' } }}
-      onClick={handleClick}
-      className={`relative flex flex-col rounded-xl border border-white/8 bg-[#0d1117] p-6 hover:border-[#00d084]/30 transition-colors duration-150 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
+      className="relative"
     >
-      {/* Шапка: статусная точка + название + инлайн-тост справа */}
-      <div className="flex items-center gap-2.5 mb-2">
+      {/* Свёрнутый заголовок проекта — всегда виден */}
+      <motion.div
+        onClick={onToggle}
+        whileHover={{ y: -2, transition: { duration: 0.15, ease: 'easeOut' } }}
+        className={`flex items-center gap-2.5 rounded-xl border ${isExpanded ? 'border-[#00d084]/30 bg-[#0d1117]' : 'border-white/8 bg-[#0d1117] hover:border-[#00d084]/30'} p-4 cursor-pointer transition-colors duration-150`}
+      >
         <span className={`w-2 h-2 rounded-full shrink-0 ${getDotColor(project)}`} />
         <h4 className="font-bold text-white text-base">{t(project.nameKey)}</h4>
         <AnimatePresence>
@@ -134,41 +177,54 @@ function ProjectCard({
             </motion.span>
           )}
         </AnimatePresence>
-      </div>
+        {project.period && (
+          <p className="font-mono text-xs text-white/30 ml-auto shrink-0">
+            {lang === 'ru' && project.periodRu ? project.periodRu : project.period}
+          </p>
+        )}
+        <Chevron expanded={isExpanded} size="sm" />
+      </motion.div>
 
-      {/* Период разработки — отображается только если задан, локализован */}
-      {project.period && (
-        <p className="font-mono text-xs text-white/30 mb-3">
-          {lang === 'ru' && project.periodRu ? project.periodRu : project.period}
-        </p>
-      )}
-
-      {/* Описание: renderDesc корректно обрабатывает и буллеты, и простой текст */}
-      {renderDesc(t(project.descKey))}
-
-      {/* Теги стека технологий */}
-      <div className="flex flex-wrap gap-2">
-        {project.stack.map((tech) => (
-          <span
-            key={tech}
-            className="px-2 py-0.5 rounded text-xs font-mono text-[#00d084]/70 bg-[#00d084]/5 border border-[#00d084]/15"
+      {/* Развёрнутое содержимое проекта */}
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
           >
-            {tech}
-          </span>
-        ))}
-      </div>
+            <div
+              onClick={isClickable ? handleActionClick : undefined}
+              className={`border border-t-0 border-[#00d084]/30 rounded-b-xl bg-[#0d1117] p-6 pt-4 -mt-3 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
+            >
+              {/* Описание: renderDesc корректно обрабатывает и буллеты, и простой текст */}
+              {renderDesc(t(project.descKey))}
+
+              {/* Теги стека технологий */}
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-0.5 rounded text-xs font-mono text-[#00d084]/70 bg-[#00d084]/5 border border-[#00d084]/15"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
 
 /**
  * Компонент объединённой секции "Работа и проекты".
- * Отображает 4 блока: Nadeks, Mahuru, Freelance, Личные проекты.
- * Каждый рабочий блок содержит шапку компании и карточки проектов.
- * Блок личных проектов показывает только заголовок и карточки.
- */
-/**
- * Данные для открытой галереи скриншотов — null означает закрыта.
+ * Двухуровневое сворачивание: блоки компаний и проекты внутри них.
+ * По умолчанию всё свёрнуто. Несколько блоков/проектов могут быть открыты одновременно.
  */
 interface ScreenshotModalState {
   screenshots: string[];
@@ -182,6 +238,29 @@ export default function WorkAndProjects() {
   const { lang, t } = useLanguage();
   // Состояние модальной галереи скриншотов
   const [screenshotModal, setScreenshotModal] = useState<ScreenshotModalState | null>(null);
+  // Множества раскрытых блоков и проектов (по id/nameKey)
+  const [expandedBlocks, setExpandedBlocks] = useState<Set<string>>(new Set());
+  const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set());
+
+  /** Переключает раскрытие блока компании */
+  const toggleBlock = (id: string) => {
+    setExpandedBlocks((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  /** Переключает раскрытие карточки проекта */
+  const toggleProject = (key: string) => {
+    setExpandedProjects((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
 
   return (
     <section id="work" className="py-24 px-4">
@@ -199,93 +278,101 @@ export default function WorkAndProjects() {
         </motion.h2>
 
         {/* Блоки компаний и проектов */}
-        <div className="space-y-20">
-          {workBlocks.map((block, i) => (
-            // Блок появляется снизу с задержкой i * 0.1с
-            <motion.div
-              key={block.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              {block.company ? (
-                <>
-                  {/* Шапка компании — только для рабочих блоков */}
-                  <div className="flex items-center gap-4 mb-6">
-                    {/* Вертикальная акцентная полоса рядом с шапкой */}
-                    <div className="w-1 self-stretch bg-[#00d084]/30 rounded-full shrink-0" />
-                    <div>
-                      {/* Название компании — кликабельно если задан url */}
-                      {block.url ? (
-                        <a href={block.url} target="_blank" rel="noopener noreferrer">
-                          <h3 className="text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-1">
-                            {block.company}
-                          </h3>
-                        </a>
-                      ) : (
-                        <h3 className="text-3xl font-bold text-white mb-1">{block.company}</h3>
-                      )}
-                      {/* Период работы зелёным цветом под названием компании */}
-                      <p className="font-mono text-xs text-[#00d084]">
-                        {lang === 'en' ? block.period : block.periodRu}
-                      </p>
-                    </div>
-                  </div>
+        <div className="space-y-4">
+          {workBlocks.map((block, i) => {
+            const isBlockExpanded = expandedBlocks.has(block.id);
 
-                  {/* Карточки рабочих проектов */}
-                  <div className="grid gap-5">
-                    {block.projects.map((project, j) => (
-                      <ProjectCard
-                        key={project.nameKey}
-                        project={project}
-                        delay={j * 0.06}
-                        toastPrivate={t('proj_toast_private')}
-                        toastNoLink={t('proj_toast_no_link')}
-                        toastGplay={t('proj_toast_gplay')}
-                        t={t}
-                        lang={lang}
-                        onScreenshots={
-                          project.screenshots?.length
-                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey), wide: project.screenshotWide })
-                            : undefined
-                        }
-                      />
-                    ))}
+            return (
+              // Блок появляется снизу с задержкой i * 0.1с
+              <motion.div
+                key={block.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                {/* Кликабельный заголовок блока */}
+                <div
+                  onClick={() => toggleBlock(block.id)}
+                  className={`flex items-center gap-4 cursor-pointer group rounded-xl border ${isBlockExpanded ? 'border-[#00d084]/30' : 'border-white/8 hover:border-[#00d084]/30'} bg-[#0d1117] p-4 transition-colors duration-150`}
+                >
+                  {/* Вертикальная акцентная полоса */}
+                  <div className="w-1 self-stretch bg-[#00d084]/30 rounded-full shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    {block.company ? (
+                      <>
+                        {/* Название компании — кликабельно если задан url */}
+                        {block.url ? (
+                          <a
+                            href={block.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <h3 className="text-2xl sm:text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-0.5">
+                              {block.company}
+                            </h3>
+                          </a>
+                        ) : (
+                          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-0.5">{block.company}</h3>
+                        )}
+                        {/* Роль и период */}
+                        <p className="font-mono text-xs text-[#00d084]">
+                          {lang === 'en' ? block.period : block.periodRu}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-0.5">{t('work_pet_title')}</h3>
+                        {/* Пустая строка для выравнивания высоты с блоками компаний */}
+                        <p className="font-mono text-xs text-transparent select-none">&nbsp;</p>
+                      </>
+                    )}
                   </div>
-                </>
-              ) : (
-                <>
-                  {/* Шапка блока личных проектов — по аналогии с рабочими блоками */}
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-1 self-stretch bg-[#00d084]/30 rounded-full shrink-0" />
-                    <h3 className="text-3xl font-bold text-white">{t('work_pet_title')}</h3>
-                  </div>
+                  {/* Счётчик проектов */}
+                  <span className="font-mono text-xs text-white/30 shrink-0">
+                    {projectCountText(block.projects.length, t, lang)}
+                  </span>
+                  <Chevron expanded={isBlockExpanded} />
+                </div>
 
-                  {/* Карточки личных проектов */}
-                  <div className="grid gap-5">
-                    {block.projects.map((project, j) => (
-                      <ProjectCard
-                        key={project.nameKey}
-                        project={project}
-                        delay={j * 0.06}
-                        toastPrivate={t('proj_toast_private')}
-                        toastNoLink={t('proj_toast_no_link')}
-                        toastGplay={t('proj_toast_gplay')}
-                        t={t}
-                        lang={lang}
-                        onScreenshots={
-                          project.screenshots?.length
-                            ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey), wide: project.screenshotWide })
-                            : undefined
-                        }
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
-            </motion.div>
-          ))}
+                {/* Раскрываемый список проектов */}
+                <AnimatePresence initial={false}>
+                  {isBlockExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="grid gap-3 pt-3 pl-9">
+                        {block.projects.map((project, j) => (
+                          <ProjectCard
+                            key={project.nameKey}
+                            project={project}
+                            delay={j * 0.06}
+                            isExpanded={expandedProjects.has(project.nameKey)}
+                            onToggle={() => toggleProject(project.nameKey)}
+                            toastPrivate={t('proj_toast_private')}
+                            toastNoLink={t('proj_toast_no_link')}
+                            toastGplay={t('proj_toast_gplay')}
+                            t={t}
+                            lang={lang}
+                            onScreenshots={
+                              project.screenshots?.length
+                                ? () => setScreenshotModal({ screenshots: project.screenshots!, name: t(project.nameKey), wide: project.screenshotWide })
+                                : undefined
+                            }
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
