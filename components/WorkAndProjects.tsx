@@ -317,6 +317,7 @@ export default function WorkAndProjects() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
+                            className="inline-block"
                           >
                             <h3 className="text-2xl sm:text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-0.5">
                               {block.company}
