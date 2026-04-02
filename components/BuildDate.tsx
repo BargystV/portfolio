@@ -10,10 +10,9 @@ export default function BuildDate({ isoDate }: { isoDate: string }) {
   const { t, lang } = useLanguage();
 
   // Форматируем дату по локали: «март 2026» или «March 2026»
-  const formatted = new Date(isoDate).toLocaleDateString(
-    lang === 'ru' ? 'ru-RU' : 'en-US',
-    { month: 'long', year: 'numeric' }
-  );
+  const formatted = new Date(isoDate)
+    .toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-US', { month: 'long', year: 'numeric' })
+    .replace(/\s*г\.?$/, '');
 
   return (
     <span>

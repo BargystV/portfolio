@@ -314,19 +314,21 @@ export default function WorkAndProjects() {
                         ) : (
                           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-0.5">{block.company}</h3>
                         )}
-                        {/* Роль и период */}
+                        {/* Период работы */}
                         <p className="font-mono text-xs text-[#00d084]">
                           {lang === 'en' ? block.period : block.periodRu}
                         </p>
                       </>
                     ) : (
                       <>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white">{t('work_pet_title')}</h3>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-0.5">{t('work_pet_title')}</h3>
+                        {/* Пустая строка для выравнивания высоты с блоками компаний */}
+                        <p className="font-mono text-xs text-transparent select-none">&nbsp;</p>
                       </>
                     )}
                   </div>
                   {/* Счётчик проектов */}
-                  <span className="font-mono text-xs text-white/30 shrink-0">
+                  <span className="font-mono text-xs text-white/30 shrink-0 ml-auto">
                     {projectCountText(block.projects.length, t, lang)}
                   </span>
                   <Chevron expanded={isBlockExpanded} />
