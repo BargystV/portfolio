@@ -290,6 +290,8 @@ export default function WorkAndProjects() {
         <div className="space-y-4">
           {workBlocks.map((block, i) => {
             const isBlockExpanded = expandedBlocks.has(block.id);
+            // Разделитель перед блоком личных проектов (без company)
+            const showDivider = !block.company && i > 0;
 
             return (
               // Блок появляется снизу с задержкой i * 0.1с
@@ -300,6 +302,15 @@ export default function WorkAndProjects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
+                {/* Градиентный разделитель между рабочими блоками и личными проектами */}
+                {showDivider && (
+                  <div className="flex items-center gap-3 px-1 mb-4">
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#00d084]/30" />
+                    <span className="font-mono text-xs text-[#00d084]/50 tracking-wide">{'>_'}</span>
+                    <div className="flex-1 h-px bg-gradient-to-r from-[#00d084]/30 to-transparent" />
+                  </div>
+                )}
+
                 {/* Кликабельный заголовок блока */}
                 <div
                   onClick={() => toggleBlock(block.id)}
