@@ -296,8 +296,6 @@ export default function WorkAndProjects() {
                   onClick={() => toggleBlock(block.id)}
                   className={`flex items-center gap-4 cursor-pointer group rounded-xl border ${isBlockExpanded ? 'border-[#00d084]/30' : 'border-white/8 hover:border-[#00d084]/30'} bg-[#0d1117] p-4 transition-colors duration-150`}
                 >
-                  {/* Вертикальная акцентная полоса */}
-                  <div className="w-1 self-stretch bg-[#00d084]/30 rounded-full shrink-0" />
                   <div className="flex-1 min-w-0">
                     {block.company ? (
                       <>
@@ -323,9 +321,7 @@ export default function WorkAndProjects() {
                       </>
                     ) : (
                       <>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-0.5">{t('work_pet_title')}</h3>
-                        {/* Пустая строка для выравнивания высоты с блоками компаний */}
-                        <p className="font-mono text-xs text-transparent select-none">&nbsp;</p>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white">{t('work_pet_title')}</h3>
                       </>
                     )}
                   </div>
