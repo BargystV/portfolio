@@ -169,7 +169,7 @@ function ProjectCard({
       <motion.div
         onClick={onToggle}
         whileHover={{ y: -2, transition: { duration: 0.15, ease: 'easeOut' } }}
-        className={`flex items-center gap-2.5 rounded-xl border ${isExpanded ? 'border-[#00d084]/30 bg-[#0d1117]' : 'border-white/8 bg-[#0d1117] hover:border-[#00d084]/30'} p-4 cursor-pointer transition-colors duration-150`}
+        className={`flex items-center gap-2.5 rounded-xl border ${isExpanded ? 'border-[#00d084]/30 bg-[#0d1117]' : 'border-white/10 bg-[#0d1117] hover:border-[#00d084]/30'} p-4 cursor-pointer transition-colors duration-150`}
       >
         <span className={`w-2 h-2 rounded-full shrink-0 ${getDotColor(project)}`} />
         <h4 className="font-bold text-white text-base">{t(project.nameKey)}</h4>
@@ -303,7 +303,7 @@ export default function WorkAndProjects() {
                 {/* Кликабельный заголовок блока */}
                 <div
                   onClick={() => toggleBlock(block.id)}
-                  className={`flex items-center gap-4 cursor-pointer group rounded-xl border ${isBlockExpanded ? 'border-[#00d084]/30' : 'border-white/8 hover:border-[#00d084]/30'} bg-[#0d1117] p-4 transition-colors duration-150`}
+                  className={`flex items-center gap-4 cursor-pointer group rounded-xl border ${isBlockExpanded ? 'border-[#00d084]/30' : 'border-white/10 hover:border-[#00d084]/30'} bg-[#0d1117] p-4 transition-colors duration-150`}
                 >
                   {/* Статусная точка блока — выровнена по центру названия (h3) */}
                   <span className={`w-2 h-2 rounded-full shrink-0 ${block.company ? 'self-start mt-[14px] sm:mt-[18px]' : ''} ${getBlockDotColor(block)}`} />
