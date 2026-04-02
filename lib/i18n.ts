@@ -150,7 +150,6 @@ export const translations = {
 
     // Contact
     contact_title: 'Contact',
-    contact_subtitle: 'Open to new opportunities — feel free to reach out.',
     contact_location: 'Pyatigorsk, Russia',
     updated_at: 'Updated',
   },
@@ -294,7 +293,6 @@ export const translations = {
 
     // Contact
     contact_title: 'Контакты',
-    contact_subtitle: 'Открыт к новым возможностям — пишите.',
     contact_location: 'Пятигорск, Россия',
     updated_at: 'Обновлено',
   },

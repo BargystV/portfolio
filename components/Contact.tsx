@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/lib/LanguageContext';
 
 /**
  * Список контактных ссылок.
@@ -48,35 +47,9 @@ const contactLinks = [
  * Внешние ссылки (http/https) открываются в новой вкладке.
  */
 export default function Contact() {
-  // Получаем функцию перевода из языкового контекста
-  const { t } = useLanguage();
-
   return (
     <section id="contact" className="pt-24 pb-12 px-4">
       <div className="max-w-5xl mx-auto">
-        {/* Заголовок секции с анимацией появления при скролле */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-2xl sm:text-3xl font-bold text-white mb-4"
-        >
-          <span className="text-[#00d084] font-mono mr-2">{'>'}</span>
-          {t('contact_title')}
-        </motion.h2>
-
-        {/* Подзаголовок — призыв к контакту через i18n */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-white/50 mb-10"
-        >
-          {t('contact_subtitle')}
-        </motion.p>
-
         {/* Горизонтальный ряд иконок контактов */}
         <div className="flex flex-wrap justify-center gap-8 sm:gap-12">
           {contactLinks.map((link, i) => (
