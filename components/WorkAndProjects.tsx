@@ -46,6 +46,15 @@ function getDotColor(project: WorkProject): string {
 }
 
 /**
+ * Возвращает цвет статусной точки блока компании:
+ * зелёный — есть ссылка на сайт, серый — нет ссылки.
+ */
+function getBlockDotColor(block: { url?: string }): string {
+  if (block.url) return 'bg-[#00d084]';
+  return 'bg-white/20';
+}
+
+/**
  * Возвращает локализованный текст счётчика проектов с правильным склонением.
  */
 function projectCountText(count: number, t: (key: TranslationKey) => string, lang: string): string {
@@ -296,6 +305,8 @@ export default function WorkAndProjects() {
                   onClick={() => toggleBlock(block.id)}
                   className={`flex items-center gap-4 cursor-pointer group rounded-xl border ${isBlockExpanded ? 'border-[#00d084]/30' : 'border-white/8 hover:border-[#00d084]/30'} bg-[#0d1117] p-4 transition-colors duration-150`}
                 >
+                  {/* Статусная точка блока — выровнена по центру названия (h3) */}
+                  <span className={`w-2 h-2 rounded-full shrink-0 ${block.company ? 'self-start mt-[14px] sm:mt-[18px]' : ''} ${getBlockDotColor(block)}`} />
                   <div className="flex-1 min-w-0">
                     {block.company ? (
                       <>
@@ -320,11 +331,8 @@ export default function WorkAndProjects() {
                         </p>
                       </>
                     ) : (
-                      <>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-0.5">{t('work_pet_title')}</h3>
-                        {/* Пустая строка для выравнивания высоты с блоками компаний */}
-                        <p className="font-mono text-xs text-transparent select-none">&nbsp;</p>
-                      </>
+                      /* py компенсирует отсутствие строки даты, центрируя заголовок */
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white py-[9px]">{t('work_pet_title')}</h3>
                     )}
                   </div>
                   {/* Счётчик проектов */}

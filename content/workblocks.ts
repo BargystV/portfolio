@@ -153,7 +153,6 @@ export const workBlocks: WorkBlock[] = [
     // Ранний фриланс-опыт
     id: 'freelance',
     company: 'Freelance',
-    url: 'https://freelance.ru/',
     roleKey: 'exp_freelance_role',
     typeKey: 'exp_freelance_type',
     period: 'Nov 2017 – Jan 2019',
