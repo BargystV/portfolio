@@ -38,3 +38,8 @@ next-env.d.ts
 # IDE
 .idea/
 .vscode/
+
+# Claude Code
+.claude/
+.superpowers/
+skills-lock.json
