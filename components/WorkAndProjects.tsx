@@ -46,14 +46,14 @@ function getDotColor(project: WorkProject): string {
 }
 
 /**
- * Возвращает CSS-класс shimmer-волны в зависимости от статуса проекта:
- * жёлтый — скриншоты, зелёный — ссылка, красный — приватный.
+ * Возвращает CSS-класс hover-цвета тайтла проекта по статусу:
+ * зелёный — ссылка, жёлтый — скриншоты, красный — приватный, серый — нет ссылки.
  */
-function getShimmerClass(project: WorkProject): string {
-  if (project.screenshots?.length) return 'shimmer-text-yellow';
-  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'shimmer-text';
-  if (project.isPrivate) return 'shimmer-text-red';
-  return '';
+function getTitleHoverColor(project: WorkProject): string {
+  if (project.screenshots?.length) return 'hover:text-yellow-400';
+  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'hover:text-[#00d084]';
+  if (project.isPrivate) return 'hover:text-red-500';
+  return 'hover:text-white/50';
 }
 
 /**
@@ -188,7 +188,7 @@ function ProjectCard({
         <span className={`w-2 h-2 rounded-full shrink-0 ${getDotColor(project)}`} />
         <h4
           onClick={isClickable ? (e: React.MouseEvent) => { e.stopPropagation(); handleActionClick(e); } : undefined}
-          className={`font-bold text-base ${isClickable ? `${getShimmerClass(project)} cursor-pointer` : 'text-white'}`}
+          className={`font-bold text-base ${isClickable ? `text-white cursor-pointer ${getTitleHoverColor(project)} transition-colors duration-200` : 'text-white'}`}
         >{t(project.nameKey)}</h4>
         <AnimatePresence>
           {inlineToast && (
@@ -359,7 +359,7 @@ export default function WorkAndProjects() {
                             onClick={(e) => e.stopPropagation()}
                             className="inline-block"
                           >
-                            <h3 className="text-2xl sm:text-3xl font-bold mb-0.5 shimmer-text shimmer-link">
+                            <h3 className="text-2xl sm:text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-0.5">
                               {block.company}
                             </h3>
                           </a>
