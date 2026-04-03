@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shimmer Variations Demo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 40px;
+  }
+  h1 { text-align: center; margin-bottom: 40px; color: #00d084; font-size: 24px; }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 24px;
+    background: rgba(255,255,255,0.03);
+  }
+  .card-number {
+    font-size: 12px;
+    color: #00d084;
+    font-family: monospace;
+    margin-bottom: 8px;
+  }
+  .card-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+    font-family: monospace;
+  }
+  .demo-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: white;
+  }
+  .demo-subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+  }
+
+  /* Базовый keyframe — бежит слева направо с паузой */
+  @keyframes shimmer-sweep {
+    0%   { background-position: 100% center; }
+    35%  { background-position: 0% center; }
+    100% { background-position: 0% center; }
+  }
+
+  /* ===================== #1 ===================== */
+  /* Оригинал — широкая цветная волна + белый блик по белому тексту */
+  .v1 {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 22%,
+      rgb(100,225,165) 30%, rgb(60,210,140) 38%,
+      rgb(255,255,255) 43%,
+      rgb(60,210,140) 48%, rgb(100,225,165) 56%,
+      rgb(255,255,255) 64%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 8s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+  .v1-yellow {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 22%,
+      rgb(230,210,100) 30%, rgb(220,190,60) 38%,
+      rgb(255,255,255) 43%,
+      rgb(220,190,60) 48%, rgb(230,210,100) 56%,
+      rgb(255,255,255) 64%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 8s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+
+  /* ===================== #2 ===================== */
+  /* Узкий цветной блик по белому тексту */
+  .v2 {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 40%,
+      rgb(100,225,165) 45%, rgb(60,210,140) 50%, rgb(100,225,165) 55%,
+      rgb(255,255,255) 60%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 8s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+  .v2-yellow {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 40%,
+      rgb(230,210,100) 45%, rgb(220,190,60) 50%, rgb(230,210,100) 55%,
+      rgb(255,255,255) 60%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 8s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+
+  /* ===================== #3 ===================== */
+  /* Широкая мягкая цветная волна (без белого блика в центре) */
+  .v3 {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 25%,
+      rgb(140,235,190) 33%, rgb(60,210,140) 42%,
+      rgb(140,235,190) 51%,
+      rgb(255,255,255) 59%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 8s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+  .v3-yellow {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 25%,
+      rgb(240,225,130) 33%, rgb(220,190,60) 42%,
+      rgb(240,225,130) 51%,
+      rgb(255,255,255) 59%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 8s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+
+  /* ===================== #4 ===================== */
+  /* Быстрая узкая вспышка цвета */
+  @keyframes shimmer-fast {
+    0%   { background-position: 100% center; }
+    20%  { background-position: 0% center; }
+    100% { background-position: 0% center; }
+  }
+  .v4 {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 44%,
+      rgb(100,225,165) 48%, rgb(60,210,140) 50%, rgb(100,225,165) 52%,
+      rgb(255,255,255) 56%, rgb(255,255,255) 100%
+    );
+    background-size: 600% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-fast 6s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+  .v4-yellow {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 44%,
+      rgb(230,210,100) 48%, rgb(220,190,60) 50%, rgb(230,210,100) 52%,
+      rgb(255,255,255) 56%, rgb(255,255,255) 100%
+    );
+    background-size: 600% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-fast 6s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+
+  /* ===================== #5 ===================== */
+  /* Двойной цветной блик */
+  .v5 {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 22%,
+      rgb(100,225,165) 26%, rgb(255,255,255) 30%,
+      rgb(255,255,255) 38%,
+      rgb(60,210,140) 42%, rgb(255,255,255) 46%,
+      rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 7s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+  .v5-yellow {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 22%,
+      rgb(230,210,100) 26%, rgb(255,255,255) 30%,
+      rgb(255,255,255) 38%,
+      rgb(220,190,60) 42%, rgb(255,255,255) 46%,
+      rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 7s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+
+  /* ===================== #6 ===================== */
+  /* Пульсация — белый текст мягко вспыхивает цветом */
+  @keyframes v6-pulse {
+    0%, 100% { -webkit-text-fill-color: rgb(255,255,255); }
+    40%      { -webkit-text-fill-color: rgb(100,230,170); }
+    50%      { -webkit-text-fill-color: rgb(60,210,140); }
+    60%      { -webkit-text-fill-color: rgb(100,230,170); }
+  }
+  .v6 {
+    -webkit-text-fill-color: rgb(255,255,255);
+    animation: v6-pulse 6s ease-in-out infinite;
+  }
+  @keyframes v6-pulse-yellow {
+    0%, 100% { -webkit-text-fill-color: rgb(255,255,255); }
+    40%      { -webkit-text-fill-color: rgb(240,225,120); }
+    50%      { -webkit-text-fill-color: rgb(220,190,60); }
+    60%      { -webkit-text-fill-color: rgb(240,225,120); }
+  }
+  .v6-yellow {
+    -webkit-text-fill-color: rgb(255,255,255);
+    animation: v6-pulse-yellow 6s ease-in-out infinite;
+  }
+
+  /* ===================== #7 ===================== */
+  /* Белый текст + цветное свечение (glow) пульсирует */
+  @keyframes v7-glow {
+    0%, 100% { text-shadow: 0 0 2px rgba(0,208,132,0.1); }
+    50%      { text-shadow: 0 0 12px rgba(0,208,132,0.5), 0 0 24px rgba(0,208,132,0.2); }
+  }
+  .v7 {
+    color: white; -webkit-text-fill-color: white;
+    animation: v7-glow 4s ease-in-out infinite;
+  }
+  @keyframes v7-glow-yellow {
+    0%, 100% { text-shadow: 0 0 2px rgba(220,190,60,0.1); }
+    50%      { text-shadow: 0 0 12px rgba(220,190,60,0.5), 0 0 24px rgba(220,190,60,0.2); }
+  }
+  .v7-yellow {
+    color: white; -webkit-text-fill-color: white;
+    animation: v7-glow-yellow 4s ease-in-out infinite;
+  }
+
+  /* ===================== #8 ===================== */
+  /* Бегущее цветное свечение (text-shadow sweep) */
+  @keyframes v8-sweep-glow {
+    0%, 100% { text-shadow: -100px 0 25px rgba(0,208,132,0); }
+    15%      { text-shadow: -50px 0 25px rgba(0,208,132,0.3); }
+    35%      { text-shadow: 0px 0 20px rgba(0,208,132,0.5), 0 0 40px rgba(0,208,132,0.15); }
+    55%      { text-shadow: 50px 0 25px rgba(0,208,132,0.3); }
+    75%      { text-shadow: 100px 0 25px rgba(0,208,132,0); }
+  }
+  .v8 {
+    color: white; -webkit-text-fill-color: white;
+    animation: v8-sweep-glow 6s ease-in-out infinite;
+  }
+  @keyframes v8-sweep-glow-yellow {
+    0%, 100% { text-shadow: -100px 0 25px rgba(220,190,60,0); }
+    15%      { text-shadow: -50px 0 25px rgba(220,190,60,0.3); }
+    35%      { text-shadow: 0px 0 20px rgba(220,190,60,0.5), 0 0 40px rgba(220,190,60,0.15); }
+    55%      { text-shadow: 50px 0 25px rgba(220,190,60,0.3); }
+    75%      { text-shadow: 100px 0 25px rgba(220,190,60,0); }
+  }
+  .v8-yellow {
+    color: white; -webkit-text-fill-color: white;
+    animation: v8-sweep-glow-yellow 6s ease-in-out infinite;
+  }
+
+  /* ===================== #9 ===================== */
+  /* Мерцание — белый текст мигает с лёгким цветным оттенком */
+  @keyframes v9-flicker {
+    0%, 100% { opacity: 1; -webkit-text-fill-color: white; }
+    25%      { opacity: 0.7; -webkit-text-fill-color: rgb(200,255,230); }
+    50%      { opacity: 1; -webkit-text-fill-color: white; }
+    75%      { opacity: 0.8; -webkit-text-fill-color: rgb(180,245,210); }
+  }
+  .v9 {
+    -webkit-text-fill-color: white;
+    animation: v9-flicker 5s ease-in-out infinite;
+  }
+  @keyframes v9-flicker-yellow {
+    0%, 100% { opacity: 1; -webkit-text-fill-color: white; }
+    25%      { opacity: 0.7; -webkit-text-fill-color: rgb(255,245,200); }
+    50%      { opacity: 1; -webkit-text-fill-color: white; }
+    75%      { opacity: 0.8; -webkit-text-fill-color: rgb(255,240,180); }
+  }
+  .v9-yellow {
+    -webkit-text-fill-color: white;
+    animation: v9-flicker-yellow 5s ease-in-out infinite;
+  }
+
+  /* ===================== #10 ===================== */
+  /* Радужная волна — мятный → зелёный → белый переливы */
+  @keyframes shimmer-slow {
+    0%   { background-position: 100% center; }
+    40%  { background-position: 0% center; }
+    100% { background-position: 0% center; }
+  }
+  .v10 {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 18%,
+      rgb(180,255,220) 25%,
+      rgb(0,208,132) 33%,
+      rgb(0,180,160) 40%,
+      rgb(0,208,132) 47%,
+      rgb(180,255,220) 54%,
+      rgb(255,255,255) 62%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-slow 10s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+  .v10-yellow {
+    background: linear-gradient(
+      90deg,
+      rgb(255,255,255) 0%, rgb(255,255,255) 18%,
+      rgb(255,240,160) 25%,
+      rgb(220,190,60) 33%,
+      rgb(240,170,40) 40%,
+      rgb(220,190,60) 47%,
+      rgb(255,240,160) 54%,
+      rgb(255,255,255) 62%, rgb(255,255,255) 100%
+    );
+    background-size: 500% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-slow 10s cubic-bezier(0.4,0,0.2,1) infinite;
+  }
+</style>
+</head>
+<body>
+  <h1>Shimmer Variations — выбери лучшую</h1>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-number">#1 — Оригинал</div>
+      <div class="card-label">Широкая цветная волна + белый блик в центре</div>
+      <div class="demo-title v1">Boris Portfolio</div>
+      <div class="demo-subtitle v1-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#2</div>
+      <div class="card-label">Узкий цветной блик пробегает по белому</div>
+      <div class="demo-title v2">Boris Portfolio</div>
+      <div class="demo-subtitle v2-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#3</div>
+      <div class="card-label">Широкая мягкая волна (без блика в центре)</div>
+      <div class="demo-title v3">Boris Portfolio</div>
+      <div class="demo-subtitle v3-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#4</div>
+      <div class="card-label">Быстрая узкая вспышка цвета</div>
+      <div class="demo-title v4">Boris Portfolio</div>
+      <div class="demo-subtitle v4-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#5</div>
+      <div class="card-label">Двойной цветной блик — два следа</div>
+      <div class="demo-title v5">Boris Portfolio</div>
+      <div class="demo-subtitle v5-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#6</div>
+      <div class="card-label">Пульсация — белый мягко вспыхивает цветом</div>
+      <div class="demo-title v6">Boris Portfolio</div>
+      <div class="demo-subtitle v6-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#7</div>
+      <div class="card-label">Glow — белый текст с пульсирующим свечением</div>
+      <div class="demo-title v7">Boris Portfolio</div>
+      <div class="demo-subtitle v7-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#8</div>
+      <div class="card-label">Бегущее свечение — glow пробегает по тексту</div>
+      <div class="demo-title v8">Boris Portfolio</div>
+      <div class="demo-subtitle v8-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#9</div>
+      <div class="card-label">Мерцание — мягкие мигания с оттенком цвета</div>
+      <div class="demo-title v9">Boris Portfolio</div>
+      <div class="demo-subtitle v9-yellow">AI Personal Agent</div>
+    </div>
+
+    <div class="card">
+      <div class="card-number">#10</div>
+      <div class="card-label">Медленная широкая волна с переливами</div>
+      <div class="demo-title v10">Boris Portfolio</div>
+      <div class="demo-subtitle v10-yellow">AI Personal Agent</div>
+    </div>
+
+  </div>
+</body>
+</html>
