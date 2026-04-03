@@ -64,6 +64,7 @@ npm run test:watch # тесты в режиме наблюдения
 - **Моки**: Framer Motion, next/image, IntersectionObserver, matchMedia (в `vitest.setup.ts`)
 - **Git hook**: Husky pre-push запускает `npm run test && npm run build`
 - **Что НЕ тестируем**: `ParticleBackground` (Canvas API, декоративный), анимации Framer Motion
+- **Обязательное покрытие**: любой новый функционал (компонент, хук, утилита, данные) должен сопровождаться тестами в `__tests__/`. Без тестов фича считается незавершённой
 
 ## Правила
 
