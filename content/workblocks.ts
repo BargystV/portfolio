@@ -219,8 +219,8 @@ export const workBlocks: WorkBlock[] = [
         nameKey: 'proj_mtproxy_name',
         descKey: 'proj_mtproxy_desc',
         stack: ['Bash', 'Docker', 'Docker Compose'],
-        period: 'Apr 2025 – Apr 2025',
-        periodRu: 'Апр 2025 – Апр 2025',
+        period: 'Apr 2026 – Apr 2026',
+        periodRu: 'Апр 2026 – Апр 2026',
         githubUrl: 'https://github.com/BargystV/my-mtproxy',
       },
       {
