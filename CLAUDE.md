@@ -20,6 +20,7 @@ components/     # По одному компоненту на секцию — N
 content/        # Файлы с данными (TS, без JSX)
 lib/            # i18n.ts (переводы), LanguageContext.tsx (хук useLanguage)
 public/         # photo.jpg, resume.pdf
+__tests__/      # Юнит- и интеграционные тесты (зеркальная структура проекта)
 ```
 
 ## Добавление новой секции
@@ -36,6 +37,8 @@ public/         # photo.jpg, resume.pdf
 npm run dev      # дев-сервер на localhost:3000
 npm run build    # продакшн-билд (запускать перед коммитом)
 npm run lint     # проверка ESLint
+npm run test     # запуск всех тестов
+npm run test:watch # тесты в режиме наблюдения
 ```
 
 ## Версионирование
@@ -52,6 +55,16 @@ npm run lint     # проверка ESLint
 - **Новая ветка нужна**, когда: мы на `main` и поступает новая задача
 - **Новая ветка НЕ нужна**, когда: мы уже на фичевой ветке и работа продолжается (доработки, правки, исправления в рамках текущей задачи)
 - **Если неясно** — спросить пользователя: «Это продолжение текущей работы или новая задача?»
+
+## Тестирование
+
+- **Стек**: Vitest + React Testing Library + jsdom
+- **Тесты**: `__tests__/` с зеркальной структурой проекта
+- **Хелпер**: `__tests__/helpers/renderWithProviders.tsx` — обёртка с `LanguageProvider`
+- **Моки**: Framer Motion, next/image, IntersectionObserver, matchMedia (в `vitest.setup.ts`)
+- **Git hook**: Husky pre-push запускает `npm run test && npm run build`
+- **Что НЕ тестируем**: `ParticleBackground` (Canvas API, декоративный), анимации Framer Motion
+- **Обязательное покрытие**: любой новый функционал (компонент, хук, утилита, данные) должен сопровождаться тестами в `__tests__/`. Без тестов фича считается незавершённой
 
 ## Правила
 

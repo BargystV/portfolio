@@ -43,7 +43,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Фронтенд и веб-разработка
     key: 'frontend',
-    items: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+    items: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'Vitest'],
   },
   {
     // Архитектурные паттерны

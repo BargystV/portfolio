@@ -116,7 +116,7 @@ export const translations = {
 
     proj_portfolio_name: 'Boris Portfolio',
     proj_portfolio_desc:
-      'Personal portfolio website: single-page SPA with bilingual interface (EN/RU).\n• Built a custom i18n system on React Context without external libraries\n• Developed animated particle background with scroll and mouse reactivity (Canvas API) + scroll-triggered section animations (Framer Motion)\n• Configured deployment on Vercel with SEO meta tags, Open Graph and built-in analytics',
+      'Personal portfolio website: single-page SPA with bilingual interface (EN/RU).\n• Built a custom i18n system on React Context without external libraries\n• Developed animated particle background with scroll and mouse reactivity (Canvas API) + scroll-triggered section animations (Framer Motion)\n• Added full test coverage (Vitest + React Testing Library): 61 unit and integration tests with Husky pre-push hook\n• Configured deployment on Vercel with SEO meta tags, Open Graph and built-in analytics',
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
@@ -262,7 +262,7 @@ export const translations = {
 
     proj_portfolio_name: 'Boris Portfolio',
     proj_portfolio_desc:
-      'Персональный сайт-портфолио: одностраничное SPA с двуязычным интерфейсом (EN/RU).\n• Реализовал i18n-систему на React Context без внешних библиотек\n• Разработал анимированный частицевый фон с реакцией на скролл и мышь (Canvas API) + scroll-triggered анимации секций (Framer Motion)\n• Настроил деплой на Vercel с SEO-метатегами, Open Graph и встроенной аналитикой',
+      'Персональный сайт-портфолио: одностраничное SPA с двуязычным интерфейсом (EN/RU).\n• Реализовал i18n-систему на React Context без внешних библиотек\n• Разработал анимированный частицевый фон с реакцией на скролл и мышь (Canvas API) + scroll-triggered анимации секций (Framer Motion)\n• Добавил полное тестовое покрытие (Vitest + React Testing Library): 61 юнит- и интеграционный тест с Husky pre-push hook\n• Настроил деплой на Vercel с SEO-метатегами, Open Graph и встроенной аналитикой',
 
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:

@@ -185,7 +185,7 @@ export const workBlocks: WorkBlock[] = [
         // Персональный сайт-портфолио на Next.js
         nameKey: 'proj_portfolio_name',
         descKey: 'proj_portfolio_desc',
-        stack: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+        stack: ['TypeScript', 'Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'Vitest'],
         period: 'Mar 2026 – Present',
         periodRu: 'Март 2026 – н.в.',
         githubUrl: 'https://github.com/BargystV/portfolio',
