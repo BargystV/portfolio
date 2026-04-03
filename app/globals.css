@@ -43,3 +43,103 @@ body {
   background: rgba(0, 208, 132, 0.2);
   color: #00d084;
 }
+
+/* Shimmer-волна по тексту — зелёный блик пробегает слева направо */
+@keyframes shimmer-text {
+  0% {
+    background-position: 100% center;
+  }
+  35% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 0%,
+    rgb(255, 255, 255) 22%,
+    rgb(100, 225, 165) 30%,
+    rgb(60, 210, 140) 38%,
+    rgb(255, 255, 255) 43%,
+    rgb(60, 210, 140) 48%,
+    rgb(100, 225, 165) 56%,
+    rgb(255, 255, 255) 64%,
+    rgb(255, 255, 255) 100%
+  );
+  background-size: 500% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Жёлтый shimmer для проектов со скриншотами */
+.shimmer-text-yellow {
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 0%,
+    rgb(255, 255, 255) 22%,
+    rgb(230, 210, 100) 30%,
+    rgb(220, 190, 60) 38%,
+    rgb(255, 255, 255) 43%,
+    rgb(220, 190, 60) 48%,
+    rgb(230, 210, 100) 56%,
+    rgb(255, 255, 255) 64%,
+    rgb(255, 255, 255) 100%
+  );
+  background-size: 500% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Красный shimmer для приватных проектов */
+.shimmer-text-red {
+  background: linear-gradient(
+    90deg,
+    rgb(255, 255, 255) 0%,
+    rgb(255, 255, 255) 22%,
+    rgb(235, 140, 140) 30%,
+    rgb(220, 100, 100) 38%,
+    rgb(255, 255, 255) 43%,
+    rgb(220, 100, 100) 48%,
+    rgb(235, 140, 140) 56%,
+    rgb(255, 255, 255) 64%,
+    rgb(255, 255, 255) 100%
+  );
+  background-size: 500% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-text 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* При hover — останавливаем shimmer и показываем соответствующий цвет */
+a:hover .shimmer-link {
+  animation: none;
+  background: none;
+  -webkit-text-fill-color: #00d084;
+}
+
+.shimmer-text:hover {
+  animation: none;
+  background: none;
+  -webkit-text-fill-color: #00d084;
+}
+
+.shimmer-text-yellow:hover {
+  animation: none;
+  background: none;
+  -webkit-text-fill-color: #facc15;
+}
+
+.shimmer-text-red:hover {
+  animation: none;
+  background: none;
+  -webkit-text-fill-color: #ef4444;
+}
