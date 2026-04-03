@@ -41,15 +41,16 @@ function detectLang(): Lang {
  * Пользователь может вручную переключить язык.
  *
  * @param children - дочерние React-узлы
+ * @param defaultLang - начальный язык для принудительной установки (используется в тестах)
  */
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({ children, defaultLang }: { children: React.ReactNode; defaultLang?: Lang }) {
   // На сервере navigator недоступен, поэтому начальный язык 'en'
-  const [lang, setLang] = useState<Lang>('en');
+  const [lang, setLang] = useState<Lang>(defaultLang ?? 'en');
 
-  // После гидрации определяем язык браузера на клиенте
+  // После гидрации определяем язык браузера на клиенте (если defaultLang не задан)
   useEffect(() => {
-    setLang(detectLang());
-  }, []);
+    if (!defaultLang) setLang(detectLang());
+  }, [defaultLang]);
 
   // Переключение между 'en' и 'ru'; оповещает фон о рефлоу
   const toggle = () => {
