@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 import { workBlocks, WorkProject } from '@/content/workblocks';
@@ -43,6 +43,17 @@ function getDotColor(project: WorkProject): string {
   if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'bg-[#00d084]';
   if (project.isPrivate) return 'bg-red-500';
   return 'bg-white/20';
+}
+
+/**
+ * Возвращает CSS-класс shimmer-волны в зависимости от статуса проекта:
+ * жёлтый — скриншоты, зелёный — ссылка, красный — приватный.
+ */
+function getShimmerClass(project: WorkProject): string {
+  if (project.screenshots?.length) return 'shimmer-text-yellow';
+  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'shimmer-text';
+  if (project.isPrivate) return 'shimmer-text-red';
+  return '';
 }
 
 /**
@@ -117,6 +128,7 @@ function ProjectCard({
 }) {
   // Текст инлайн-тоста справа от названия — null означает «скрыт»
   const [inlineToast, setInlineToast] = useState<string | null>(null);
+  const toastTimer = useRef<ReturnType<typeof setTimeout>>();
 
   /** Определяет действие по клику в зависимости от статуса проекта */
   function handleActionClick(e: React.MouseEvent) {
@@ -146,15 +158,17 @@ function ProjectCard({
     else if (project.isPrivate) message = toastPrivate;
     else message = toastNoLink;
 
+    clearTimeout(toastTimer.current);
     setInlineToast(message);
-    setTimeout(() => setInlineToast(null), 2000);
+    toastTimer.current = setTimeout(() => setInlineToast(null), 2000);
   }
 
   const isClickable = !!(
     project.githubUrl ||
     project.rustoreUrl ||
-    typeof project.googlePlayUrl === 'string' ||
-    project.screenshots?.length
+    project.googlePlayUrl ||
+    project.screenshots?.length ||
+    project.isPrivate
   );
 
   return (
@@ -172,7 +186,10 @@ function ProjectCard({
         className={`flex items-center gap-2.5 rounded-xl border ${isExpanded ? 'border-[#00d084]/30 bg-[#0d1117]' : 'border-white/10 bg-[#0d1117] hover:border-[#00d084]/30'} p-4 cursor-pointer transition-colors duration-150`}
       >
         <span className={`w-2 h-2 rounded-full shrink-0 ${getDotColor(project)}`} />
-        <h4 className="font-bold text-white text-base">{t(project.nameKey)}</h4>
+        <h4
+          onClick={isClickable ? (e: React.MouseEvent) => { e.stopPropagation(); handleActionClick(e); } : undefined}
+          className={`font-bold text-base ${isClickable ? `${getShimmerClass(project)} cursor-pointer` : 'text-white'}`}
+        >{t(project.nameKey)}</h4>
         <AnimatePresence>
           {inlineToast && (
             <motion.span
@@ -205,8 +222,7 @@ function ProjectCard({
             className="overflow-hidden"
           >
             <div
-              onClick={isClickable ? handleActionClick : undefined}
-              className={`border border-t-0 border-[#00d084]/30 rounded-b-xl bg-[#0d1117] p-6 pt-4 -mt-3 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
+              className="border border-t-0 border-[#00d084]/30 rounded-b-xl bg-[#0d1117] p-6 pt-4 -mt-3"
             >
               {/* Описание: renderDesc корректно обрабатывает и буллеты, и простой текст */}
               {renderDesc(t(project.descKey))}
@@ -250,6 +266,19 @@ export default function WorkAndProjects() {
   // Множества раскрытых блоков и проектов (по id/nameKey)
   const [expandedBlocks, setExpandedBlocks] = useState<Set<string>>(new Set());
   const [expandedProjects, setExpandedProjects] = useState<Set<string>>(new Set());
+  // Инлайн-тосты для блоков без URL — каждый блок независим
+  const [blockToasts, setBlockToasts] = useState<Set<string>>(new Set());
+  const blockToastTimers = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
+  /** Показывает тост для блока, сбрасывая только его собственный таймер */
+  const showBlockToast = useCallback((id: string) => {
+    const prev = blockToastTimers.current.get(id);
+    if (prev) clearTimeout(prev);
+    setBlockToasts((s) => new Set(s).add(id));
+    blockToastTimers.current.set(id, setTimeout(() => {
+      setBlockToasts((s) => { const next = new Set(s); next.delete(id); return next; });
+      blockToastTimers.current.delete(id);
+    }, 2000));
+  }, []);
 
   /** Переключает раскрытие блока компании */
   const toggleBlock = (id: string) => {
@@ -330,12 +359,30 @@ export default function WorkAndProjects() {
                             onClick={(e) => e.stopPropagation()}
                             className="inline-block"
                           >
-                            <h3 className="text-2xl sm:text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-0.5">
+                            <h3 className="text-2xl sm:text-3xl font-bold mb-0.5 shimmer-text shimmer-link">
                               {block.company}
                             </h3>
                           </a>
                         ) : (
-                          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-0.5">{block.company}</h3>
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <h3
+                              onClick={(e) => { e.stopPropagation(); showBlockToast(block.id); }}
+                              className="text-2xl sm:text-3xl font-bold text-white cursor-pointer hover:text-white/50 transition-colors duration-200"
+                            >{block.company}</h3>
+                            <AnimatePresence>
+                              {blockToasts.has(block.id) && (
+                                <motion.span
+                                  initial={{ opacity: 0, x: -6 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  exit={{ opacity: 0, x: -6 }}
+                                  transition={{ duration: 0.15 }}
+                                  className="text-sm font-mono text-white/40 border border-white/10 px-3 py-1 rounded"
+                                >
+                                  {t('proj_toast_no_link')}
+                                </motion.span>
+                              )}
+                            </AnimatePresence>
+                          </div>
                         )}
                         {/* Период работы */}
                         <p className="font-mono text-xs text-[#00d084]">
@@ -344,7 +391,25 @@ export default function WorkAndProjects() {
                       </>
                     ) : (
                       /* py компенсирует отсутствие строки даты, центрируя заголовок */
-                      <h3 className="text-2xl sm:text-3xl font-bold text-white py-[9px]">{t('work_pet_title')}</h3>
+                      <div className="flex items-center gap-2 py-[9px]">
+                        <h3
+                          onClick={(e) => { e.stopPropagation(); showBlockToast(block.id); }}
+                          className="text-2xl sm:text-3xl font-bold text-white cursor-pointer hover:text-white/50 transition-colors duration-200"
+                        >{t('work_pet_title')}</h3>
+                        <AnimatePresence>
+                          {blockToasts.has(block.id) && (
+                            <motion.span
+                              initial={{ opacity: 0, x: -6 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -6 }}
+                              transition={{ duration: 0.15 }}
+                              className="text-sm font-mono text-white/40 border border-white/10 px-3 py-1 rounded"
+                            >
+                              {t('proj_toast_no_link')}
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     )}
                   </div>
                   {/* Счётчик проектов */}
