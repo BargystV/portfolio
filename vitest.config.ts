@@ -4,7 +4,7 @@ import path from 'path'
 
 /** Конфигурация Vitest для тестирования React-компонентов портфолио */
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({ jsxRuntime: 'automatic' })],
   test: {
     // Используем jsdom для эмуляции DOM-среды браузера
     environment: 'jsdom',

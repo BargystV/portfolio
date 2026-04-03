@@ -1,4 +1,8 @@
+import React from 'react'
 import '@testing-library/jest-dom/vitest'
+
+// React доступен глобально — необходимо для JSX-трансформации в тестовой среде
+globalThis.React = React
 
 // Мок Framer Motion — заменяем motion-компоненты на обычные HTML-элементы
 vi.mock('framer-motion', () => {
