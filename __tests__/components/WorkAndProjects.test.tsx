@@ -37,15 +37,13 @@ describe('WorkAndProjects', () => {
 
   it('клик по проекту раскрывает описание и стек', async () => {
     const user = userEvent.setup()
-    // Мокаем window.open чтобы клик по заголовку не падал
-    vi.spyOn(window, 'open').mockImplementation(() => null)
     renderWithProviders(<WorkAndProjects />)
 
     await user.click(screen.getByText('Mar 2025 – Present'))
     expect(screen.queryByText(/Corporate payment application/)).not.toBeInTheDocument()
 
-    // Кликаем по периоду проекта для toggle (клик по заголовку вызывает handleActionClick)
-    await user.click(screen.getByText(/Feb 2020/))
+    // Кликаем по названию проекта для раскрытия (title больше не кликабелен как ссылка)
+    await user.click(screen.getByText('ARIASOFT.POS / ARIASOFT.T2P'))
     expect(screen.getByText(/Corporate payment application/)).toBeInTheDocument()
   })
 
@@ -64,5 +62,61 @@ describe('WorkAndProjects', () => {
     renderWithProviders(<WorkAndProjects />, { lang: 'ru' })
     expect(screen.getByText('Работа и проекты')).toBeInTheDocument()
     expect(screen.getByText('Личные проекты')).toBeInTheDocument()
+  })
+
+  it('показывает боковую полосу-ссылку для проектов с GitHub URL', async () => {
+    const user = userEvent.setup()
+    renderWithProviders(<WorkAndProjects />)
+
+    // Раскрываем блок Personal Projects — кликаем по счётчику, минуя h3 с stopPropagation
+    await user.click(screen.getByText('6 projects'))
+
+    // Портфолио имеет githubUrl — полоса должна рендериться как <a> с title="GitHub"
+    // Несколько проектов могут иметь GitHub-полосу, проверяем что все они <a>
+    const strips = screen.getAllByTitle('GitHub')
+    expect(strips.length).toBeGreaterThan(0)
+    strips.forEach((strip) => expect(strip.tagName).toBe('A'))
+  })
+
+  it('показывает боковую полосу-галерею для проектов со скриншотами', async () => {
+    const user = userEvent.setup()
+    renderWithProviders(<WorkAndProjects />)
+
+    // Раскрываем блок Mahuru — кликаем по периоду работы внутри кликабельного div
+    await user.click(screen.getByText('Aug 2019 – Mar 2025'))
+
+    // Enterprise MRM имеет скриншоты (приоритет выше приватности) — title="Screenshots"
+    // Несколько проектов в блоке могут иметь скриншоты, проверяем что все полосы являются <a>
+    const strips = screen.getAllByTitle('Screenshots')
+    expect(strips.length).toBeGreaterThan(0)
+    strips.forEach((strip) => expect(strip.tagName).toBe('A'))
+  })
+
+  it('показывает текстовую кнопку в раскрытой карточке', async () => {
+    const user = userEvent.setup()
+    renderWithProviders(<WorkAndProjects />)
+
+    // Раскрываем блок Personal Projects — кликаем по счётчику, минуя h3 с stopPropagation
+    await user.click(screen.getByText('6 projects'))
+
+    // Раскрываем карточку Portfolio
+    await user.click(screen.getByText('Boris Portfolio'))
+
+    // Текстовая кнопка должна отображать "GitHub ↗"
+    expect(screen.getByText('GitHub ↗')).toBeInTheDocument()
+  })
+
+  it('кнопка скриншотов показывает количество', async () => {
+    const user = userEvent.setup()
+    renderWithProviders(<WorkAndProjects />)
+
+    // Раскрываем блок Mahuru — кликаем по периоду работы внутри кликабельного div
+    await user.click(screen.getByText('Aug 2019 – Mar 2025'))
+
+    // Раскрываем карточку Enterprise MRM
+    await user.click(screen.getByText('Enterprise MRM'))
+
+    // Кнопка скриншотов должна содержать "Screenshots" и количество "12"
+    expect(screen.getByText(/Screenshots.*12/)).toBeInTheDocument()
   })
 })
