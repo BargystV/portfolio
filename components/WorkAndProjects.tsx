@@ -35,34 +35,139 @@ function renderDesc(text: string) {
 }
 
 /**
- * Возвращает цвет статусной точки проекта:
- * зелёный — есть GitHub/Store, жёлтый — есть скриншоты или Google Play, красный — приватный, серый — нет ссылки.
+ * Тип действия проекта: скриншоты, внешняя ссылка, приватный или ничего.
  */
-function getDotColor(project: WorkProject): string {
-  if (project.screenshots?.length) return 'bg-yellow-400';
-  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'bg-[#00d084]';
-  if (project.isPrivate) return 'bg-red-500';
-  return 'bg-white/20';
+type ProjectActionType = 'screenshots' | 'link' | 'private' | 'none';
+
+/**
+ * Результат определения действия проекта для отображения кнопки.
+ */
+interface ProjectAction {
+  /** Тип действия */
+  type: ProjectActionType;
+  /** Иконка для боковой полосы */
+  icon: string;
+  /** CSS-класс цвета фона полосы */
+  bgColor: string;
+  /** CSS-класс фона полосы при наведении */
+  hoverBgColor: string;
+  /** CSS-класс цвета рамки-разделителя */
+  borderColor: string;
+  /** CSS-класс цвета иконки */
+  textColor: string;
+  /** CSS-класс цвета иконки при наведении */
+  hoverTextColor: string;
+  /** Метка для текстовой кнопки (напр. "GitHub", "RuStore") — null для некликабельных */
+  label: string | null;
 }
 
 /**
- * Возвращает CSS-класс hover-цвета тайтла проекта по статусу:
- * зелёный — ссылка, жёлтый — скриншоты, красный — приватный, серый — нет ссылки.
+ * Определяет единственное действие проекта по приоритету:
+ * скриншоты > внешняя ссылка > приватный > нет действия.
  */
-function getTitleHoverColor(project: WorkProject): string {
-  if (project.screenshots?.length) return 'hover:text-yellow-400';
-  if (project.githubUrl || project.rustoreUrl || project.googlePlayUrl) return 'hover:text-[#00d084]';
-  if (project.isPrivate) return 'hover:text-red-500';
-  return 'hover:text-white/50';
+function getProjectAction(project: WorkProject): ProjectAction {
+  // Скриншоты — наивысший приоритет
+  if (project.screenshots?.length) {
+    return {
+      type: 'screenshots',
+      icon: '❐',
+      bgColor: 'bg-[#be64ff]/[0.08]',
+      hoverBgColor: 'hover:bg-[#be64ff]/20',
+      borderColor: 'border-[#be64ff]/20',
+      textColor: 'text-[#be64ff]',
+      hoverTextColor: 'hover:text-[#d48fff]',
+      label: null, // будет формироваться отдельно с учётом i18n
+    };
+  }
+  // Внешняя ссылка (GitHub, RuStore, Google Play строка)
+  if (project.githubUrl) {
+    return {
+      type: 'link',
+      icon: '↗',
+      bgColor: 'bg-[#00d084]/[0.08]',
+      hoverBgColor: 'hover:bg-[#00d084]/20',
+      borderColor: 'border-[#00d084]/20',
+      textColor: 'text-[#00d084]',
+      hoverTextColor: 'hover:text-[#00d084]',
+      label: 'GitHub',
+    };
+  }
+  if (project.rustoreUrl) {
+    return {
+      type: 'link',
+      icon: '↗',
+      bgColor: 'bg-[#00d084]/[0.08]',
+      hoverBgColor: 'hover:bg-[#00d084]/20',
+      borderColor: 'border-[#00d084]/20',
+      textColor: 'text-[#00d084]',
+      hoverTextColor: 'hover:text-[#00d084]',
+      label: 'RuStore',
+    };
+  }
+  if (typeof project.googlePlayUrl === 'string') {
+    return {
+      type: 'link',
+      icon: '↗',
+      bgColor: 'bg-[#00d084]/[0.08]',
+      hoverBgColor: 'hover:bg-[#00d084]/20',
+      borderColor: 'border-[#00d084]/20',
+      textColor: 'text-[#00d084]',
+      hoverTextColor: 'hover:text-[#00d084]',
+      label: 'Google Play',
+    };
+  }
+  // Приватный проект (без скриншотов и без ссылок)
+  if (project.isPrivate) {
+    return {
+      type: 'private',
+      icon: '⊗',
+      bgColor: 'bg-red-500/[0.08]',
+      hoverBgColor: 'hover:bg-red-500/20',
+      borderColor: 'border-red-500/20',
+      textColor: 'text-red-500/70',
+      hoverTextColor: 'hover:text-red-400/90',
+      label: null,
+    };
+  }
+  // Нет действия
+  return {
+    type: 'none',
+    icon: '—',
+    bgColor: 'bg-white/[0.02]',
+    hoverBgColor: 'hover:bg-white/[0.08]',
+    borderColor: 'border-white/[0.08]',
+    textColor: 'text-white/20',
+    hoverTextColor: 'hover:text-white/40',
+    label: null,
+  };
 }
 
 /**
- * Возвращает цвет статусной точки блока компании:
- * зелёный — есть ссылка на сайт, серый — нет ссылки.
+ * Определяет действие для блока компании по наличию URL.
  */
-function getBlockDotColor(block: { url?: string }): string {
-  if (block.url) return 'bg-[#00d084]';
-  return 'bg-white/20';
+function getBlockAction(block: { url?: string }): ProjectAction {
+  if (block.url) {
+    return {
+      type: 'link',
+      icon: '↗',
+      bgColor: 'bg-[#00d084]/[0.08]',
+      hoverBgColor: 'hover:bg-[#00d084]/20',
+      borderColor: 'border-[#00d084]/20',
+      textColor: 'text-[#00d084]',
+      hoverTextColor: 'hover:text-[#00d084]',
+      label: null,
+    };
+  }
+  return {
+    type: 'none',
+    icon: '—',
+    bgColor: 'bg-white/[0.02]',
+    hoverBgColor: 'hover:bg-white/[0.08]',
+    borderColor: 'border-white/[0.08]',
+    textColor: 'text-white/20',
+    hoverTextColor: 'hover:text-white/40',
+    label: null,
+  };
 }
 
 /**
@@ -99,17 +204,14 @@ function Chevron({ expanded, size = 'md' }: { expanded: boolean; size?: 'md' | '
 
 /**
  * Карточка проекта с двумя состояниями:
- * свёрнутое — компактная строка с названием и статусом,
- * развёрнутое — полная карточка с описанием, стеком и ссылками.
+ * свёрнутое — строка с боковой полосой-кнопкой, названием и периодом,
+ * развёрнутое — полная карточка с описанием, стеком и текстовой кнопкой действия.
  */
 function ProjectCard({
   project,
   delay,
   isExpanded,
   onToggle,
-  toastPrivate,
-  toastNoLink,
-  toastGplay,
   t,
   lang,
   onScreenshots,
@@ -118,58 +220,34 @@ function ProjectCard({
   delay: number;
   isExpanded: boolean;
   onToggle: () => void;
-  toastPrivate: string;
-  toastNoLink: string;
-  toastGplay: string;
   t: (key: TranslationKey) => string;
   lang: string;
   /** Callback открытия галереи скриншотов — передаётся только если у проекта есть скриншоты */
   onScreenshots?: () => void;
 }) {
-  // Текст инлайн-тоста справа от названия — null означает «скрыт»
-  const [inlineToast, setInlineToast] = useState<string | null>(null);
-  const toastTimer = useRef<ReturnType<typeof setTimeout>>();
+  const action = getProjectAction(project);
+  /** Кликабельна ли боковая полоса */
+  const isActionClickable = action.type === 'screenshots' || action.type === 'link' || action.type === 'private';
 
-  /** Определяет действие по клику в зависимости от статуса проекта */
-  function handleActionClick(e: React.MouseEvent) {
-    // Предотвращаем toggle при клике на ссылки внутри раскрытой карточки
+  // Тост для приватного проекта
+  const [privateToast, setPrivateToast] = useState(false);
+  const privateToastTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  /** Обработчик клика по боковой полосе */
+  function handleStripClick(e: React.MouseEvent) {
     e.stopPropagation();
-
-    if (project.githubUrl) {
-      window.open(project.githubUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    if (project.rustoreUrl) {
-      window.open(project.rustoreUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    // Если googlePlayUrl — строка, открываем ссылку напрямую; иначе показываем тост
-    if (typeof project.googlePlayUrl === 'string') {
-      window.open(project.googlePlayUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    // Если есть скриншоты — открываем галерею
-    if (project.screenshots?.length && onScreenshots) {
+    if (action.type === 'link') {
+      const url = project.githubUrl || project.rustoreUrl || (typeof project.googlePlayUrl === 'string' ? project.googlePlayUrl : undefined);
+      if (url) window.open(url, '_blank', 'noopener,noreferrer');
+    } else if (action.type === 'screenshots' && onScreenshots) {
       onScreenshots();
-      return;
+    } else if (action.type === 'private') {
+      // Показываем тост «Приватный репозиторий»
+      clearTimeout(privateToastTimer.current);
+      setPrivateToast(true);
+      privateToastTimer.current = setTimeout(() => setPrivateToast(false), 2000);
     }
-    let message: string;
-    if (project.googlePlayUrl) message = toastGplay;
-    else if (project.isPrivate) message = toastPrivate;
-    else message = toastNoLink;
-
-    clearTimeout(toastTimer.current);
-    setInlineToast(message);
-    toastTimer.current = setTimeout(() => setInlineToast(null), 2000);
   }
-
-  const isClickable = !!(
-    project.githubUrl ||
-    project.rustoreUrl ||
-    project.googlePlayUrl ||
-    project.screenshots?.length ||
-    project.isPrivate
-  );
 
   return (
     <motion.div
@@ -179,36 +257,52 @@ function ProjectCard({
       transition={{ duration: 0.4, delay }}
       className="relative"
     >
-      {/* Свёрнутый заголовок проекта — всегда виден */}
+      {/* Свёрнутый заголовок проекта с боковой полосой */}
       <motion.div
         onClick={onToggle}
         whileHover={{ y: -2, transition: { duration: 0.15, ease: 'easeOut' } }}
-        className={`flex items-center gap-2.5 rounded-xl border ${isExpanded ? 'border-[#00d084]/30 bg-[#0d1117]' : 'border-white/10 bg-[#0d1117] hover:border-[#00d084]/30'} p-4 cursor-pointer transition-colors duration-150`}
+        className={`flex rounded-xl border ${isExpanded ? 'border-[#00d084]/30 bg-[#0d1117]' : 'border-white/10 bg-[#0d1117] hover:border-[#00d084]/30'} cursor-pointer transition-colors duration-150 overflow-hidden`}
       >
-        <span className={`w-2 h-2 rounded-full shrink-0 ${getDotColor(project)}`} />
-        <h4
-          onClick={isClickable ? (e: React.MouseEvent) => { e.stopPropagation(); handleActionClick(e); } : undefined}
-          className={`font-bold text-base ${isClickable ? `text-white cursor-pointer ${getTitleHoverColor(project)} transition-colors duration-200` : 'text-white'}`}
-        >{t(project.nameKey)}</h4>
-        <AnimatePresence>
-          {inlineToast && (
-            <motion.span
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -6 }}
-              transition={{ duration: 0.15 }}
-              className="ml-1 self-center text-xs font-mono text-white/40 border border-white/10 px-2 py-0.5 rounded"
-            >
-              {inlineToast}
-            </motion.span>
-          )}
-        </AnimatePresence>
-        {project.period && (
-          <p className="font-mono text-xs text-white/30 ml-auto shrink-0">
-            {lang === 'ru' && project.periodRu ? project.periodRu : project.period}
-          </p>
+        {/* Боковая полоса-кнопка */}
+        {isActionClickable ? (
+          <a
+            onClick={handleStripClick}
+            className={`flex items-center justify-center w-10 shrink-0 ${action.bgColor} ${action.hoverBgColor} border-r ${action.borderColor} ${action.textColor} ${action.hoverTextColor} text-sm cursor-pointer transition-all duration-150`}
+            title={action.label || t('proj_btn_screenshots')}
+          >
+            {action.icon}
+          </a>
+        ) : (
+          <span
+            className={`flex items-center justify-center w-10 shrink-0 ${action.bgColor} border-r ${action.borderColor} ${action.textColor} text-sm cursor-default`}
+          >
+            {action.icon}
+          </span>
         )}
-        <Chevron expanded={isExpanded} size="sm" />
+        {/* Содержимое заголовка */}
+        <div className="flex items-center gap-2.5 flex-1 p-4">
+          <h4 className="font-bold text-base text-white">{t(project.nameKey)}</h4>
+          {/* Инлайн-тост для приватного проекта — правее названия */}
+          <AnimatePresence>
+            {privateToast && (
+              <motion.span
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -6 }}
+                transition={{ duration: 0.15 }}
+                className="text-xs font-mono text-white/40 border border-white/10 px-2 py-0.5 rounded"
+              >
+                {t('proj_toast_private')}
+              </motion.span>
+            )}
+          </AnimatePresence>
+          {project.period && (
+            <p className="font-mono text-xs text-white/30 ml-auto shrink-0">
+              {lang === 'ru' && project.periodRu ? project.periodRu : project.period}
+            </p>
+          )}
+          <Chevron expanded={isExpanded} size="sm" />
+        </div>
       </motion.div>
 
       {/* Развёрнутое содержимое проекта */}
@@ -221,10 +315,7 @@ function ProjectCard({
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div
-              className="border border-t-0 border-[#00d084]/30 rounded-b-xl bg-[#0d1117] p-6 pt-4 -mt-3"
-            >
-              {/* Описание: renderDesc корректно обрабатывает и буллеты, и простой текст */}
+            <div className="border border-t-0 border-[#00d084]/30 rounded-b-xl bg-[#0d1117] p-6 pt-4 -mt-3">
               {renderDesc(t(project.descKey))}
 
               {/* Теги стека технологий */}
@@ -238,6 +329,7 @@ function ProjectCard({
                   </span>
                 ))}
               </div>
+
             </div>
           </motion.div>
         )}
@@ -321,6 +413,9 @@ export default function WorkAndProjects() {
             const isBlockExpanded = expandedBlocks.has(block.id);
             // Разделитель перед блоком личных проектов (без company)
             const showDivider = !block.company && i > 0;
+            // Действие блока — ссылка на сайт компании или ничего
+            const blockAction = getBlockAction(block);
+            const isBlockClickable = blockAction.type === 'link';
 
             return (
               // Блок появляется снизу с задержкой i * 0.1с
@@ -340,35 +435,38 @@ export default function WorkAndProjects() {
                   </div>
                 )}
 
-                {/* Кликабельный заголовок блока */}
+                {/* Кликабельный заголовок блока с боковой полосой */}
                 <div
                   onClick={() => toggleBlock(block.id)}
-                  className={`flex items-center gap-4 cursor-pointer group rounded-xl border ${isBlockExpanded ? 'border-[#00d084]/30' : 'border-white/10 hover:border-[#00d084]/30'} bg-[#0d1117] p-4 transition-colors duration-150`}
+                  className={`flex cursor-pointer group rounded-xl border ${isBlockExpanded ? 'border-[#00d084]/30' : 'border-white/10 hover:border-[#00d084]/30'} bg-[#0d1117] transition-colors duration-150 overflow-hidden`}
                 >
-                  {/* Статусная точка блока — выровнена по центру названия (h3) */}
-                  <span className={`w-2 h-2 rounded-full shrink-0 ${block.company ? 'self-start mt-[14px] sm:mt-[18px]' : ''} ${getBlockDotColor(block)}`} />
-                  <div className="flex-1 min-w-0">
-                    {block.company ? (
-                      <>
-                        {/* Название компании — кликабельно если задан url */}
-                        {block.url ? (
-                          <a
-                            href={block.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-block"
-                          >
-                            <h3 className="text-2xl sm:text-3xl font-bold text-white hover:text-[#00d084] transition-colors duration-200 mb-0.5">
+                  {/* Боковая полоса блока */}
+                  {isBlockClickable ? (
+                    <a
+                      onClick={(e) => { e.stopPropagation(); window.open(block.url!, '_blank', 'noopener,noreferrer'); }}
+                      className={`flex items-center justify-center w-12 shrink-0 ${blockAction.bgColor} ${blockAction.hoverBgColor} border-r ${blockAction.borderColor} ${blockAction.textColor} ${blockAction.hoverTextColor} text-base cursor-pointer transition-all duration-150`}
+                      title={block.company || t('work_pet_title')}
+                    >
+                      {blockAction.icon}
+                    </a>
+                  ) : (
+                    <span
+                      onClick={(e) => { e.stopPropagation(); showBlockToast(block.id); }}
+                      className={`flex items-center justify-center w-12 shrink-0 ${blockAction.bgColor} ${blockAction.hoverBgColor} border-r ${blockAction.borderColor} ${blockAction.textColor} ${blockAction.hoverTextColor} text-base cursor-pointer transition-all duration-150`}
+                    >
+                      {blockAction.icon}
+                    </span>
+                  )}
+                  {/* Содержимое заголовка блока */}
+                  <div className="flex items-center gap-4 flex-1 p-4">
+                    <div className="flex-1 min-w-0">
+                      {block.company ? (
+                        <>
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <h3 className="text-2xl sm:text-3xl font-bold text-white">
                               {block.company}
                             </h3>
-                          </a>
-                        ) : (
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <h3
-                              onClick={(e) => { e.stopPropagation(); showBlockToast(block.id); }}
-                              className="text-2xl sm:text-3xl font-bold text-white cursor-pointer hover:text-white/50 transition-colors duration-200"
-                            >{block.company}</h3>
+                            {/* Тост «Ссылка недоступна» для блоков без URL */}
                             <AnimatePresence>
                               {blockToasts.has(block.id) && (
                                 <motion.span
@@ -383,40 +481,39 @@ export default function WorkAndProjects() {
                               )}
                             </AnimatePresence>
                           </div>
-                        )}
-                        {/* Период работы */}
-                        <p className="font-mono text-xs text-[#00d084]">
-                          {lang === 'en' ? block.period : block.periodRu}
-                        </p>
-                      </>
-                    ) : (
-                      /* py компенсирует отсутствие строки даты, центрируя заголовок */
-                      <div className="flex items-center gap-2 py-[9px]">
-                        <h3
-                          onClick={(e) => { e.stopPropagation(); showBlockToast(block.id); }}
-                          className="text-2xl sm:text-3xl font-bold text-white cursor-pointer hover:text-white/50 transition-colors duration-200"
-                        >{t('work_pet_title')}</h3>
-                        <AnimatePresence>
-                          {blockToasts.has(block.id) && (
-                            <motion.span
-                              initial={{ opacity: 0, x: -6 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              exit={{ opacity: 0, x: -6 }}
-                              transition={{ duration: 0.15 }}
-                              className="text-sm font-mono text-white/40 border border-white/10 px-3 py-1 rounded"
-                            >
-                              {t('proj_toast_no_link')}
-                            </motion.span>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    )}
+                          {/* Период работы */}
+                          <p className="font-mono text-xs text-[#00d084]">
+                            {lang === 'en' ? block.period : block.periodRu}
+                          </p>
+                        </>
+                      ) : (
+                        <div className="flex items-center gap-2 py-[9px]">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                            {t('work_pet_title')}
+                          </h3>
+                          {/* Тост «Ссылка недоступна» для блока Личные проекты */}
+                          <AnimatePresence>
+                            {blockToasts.has(block.id) && (
+                              <motion.span
+                                initial={{ opacity: 0, x: -6 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -6 }}
+                                transition={{ duration: 0.15 }}
+                                className="text-sm font-mono text-white/40 border border-white/10 px-3 py-1 rounded"
+                              >
+                                {t('proj_toast_no_link')}
+                              </motion.span>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      )}
+                    </div>
+                    {/* Счётчик проектов */}
+                    <span className="font-mono text-xs text-white/30 shrink-0 ml-auto">
+                      {projectCountText(block.projects.length, t, lang)}
+                    </span>
+                    <Chevron expanded={isBlockExpanded} />
                   </div>
-                  {/* Счётчик проектов */}
-                  <span className="font-mono text-xs text-white/30 shrink-0 ml-auto">
-                    {projectCountText(block.projects.length, t, lang)}
-                  </span>
-                  <Chevron expanded={isBlockExpanded} />
                 </div>
 
                 {/* Раскрываемый список проектов */}
@@ -437,9 +534,6 @@ export default function WorkAndProjects() {
                             delay={j * 0.06}
                             isExpanded={expandedProjects.has(project.nameKey)}
                             onToggle={() => toggleProject(project.nameKey)}
-                            toastPrivate={t('proj_toast_private')}
-                            toastNoLink={t('proj_toast_no_link')}
-                            toastGplay={t('proj_toast_gplay')}
                             t={t}
                             lang={lang}
                             onScreenshots={
