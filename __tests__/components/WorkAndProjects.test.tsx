@@ -92,31 +92,28 @@ describe('WorkAndProjects', () => {
     strips.forEach((strip) => expect(strip.tagName).toBe('A'))
   })
 
-  it('показывает текстовую кнопку в раскрытой карточке', async () => {
-    const user = userEvent.setup()
+  it('показывает боковые полосы для блоков компаний с URL', () => {
     renderWithProviders(<WorkAndProjects />)
 
-    // Раскрываем блок Personal Projects — кликаем по счётчику, минуя h3 с stopPropagation
-    await user.click(screen.getByText('6 projects'))
-
-    // Раскрываем карточку Portfolio
-    await user.click(screen.getByText('Boris Portfolio'))
-
-    // Текстовая кнопка должна отображать "GitHub ↗"
-    expect(screen.getByText('GitHub ↗')).toBeInTheDocument()
+    // Nadeks и Mahuru имеют URL — их полосы должны быть <a>
+    const nadeksStrip = screen.getByTitle('Nadeks')
+    expect(nadeksStrip.tagName).toBe('A')
+    const mahuruStrip = screen.getByTitle('Mahuru')
+    expect(mahuruStrip.tagName).toBe('A')
   })
 
-  it('кнопка скриншотов показывает количество', async () => {
+  it('клик по замочку приватного проекта показывает тост', async () => {
     const user = userEvent.setup()
     renderWithProviders(<WorkAndProjects />)
 
-    // Раскрываем блок Mahuru — кликаем по периоду работы внутри кликабельного div
+    // Раскрываем блок Mahuru
     await user.click(screen.getByText('Aug 2019 – Mar 2025'))
 
-    // Раскрываем карточку Enterprise MRM
-    await user.click(screen.getByText('Enterprise MRM'))
+    // Insurance Backend — приватный без скриншотов, полоса с замочком
+    // Кликаем по замочку — должен появиться тост "Private repository"
+    const lockStrips = screen.getAllByText('🔒')
+    await user.click(lockStrips[0])
 
-    // Кнопка скриншотов должна содержать "Screenshots" и количество "12"
-    expect(screen.getByText(/Screenshots.*12/)).toBeInTheDocument()
+    expect(screen.getByText('Private repository')).toBeInTheDocument()
   })
 })
