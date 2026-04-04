@@ -67,6 +67,7 @@ export const translations = {
     proj_toast_private: 'Private repository',
     proj_toast_no_link: 'No link available',
     proj_toast_gplay: 'Available on Google Play',
+    proj_btn_screenshots: 'Screenshots',
 
     // Nadeks projects
     proj_pos_nadeks_name: 'ARIASOFT.POS / ARIASOFT.T2P',
@@ -213,6 +214,7 @@ export const translations = {
     proj_toast_private: 'Приватный репозиторий',
     proj_toast_no_link: 'Ссылка недоступна',
     proj_toast_gplay: 'Доступно на Google Play',
+    proj_btn_screenshots: 'Скриншоты',
 
     // Nadeks projects
     proj_pos_nadeks_name: 'ARIASOFT.POS / ARIASOFT.T2P',
