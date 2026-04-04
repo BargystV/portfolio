@@ -121,11 +121,11 @@ function getProjectAction(project: WorkProject): ProjectAction {
     return {
       type: 'private',
       icon: '🔒',
-      bgColor: 'bg-red-500/[0.06]',
-      hoverBgColor: 'hover:bg-red-500/15',
-      borderColor: 'border-red-500/15',
-      textColor: 'text-red-500/50',
-      hoverTextColor: 'hover:text-red-400/70',
+      bgColor: 'bg-red-500/[0.08]',
+      hoverBgColor: 'hover:bg-red-500/20',
+      borderColor: 'border-red-500/20',
+      textColor: 'text-red-500/70',
+      hoverTextColor: 'hover:text-red-400/90',
       label: null,
     };
   }
