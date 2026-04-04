@@ -70,7 +70,7 @@ function getProjectAction(project: WorkProject): ProjectAction {
   if (project.screenshots?.length) {
     return {
       type: 'screenshots',
-      icon: '🖼',
+      icon: '❐',
       bgColor: 'bg-[#be64ff]/[0.08]',
       hoverBgColor: 'hover:bg-[#be64ff]/20',
       borderColor: 'border-[#be64ff]/20',
@@ -120,7 +120,7 @@ function getProjectAction(project: WorkProject): ProjectAction {
   if (project.isPrivate) {
     return {
       type: 'private',
-      icon: '🔒',
+      icon: '⊗',
       bgColor: 'bg-red-500/[0.08]',
       hoverBgColor: 'hover:bg-red-500/20',
       borderColor: 'border-red-500/20',

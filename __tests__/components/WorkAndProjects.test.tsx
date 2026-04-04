@@ -111,7 +111,7 @@ describe('WorkAndProjects', () => {
 
     // Insurance Backend — приватный без скриншотов, полоса с замочком
     // Кликаем по замочку — должен появиться тост "Private repository"
-    const lockStrips = screen.getAllByText('🔒')
+    const lockStrips = screen.getAllByText('⊗')
     await user.click(lockStrips[0])
 
     expect(screen.getByText('Private repository')).toBeInTheDocument()
