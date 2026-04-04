@@ -64,9 +64,7 @@ export const translations = {
     proj_gplay: 'Google Play',
     proj_private: 'Private',
     proj_contributions: 'My contributions',
-    proj_toast_private: 'Private repository',
     proj_toast_no_link: 'No link available',
-    proj_toast_gplay: 'Available on Google Play',
     proj_btn_screenshots: 'Screenshots',
 
     // Nadeks projects
@@ -211,9 +209,7 @@ export const translations = {
     proj_gplay: 'Google Play',
     proj_private: 'Приватный',
     proj_contributions: 'Мой вклад',
-    proj_toast_private: 'Приватный репозиторий',
     proj_toast_no_link: 'Ссылка недоступна',
-    proj_toast_gplay: 'Доступно на Google Play',
     proj_btn_screenshots: 'Скриншоты',
 
     // Nadeks projects
