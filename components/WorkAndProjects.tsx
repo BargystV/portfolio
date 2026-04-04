@@ -71,11 +71,11 @@ function getProjectAction(project: WorkProject): ProjectAction {
     return {
       type: 'screenshots',
       icon: '🖼',
-      bgColor: 'bg-yellow-400/[0.08]',
-      hoverBgColor: 'hover:bg-yellow-400/20',
-      borderColor: 'border-yellow-400/20',
-      textColor: 'text-yellow-400',
-      hoverTextColor: 'hover:text-yellow-300',
+      bgColor: 'bg-[#be64ff]/[0.08]',
+      hoverBgColor: 'hover:bg-[#be64ff]/20',
+      borderColor: 'border-[#be64ff]/20',
+      textColor: 'text-[#be64ff]',
+      hoverTextColor: 'hover:text-[#d48fff]',
       label: null, // будет формироваться отдельно с учётом i18n
     };
   }
