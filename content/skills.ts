@@ -53,7 +53,7 @@ export const skillGroups: SkillGroup[] = [
   {
     // Инфраструктура и DevOps
     key: 'infra',
-    items: ['Docker', 'Docker Compose', 'Gradle', 'Firebase', 'Google Maps', 'Sentry'],
+    items: ['Docker', 'Docker Compose', 'Gradle', 'Firebase', 'Google Maps', 'Sentry', 'Xray-core', '3X-UI', 'UFW', 'fail2ban'],
   },
   {
     // AI и автоматизация

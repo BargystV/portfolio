@@ -215,10 +215,19 @@ export const workBlocks: WorkBlock[] = [
         githubUrl: 'https://github.com/BargystV/simulation-of-life',
       },
       {
+        // Self-hosted VLESS+Reality VPN на базе 3X-UI и Xray-core
+        nameKey: 'proj_vlessVpn_name',
+        descKey: 'proj_vlessVpn_desc',
+        stack: ['Bash', 'Docker Compose', 'Xray-core', 'VLESS+Reality', '3X-UI', 'UFW'],
+        period: 'Apr 2026 – Apr 2026',
+        periodRu: 'Апр 2026 – Апр 2026',
+        githubUrl: 'https://github.com/BargystV/my-vpn',
+      },
+      {
         // Self-hosted MTProto-прокси для Telegram
         nameKey: 'proj_mtproxy_name',
         descKey: 'proj_mtproxy_desc',
-        stack: ['Bash', 'Docker', 'Docker Compose'],
+        stack: ['Bash', 'Docker Compose'],
         period: 'Apr 2026 – Apr 2026',
         periodRu: 'Апр 2026 – Апр 2026',
         githubUrl: 'https://github.com/BargystV/my-mtproxy',

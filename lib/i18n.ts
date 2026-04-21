@@ -106,6 +106,7 @@ export const translations = {
     proj_hebrewTrans_name: 'Hebrew → English Translator',
     proj_hebrewTrans_desc: 'Android translator app for Hebrew to English.',
 
+    // Personal projects
     proj_lifesim_name: 'Simulation of Life',
     proj_lifesim_desc:
       'Desktop evolutionary simulation — full cycle from architecture to multiplatform build.\n• Designed Data-Oriented ECS from scratch: flat primitive arrays instead of objects, stateless engines, O(1) entity creation/destruction without allocations in hot path\n• Developed genomic system with inheritance and mutation (~3% per byte), modeling natural selection through competition for light',
@@ -121,6 +122,10 @@ export const translations = {
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
       'Private AI assistant for everyday life — manages calendar, purchases, and recipes in Notion via natural language.\n• Built multi-step n8n workflows: intent classification → tool routing → Notion API calls\n• Integrated LLM as the orchestration layer: the agent parses free-form messages, extracts structured data, and dispatches CRUD operations across multiple Notion databases',
+
+    proj_vlessVpn_name: 'My-VPN',
+    proj_vlessVpn_desc:
+      'Self-hosted VPN based on VLESS+Reality with HTTPS traffic masking, designed for private use by a small group (family, close friends).\n• Designed a Bash installer that deploys a ready-to-use service on a clean Ubuntu VPS with a single command: Docker install, firewall configuration, secret generation, first client issued\n• Implemented traffic masking as a real HTTPS site — resistant to blocking of modern VPN protocols\n• Built helper scripts for user management: add, remove, list — each producing a ready connection link and QR code\n• Locked the admin panel from the outside — management only via a secure SSH tunnel',
 
     proj_mtproxy_name: 'My-MTProxy',
     proj_mtproxy_desc:
@@ -252,6 +257,7 @@ export const translations = {
     proj_hebrewTrans_name: 'Переводчик иврит → английский',
     proj_hebrewTrans_desc: 'Android-приложение-переводчик с иврита на английский.',
 
+    // Personal projects
     proj_lifesim_name: 'Simulation of Life',
     proj_lifesim_desc:
       'Десктопная эволюционная симуляция — полный цикл от архитектуры до мультиплатформенной сборки.\n• Спроектировал Data-Oriented ECS с нуля: плоские примитивные массивы вместо объектов, stateless-движки, O(1) создание/уничтожение сущностей без аллокаций в hot path\n• Разработал геномную систему с наследованием и мутацией (~3% на байт), моделирующую естественный отбор через конкуренцию за свет',
@@ -267,6 +273,10 @@ export const translations = {
     proj_aiagent_name: 'AI Personal Agent',
     proj_aiagent_desc:
       'Приватный AI-ассистент для повседневной жизни — управляет календарём, покупками и рецептами в Notion через естественный язык.\n• Построил многошаговые n8n-воркфлоу: классификация интента → маршрутизация инструментов → вызовы Notion API\n• Интегрировал LLM как слой оркестрации: агент разбирает произвольные сообщения, извлекает структурированные данные и диспатчит CRUD-операции по нескольким базам Notion',
+
+    proj_vlessVpn_name: 'My-VPN',
+    proj_vlessVpn_desc:
+      'Self-hosted VPN на базе VLESS+Reality с маскировкой трафика под обычный HTTPS, рассчитанный на приватное использование малой группой (семья, близкие).\n• Спроектировал bash-installer, разворачивающий готовый сервис на чистом Ubuntu VPS одной командой: установка Docker, настройка фаервола, генерация всех секретов, создание первого клиента\n• Реализовал маскировку трафика под реальный HTTPS-сайт — устойчиво к блокировкам современных VPN-протоколов\n• Построил helper-скрипты для управления пользователями: добавить, удалить, посмотреть список — каждая команда выдаёт готовую ссылку и QR-код для подключения\n• Закрыл админ-панель от внешнего доступа — управление только через защищённый SSH-туннель',
 
     proj_mtproxy_name: 'My-MTProxy',
     proj_mtproxy_desc:
