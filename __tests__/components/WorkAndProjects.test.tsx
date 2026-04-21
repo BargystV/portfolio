@@ -22,6 +22,7 @@ describe('WorkAndProjects', () => {
     // Nadeks и Freelance оба имеют по 1 проекту
     expect(screen.getAllByText('1 project').length).toBe(2)
     expect(screen.getByText('4 projects')).toBeInTheDocument()
+    expect(screen.getByText('7 projects')).toBeInTheDocument()
   })
 
   it('клик по блоку раскрывает проекты', async () => {
@@ -69,7 +70,7 @@ describe('WorkAndProjects', () => {
     renderWithProviders(<WorkAndProjects />)
 
     // Раскрываем блок Personal Projects — кликаем по счётчику, минуя h3 с stopPropagation
-    await user.click(screen.getByText('6 projects'))
+    await user.click(screen.getByText('7 projects'))
 
     // Портфолио имеет githubUrl — полоса должна рендериться как <a> с title="GitHub"
     // Несколько проектов могут иметь GitHub-полосу, проверяем что все они <a>
