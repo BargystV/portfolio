@@ -30,7 +30,7 @@ describe('Hero', () => {
     renderWithProviders(<Hero />)
     expect(screen.getByText(/Android — 9\+ years/)).toBeInTheDocument()
     expect(screen.getByText(/Backend — REST APIs/)).toBeInTheDocument()
-    expect(screen.getByText(/Desktop — plant evolution/)).toBeInTheDocument()
+    expect(screen.getByText(/Desktop — built a plant evolution/)).toBeInTheDocument()
     expect(screen.getByText(/AI — agents/)).toBeInTheDocument()
   })
 })

@@ -23,7 +23,7 @@ export const translations = {
     hero_role: 'Senior Android Developer',
     hero_tagline: 'Android — 9+ years of commercial development.',
     hero_tagline2: 'Backend — REST APIs & event streaming.',
-    hero_tagline3: 'Desktop — plant evolution simulator.',
+    hero_tagline3: 'Desktop — built a plant evolution simulator.',
     hero_tagline4: 'AI — agents for personal task automation.',
     hero_download: 'Download Resume',
     hero_contact: 'Contact Me',
@@ -37,7 +37,7 @@ export const translations = {
     about_p3:
       'I love automating and organizing — I have several Telegram bots for personal databases: calendar, recipes, shopping.',
     about_p4:
-      'I\'m writing a life simulation: cells, rules, emergent behavior — it\'s fascinating how simple algorithms give rise to complex systems.',
+      'I built a life simulation: cells, rules, emergent behavior — it was fascinating how simple algorithms give rise to complex systems.',
     about_p5:
       'Outside of code, I play guitar, jaw harp, and hang drum, write poetry, and travel. I climbed Elbrus, did mountaineering, rock climbing, and flew a paraglider. Curious about space, philosophy, and psychology. Learning English (B1) and Spanish (A2) — I want to visit Peru.',
 
@@ -174,7 +174,7 @@ export const translations = {
     hero_role: 'Senior Android Developer',
     hero_tagline: 'Android — 9+ лет коммерческой разработки.',
     hero_tagline2: 'Backend — REST API и событийные сервисы.',
-    hero_tagline3: 'Desktop — симулятор эволюции растений.',
+    hero_tagline3: 'Desktop — написал симулятор эволюции растений.',
     hero_tagline4: 'AI — агенты для автоматизации персональных задач.',
     hero_download: 'Скачать резюме',
     hero_contact: 'Написать мне',
@@ -188,7 +188,7 @@ export const translations = {
     about_p3:
       'Люблю автоматизировать и систематизировать — у меня есть несколько Telegram-ботов для личных баз данных: календарь, рецепты, покупки.',
     about_p4:
-      'Пишу симуляцию жизни: клетки, правила, эмерджентное поведение — интересно наблюдать, как простые алгоритмы порождают сложные системы.',
+      'Написал симуляцию жизни: клетки, правила, эмерджентное поведение — было интересно наблюдать, как простые алгоритмы порождают сложные системы.',
     about_p5:
       'В свободное время играю на гитаре, варгане и ханге, пишу стихи, путешествую. Восходил на Эльбрус, занимался альпинизмом и скалолазанием, летал на параплане. Увлекаюсь космосом, философией и психологией. Изучаю английский (B1) и испанский (A2) — хочу в Перу.',
 

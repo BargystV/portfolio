@@ -206,15 +206,6 @@ export const workBlocks: WorkBlock[] = [
         ],
       },
       {
-        // Симуляция жизненного цикла растений с эволюционным алгоритмом
-        nameKey: 'proj_treesworld_name',
-        descKey: 'proj_treesworld_desc',
-        stack: ['Kotlin', 'LibGDX'],
-        period: 'Sep 2025 – Present',
-        periodRu: 'Сент 2025 – н.в.',
-        githubUrl: 'https://github.com/BargystV/trees-world',
-      },
-      {
         // Self-hosted VLESS+Reality VPN на базе 3X-UI и Xray-core
         nameKey: 'proj_vlessVpn_name',
         descKey: 'proj_vlessVpn_desc',
@@ -231,6 +222,15 @@ export const workBlocks: WorkBlock[] = [
         period: 'Apr 2026 – Apr 2026',
         periodRu: 'Апр 2026 – Апр 2026',
         githubUrl: 'https://github.com/BargystV/my-mtproxy',
+      },
+      {
+        // Симуляция жизненного цикла растений с эволюционным алгоритмом
+        nameKey: 'proj_treesworld_name',
+        descKey: 'proj_treesworld_desc',
+        stack: ['Kotlin', 'LibGDX'],
+        period: 'Sep 2025 – Apr 2026',
+        periodRu: 'Сент 2025 – Апр 2026',
+        githubUrl: 'https://github.com/BargystV/trees-world',
       },
       {
         // Android-приложение Amazonica (открытый репозиторий)
