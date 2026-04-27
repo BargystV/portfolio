@@ -207,12 +207,12 @@ export const workBlocks: WorkBlock[] = [
       },
       {
         // Симуляция жизненного цикла растений с эволюционным алгоритмом
-        nameKey: 'proj_lifesim_name',
-        descKey: 'proj_lifesim_desc',
+        nameKey: 'proj_treesworld_name',
+        descKey: 'proj_treesworld_desc',
         stack: ['Kotlin', 'LibGDX'],
         period: 'Sep 2025 – Present',
         periodRu: 'Сент 2025 – н.в.',
-        githubUrl: 'https://github.com/BargystV/simulation-of-life',
+        githubUrl: 'https://github.com/BargystV/trees-world',
       },
       {
         // Self-hosted VLESS+Reality VPN на базе 3X-UI и Xray-core

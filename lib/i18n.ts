@@ -107,8 +107,8 @@ export const translations = {
     proj_hebrewTrans_desc: 'Android translator app for Hebrew to English.',
 
     // Personal projects
-    proj_lifesim_name: 'Simulation of Life',
-    proj_lifesim_desc:
+    proj_treesworld_name: 'Trees World',
+    proj_treesworld_desc:
       'Desktop evolutionary simulation — full cycle from architecture to multiplatform build.\n• Designed Data-Oriented ECS from scratch: flat primitive arrays instead of objects, stateless engines, O(1) entity creation/destruction without allocations in hot path\n• Developed genomic system with inheritance and mutation (~3% per byte), modeling natural selection through competition for light',
 
     proj_amazonica_name: 'Amazonica',
@@ -258,8 +258,8 @@ export const translations = {
     proj_hebrewTrans_desc: 'Android-приложение-переводчик с иврита на английский.',
 
     // Personal projects
-    proj_lifesim_name: 'Simulation of Life',
-    proj_lifesim_desc:
+    proj_treesworld_name: 'Trees World',
+    proj_treesworld_desc:
       'Десктопная эволюционная симуляция — полный цикл от архитектуры до мультиплатформенной сборки.\n• Спроектировал Data-Oriented ECS с нуля: плоские примитивные массивы вместо объектов, stateless-движки, O(1) создание/уничтожение сущностей без аллокаций в hot path\n• Разработал геномную систему с наследованием и мутацией (~3% на байт), моделирующую естественный отбор через конкуренцию за свет',
 
     proj_amazonica_name: 'Amazonica',
