@@ -11,7 +11,11 @@ const inter = Inter({
   display: 'swap',
 });
 
+/** Канонический адрес сайта — база для абсолютных URL в метатегах и OG-разметке */
+const SITE_URL = 'https://www.bargystvelp.site';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'Boris Varshaver — Senior Android Developer',
   description:
     '9+ years of Android development. Kotlin, Java, Jetpack Compose, MVVM, Clean Architecture. Passionate about mobile × AI.',
@@ -24,11 +28,15 @@ export const metadata: Metadata = {
     'Boris Varshaver',
   ],
   authors: [{ name: 'Boris Varshaver' }],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Boris Varshaver — Senior Android Developer',
     description: '9+ years of Android development. Kotlin, Java, AI tools.',
     type: 'website',
     locale: 'en_US',
+    url: SITE_URL,
   },
   twitter: {
     card: 'summary',
